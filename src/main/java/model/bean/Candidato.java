@@ -6,12 +6,21 @@ public class Candidato {
 	private String sobrenome;
 	private boolean genero;
 	private String dataNascimento;
+	private Contato contato;
+	private Curriculo curriculo;
+	private Endereco endereco;
+	private Vaga vaga;
 
-	public Candidato(String nome, String sobrenome, boolean genero, String dataNascimento) {
+	public Candidato(String nome, String sobrenome, boolean genero, String dataNascimento, Contato contato,
+			Curriculo curriculo, Endereco endereco, Vaga vaga) {
 		setNome(nome);
 		setSobrenome(sobrenome);
 		setGenero(genero);
 		setDataNascimento(dataNascimento);
+		setContato(contato);
+		setCurriculo(curriculo);
+		setEndereco(endereco);
+		setVaga(vaga);
 	}
 
 	public String getNome() {
@@ -44,6 +53,38 @@ public class Candidato {
 
 	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+
+	public Contato getContato() {
+		return contato;
+	}
+
+	public void setContato(Contato contato) {
+		this.contato = contato;
+	}
+
+	public Curriculo getCurriculo() {
+		return curriculo;
+	}
+
+	public void setCurriculo(Curriculo curriculo) {
+		this.curriculo = curriculo;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Vaga getVaga() {
+		return vaga;
+	}
+
+	public void setVaga(Vaga vaga) {
+		this.vaga = vaga;
 	}
 
 }
