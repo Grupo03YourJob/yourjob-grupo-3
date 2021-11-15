@@ -1,71 +1,64 @@
 package model.bean;
 
+import java.util.List;
+
 public class Curriculo {
 
 	private long idCurriculo;
-	private String idioma;
-	private String idiomaNivel;
-	private String objetivo;
-	private String competencia;
-	private Formacao formacao;
-	private Experiencia experiencia;
+	private String objetivoCurriculo;
+	private String habilidadeCurriculo;
 
-	public Curriculo(String idioma, String idiomaNivel, String objetivo, String competencia, Formacao formacao,
-			Experiencia experiencia) {
-		setIdioma(idioma);
-		setIdiomaNivel(idiomaNivel);
-		setObjetivo(objetivo);
-		setCompetencia(competencia);
-		setFormacao(formacao);
-		setExperiencia(experiencia);
+	private List<Formacao> formacoes;
+	private List<Experiencia> experiencias;
+	private List<Idioma> idiomas;
+
+	public Curriculo(String objetivoCurriculo, String habilidadeCurriculo, List<Formacao> formacoes,
+			List<Experiencia> experiencias, List<Idioma> idiomas) {
+		setObjetivoCurriculo(objetivoCurriculo);
+		setHabilidadeCurriculo(habilidadeCurriculo);
+		setFormacoes(formacoes);
+		setExperiencias(experiencias);
+		setIdiomas(idiomas);
 	}
 
-	public String getIdioma() {
-		return idioma;
+	public List<Formacao> getFormacoes() {
+		return formacoes;
 	}
 
-	public void setIdioma(String idioma) {
-		this.idioma = idioma;
+	public void setFormacoes(List<Formacao> formacoes) {
+		this.formacoes = formacoes;
 	}
 
-	public String getIdiomaNivel() {
-		return idiomaNivel;
+	public List<Experiencia> getExperiencias() {
+		return experiencias;
 	}
 
-	public void setIdiomaNivel(String idiomaNivel) {
-		this.idiomaNivel = idiomaNivel;
+	public void setExperiencias(List<Experiencia> experiencias) {
+		this.experiencias = experiencias;
 	}
 
-	public String getObjetivo() {
-		return objetivo;
+	public List<Idioma> getIdiomas() {
+		return idiomas;
 	}
 
-	public void setObjetivo(String objetivo) {
-		this.objetivo = objetivo;
+	public void setIdiomas(List<Idioma> idiomas) {
+		this.idiomas = idiomas;
 	}
 
-	public String getCompetencia() {
-		return competencia;
+	public String getObjetivoCurriculo() {
+		return objetivoCurriculo;
 	}
 
-	public void setCompetencia(String competencia) {
-		this.competencia = competencia;
+	public void setObjetivoCurriculo(String objetivoCurriculo) {
+		this.objetivoCurriculo = objetivoCurriculo;
 	}
 
-	public Formacao getFormacao() {
-		return formacao;
+	public String getHabilidadeCurriculo() {
+		return habilidadeCurriculo;
 	}
 
-	public void setFormacao(Formacao formacao) {
-		this.formacao = formacao;
-	}
-
-	public Experiencia getExperiencia() {
-		return experiencia;
-	}
-
-	public void setExperiencia(Experiencia experiencia) {
-		this.experiencia = experiencia;
+	public void setHabilidadeCurriculo(String habilidadeCurriculo) {
+		this.habilidadeCurriculo = habilidadeCurriculo;
 	}
 
 	public long getIdCurriculo() {

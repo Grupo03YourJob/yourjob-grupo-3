@@ -3,58 +3,59 @@ package model.bean;
 public class Contato {
 
 	private long idContato;
-	private String telefone;
-	private String celular;
-	private String facebook = null;
-	private String instagram = null;
-	private String linkedin = null;
+	private String telefoneContato;
+	private String celularContato;
+	private String facebookContato = null;
+	private String instagramContato = null;
+	private String linkedinContato = null;
 
-	public Contato(String telefone, String celular, String facebook, String instagram, String linkedin) {
-		setTelefone(telefone);
-		setCelular(celular);
-		setFacebook(facebook);
-		setInstagram(instagram);
-		setLinkedin(linkedin);
+	public Contato(String telefoneContato, String celularContato, String facebookContato, String instagramContato,
+			String linkedinContato) {
+		setTelefoneContato(telefoneContato);
+		setCelularContato(celularContato);
+		setFacebookContato(facebookContato);
+		setInstagramContato(instagramContato);
+		setLinkedinContato(linkedinContato);
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getTelefoneContato() {
+		return telefoneContato;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setTelefoneContato(String telefoneContato) {
+		this.telefoneContato = telefoneContato;
 	}
 
-	public String getCelular() {
-		return celular;
+	public String getCelularContato() {
+		return celularContato;
 	}
 
-	public void setCelular(String celular) {
-		this.celular = celular;
+	public void setCelularContato(String celularContato) {
+		this.celularContato = celularContato;
 	}
 
-	public String getFacebook() {
-		return facebook;
+	public String getFacebookContato() {
+		return facebookContato;
 	}
 
-	public void setFacebook(String facebook) {
-		this.facebook = facebook;
+	public void setFacebookContato(String facebookContato) {
+		this.facebookContato = facebookContato;
 	}
 
-	public String getInstagram() {
-		return instagram;
+	public String getInstagramContato() {
+		return instagramContato;
 	}
 
-	public void setInstagram(String instagram) {
-		this.instagram = instagram;
+	public void setInstagramContato(String instagramContato) {
+		this.instagramContato = instagramContato;
 	}
 
-	public String getLinkedin() {
-		return linkedin;
+	public String getLinkedinContato() {
+		return linkedinContato;
 	}
 
-	public void setLinkedin(String linkedin) {
-		this.linkedin = linkedin;
+	public void setLinkedinContato(String linkedinContato) {
+		this.linkedinContato = linkedinContato;
 	}
 
 	public long getIdContato() {

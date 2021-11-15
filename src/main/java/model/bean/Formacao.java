@@ -3,48 +3,49 @@ package model.bean;
 public class Formacao {
 
 	private long idFormacao;
-	private String nome;
-	private String instituicao;
-	private String dataInicial;
-	private String dataFinal;
+	private String nomeFormacao;
+	private String instituicaoFormacao;
+	private String dataInicialFormacao;
+	private String dataFinalFormacao;
 
-	public Formacao(String nome, String instituicao, String dataInicial, String dataFinal) {
-		setNome(nome);
-		setInstituicao(instituicao);
-		setDataInicial(dataInicial);
-		setDataFinal(dataFinal);
+	public Formacao(String nomeFormacao, String instituicaoFormacao, String dataInicialFormacao,
+			String dataFinalFormacao) {
+		setNomeFormacao(nomeFormacao);
+		setInstituicaoFormacao(instituicaoFormacao);
+		setDataInicialFormacao(dataInicialFormacao);
+		setDataFinalFormacao(dataFinalFormacao);
 	}
 
-	public String getNome() {
-		return nome;
+	public String getNomeFormacao() {
+		return nomeFormacao;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNomeFormacao(String nomeFormacao) {
+		this.nomeFormacao = nomeFormacao;
 	}
 
-	public String getInstituicao() {
-		return instituicao;
+	public String getInstituicaoFormacao() {
+		return instituicaoFormacao;
 	}
 
-	public void setInstituicao(String instituicao) {
-		this.instituicao = instituicao;
+	public void setInstituicaoFormacao(String instituicaoFormacao) {
+		this.instituicaoFormacao = instituicaoFormacao;
 	}
 
-	public String getDataInicial() {
-		return dataInicial;
+	public String getDataInicialFormacao() {
+		return dataInicialFormacao;
 	}
 
-	public void setDataInicial(String dataInicial) {
-		this.dataInicial = dataInicial;
+	public void setDataInicialFormacao(String dataInicialFormacao) {
+		this.dataInicialFormacao = dataInicialFormacao;
 	}
 
-	public String getDataFinal() {
-		return dataFinal;
+	public String getDataFinalFormacao() {
+		return dataFinalFormacao;
 	}
 
-	public void setDataFinal(String dataFinal) {
-		this.dataFinal = dataFinal;
+	public void setDataFinalFormacao(String dataFinalFormacao) {
+		this.dataFinalFormacao = dataFinalFormacao;
 	}
 
 	public long getIdFormacao() {

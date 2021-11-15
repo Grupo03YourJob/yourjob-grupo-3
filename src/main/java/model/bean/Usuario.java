@@ -1,27 +1,29 @@
 package model.bean;
 
+import java.util.List;
+
 public class Usuario {
 
 	private long idUsuario;
 	private boolean tipoUsuario;
-	private String nome;
-	private String email;
-	private String senha;
+	private String nomeUsuario;
+	private String emailUsuario;
+	private String senhaUsuario;
 	private Endereco endereco;
 	private Contato contato;
-	private Candidato candidato;
-	private Recrutador recrutador;
+	private List<Candidato> candidatos;
+	private List<Recrutador> recrutadores;
 
-	public Usuario(boolean tipoUsuario, String nome, String email, String senha, Endereco endereco, Contato contato,
-			Candidato candidato, Recrutador recrutador) {
+	public Usuario(boolean tipoUsuario, String nomeUsuario, String emailUsuario, String senhaUsuario, Endereco endereco,
+			Contato contato, List<Candidato> candidatos, List<Recrutador> recrutadores) {
 		setTipoUsuario(tipoUsuario);
-		setNome(nome);
-		setEmail(email);
-		setSenha(senha);
+		setNomeUsuario(nomeUsuario);
+		setEmailUsuario(emailUsuario);
+		setSenhaUsuario(senhaUsuario);
 		setEndereco(endereco);
 		setContato(contato);
-		setCandidato(candidato);
-		setRecrutador(recrutador);
+		setCandidatos(candidatos);
+		setRecrutadores(recrutadores);
 	}
 
 	public boolean isTipoUsuario() {
@@ -32,28 +34,28 @@ public class Usuario {
 		this.tipoUsuario = tipoUsuario;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getNomeUsuario() {
+		return nomeUsuario;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getEmailUsuario() {
+		return emailUsuario;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmailUsuario(String emailUsuario) {
+		this.emailUsuario = emailUsuario;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getSenhaUsuario() {
+		return senhaUsuario;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setSenhaUsuario(String senhaUsuario) {
+		this.senhaUsuario = senhaUsuario;
 	}
 
 	public Endereco getEndereco() {
@@ -72,20 +74,20 @@ public class Usuario {
 		this.contato = contato;
 	}
 
-	public Candidato getCandidato() {
-		return candidato;
+	public List<Candidato> getCandidatos() {
+		return candidatos;
 	}
 
-	public void setCandidato(Candidato candidato) {
-		this.candidato = candidato;
+	public void setCandidatos(List<Candidato> candidatos) {
+		this.candidatos = candidatos;
 	}
 
-	public Recrutador getRecrutador() {
-		return recrutador;
+	public List<Recrutador> getRecrutadores() {
+		return recrutadores;
 	}
 
-	public void setRecrutador(Recrutador recrutador) {
-		this.recrutador = recrutador;
+	public void setRecrutadores(List<Recrutador> recrutadores) {
+		this.recrutadores = recrutadores;
 	}
 
 	public long getIdUsuario() {

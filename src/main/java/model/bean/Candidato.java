@@ -1,44 +1,47 @@
 package model.bean;
 
+import java.util.List;
+
 public class Candidato {
 
 	private long idCandidato;
-	private String sobrenome;
-	private boolean genero;
-	private String dataNascimento;
+	private String sobrenomeCandidato;
+	private String generoCandidato;
+	private String dataNascimentoCandidato;
 	private Curriculo curriculo;
-	private Vaga vaga;
+	private List<Vaga> vagas;
 
-	public Candidato(String sobrenome, boolean genero, String dataNascimento, Curriculo curriculo, Vaga vaga) {
-		setSobrenome(sobrenome);
-		setGenero(genero);
-		setDataNascimento(dataNascimento);
+	public Candidato(String sobrenomeCandidato, String genero, String dataNascimento, Curriculo curriculo,
+			List<Vaga> vagas) {
+		setSobrenomeCandidato(sobrenomeCandidato);
+		setGeneroCandidato(generoCandidato);
+		setDataNascimentoCandidato(dataNascimentoCandidato);
 		setCurriculo(curriculo);
-		setVaga(vaga);
+		setVagas(vagas);
 	}
 
-	public String getSobrenome() {
-		return sobrenome;
+	public String getSobrenomeCandidato() {
+		return sobrenomeCandidato;
 	}
 
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
+	public void setSobrenomeCandidato(String sobrenomeCandidato) {
+		this.sobrenomeCandidato = sobrenomeCandidato;
 	}
 
-	public boolean isGenero() {
-		return genero;
+	public String getGeneroCandidato() {
+		return generoCandidato;
 	}
 
-	public void setGenero(boolean genero) {
-		this.genero = genero;
+	public void setGeneroCandidato(String generoCandidato) {
+		this.generoCandidato = generoCandidato;
 	}
 
-	public String getDataNascimento() {
-		return dataNascimento;
+	public String getDataNascimentoCandidato() {
+		return dataNascimentoCandidato;
 	}
 
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setDataNascimentoCandidato(String dataNascimentoCandidato) {
+		this.dataNascimentoCandidato = dataNascimentoCandidato;
 	}
 
 	public Curriculo getCurriculo() {
@@ -49,12 +52,12 @@ public class Candidato {
 		this.curriculo = curriculo;
 	}
 
-	public Vaga getVaga() {
-		return vaga;
+	public List<Vaga> getVagas() {
+		return vagas;
 	}
 
-	public void setVaga(Vaga vaga) {
-		this.vaga = vaga;
+	public void setVagas(List<Vaga> vagas) {
+		this.vagas = vagas;
 	}
 
 	public long getIdCandidato() {

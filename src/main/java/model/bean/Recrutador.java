@@ -1,40 +1,42 @@
 package model.bean;
 
+import java.util.List;
+
 public class Recrutador {
 
 	private long idRecrutador;
-	private String nomeEmpresa;
-	private String areaAtuacao;
-	private Vaga vaga;
+	private String empresaRecrutador;
+	private String atuacaoEmpresaRecrutador;
+	private List<Vaga> vagas;
 
-	public Recrutador(String nomeEmpresa, String areaAtuacao, Vaga vaga) {
-		setNomeEmpresa(nomeEmpresa);
-		setAreaAtuacao(areaAtuacao);
-		setVaga(vaga);
+	public Recrutador(String empresaRecrutador, String atuacaoEmpresaRecrutador, List<Vaga> vagas) {
+		setEmpresaRecrutador(empresaRecrutador);
+		setAtuacaoEmpresaRecrutador(atuacaoEmpresaRecrutador);
+		setVagas(vagas);
 	}
 
-	public String getNomeEmpresa() {
-		return nomeEmpresa;
+	public String getEmpresaRecrutador() {
+		return empresaRecrutador;
 	}
 
-	public void setNomeEmpresa(String nomeEmpresa) {
-		this.nomeEmpresa = nomeEmpresa;
+	public void setEmpresaRecrutador(String empresaRecrutador) {
+		this.empresaRecrutador = empresaRecrutador;
 	}
 
-	public String getAreaAtuacao() {
-		return areaAtuacao;
+	public String getAtuacaoEmpresaRecrutador() {
+		return atuacaoEmpresaRecrutador;
 	}
 
-	public void setAreaAtuacao(String areaAtuacao) {
-		this.areaAtuacao = areaAtuacao;
+	public void setAtuacaoEmpresaRecrutador(String atuacaoEmpresaRecrutador) {
+		this.atuacaoEmpresaRecrutador = atuacaoEmpresaRecrutador;
 	}
 
-	public Vaga getVaga() {
-		return vaga;
+	public List<Vaga> getVagas() {
+		return vagas;
 	}
 
-	public void setVaga(Vaga vaga) {
-		this.vaga = vaga;
+	public void setVagas(List<Vaga> vagas) {
+		this.vagas = vagas;
 	}
 
 	public long getIdRecrutador() {

@@ -3,49 +3,50 @@ package model.bean;
 public class Experiencia {
 
 	private long idExperiencia;
-	private String ultimaEmpresa;
-	private String cargoExercido;
-	private String dataInicial;
-	private String dataFinal;
+	private String empresaExperiencia;
+	private String cargoExercidoExperiencia;
+	private String dataInicialExperiencia;
+	private String dataFinalExperiencia;
 
-	public Experiencia(String ultimaEmpresa, String cargoExercido, String dataInicial, String dataFinal) {
-		setUltimaEmpresa(ultimaEmpresa);
-		setCargoExercido(cargoExercido);
-		setDataInicial(dataInicial);
-		setDataFinal(dataFinal);
+	public Experiencia(String empresaExperiencia, String cargoExercidoExperiencia, String dataInicialExperiencia,
+			String dataFinalExperiencia) {
+		setEmpresaExperiencia(empresaExperiencia);
+		setCargoExercidoExperiencia(cargoExercidoExperiencia);
+		setDataInicialExperiencia(dataInicialExperiencia);
+		setDataFinalExperiencia(dataFinalExperiencia);
 
 	}
 
-	public String getUltimaEmpresa() {
-		return ultimaEmpresa;
+	public String getEmpresaExperiencia() {
+		return empresaExperiencia;
 	}
 
-	public void setUltimaEmpresa(String ultimaEmpresa) {
-		this.ultimaEmpresa = ultimaEmpresa;
+	public void setEmpresaExperiencia(String empresaExperiencia) {
+		this.empresaExperiencia = empresaExperiencia;
 	}
 
-	public String getCargoExercido() {
-		return cargoExercido;
+	public String getCargoExercidoExperiencia() {
+		return cargoExercidoExperiencia;
 	}
 
-	public void setCargoExercido(String cargoExercido) {
-		this.cargoExercido = cargoExercido;
+	public void setCargoExercidoExperiencia(String cargoExercidoExperiencia) {
+		this.cargoExercidoExperiencia = cargoExercidoExperiencia;
 	}
 
-	public String getDataInicial() {
-		return dataInicial;
+	public String getDataInicialExperiencia() {
+		return dataInicialExperiencia;
 	}
 
-	public void setDataInicial(String dataInicial) {
-		this.dataInicial = dataInicial;
+	public void setDataInicialExperiencia(String dataInicialExperiencia) {
+		this.dataInicialExperiencia = dataInicialExperiencia;
 	}
 
-	public String getDataFinal() {
-		return dataFinal;
+	public String getDataFinalExperiencia() {
+		return dataFinalExperiencia;
 	}
 
-	public void setDataFinal(String dataFinal) {
-		this.dataFinal = dataFinal;
+	public void setDataFinalExperiencia(String dataFinalExperiencia) {
+		this.dataFinalExperiencia = dataFinalExperiencia;
 	}
 
 	public long getIdExperiencia() {
