@@ -2,38 +2,19 @@ package model.bean;
 
 public class Candidato {
 
-	private int idCandidato;
-	private String nome;
+	private long idCandidato;
 	private String sobrenome;
 	private boolean genero;
 	private String dataNascimento;
-	private Contato contato;
 	private Curriculo curriculo;
-	private Endereco endereco;
 	private Vaga vaga;
 
-	public Candidato(String nome, String sobrenome, boolean genero, String dataNascimento, Contato contato,
-			Curriculo curriculo, Endereco endereco, Vaga vaga) {
-		setNome(nome);
+	public Candidato(String sobrenome, boolean genero, String dataNascimento, Curriculo curriculo, Vaga vaga) {
 		setSobrenome(sobrenome);
 		setGenero(genero);
 		setDataNascimento(dataNascimento);
-		setContato(contato);
 		setCurriculo(curriculo);
-		setEndereco(endereco);
 		setVaga(vaga);
-	}
-
-	public int getIdCandidato() {
-		return idCandidato;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public String getSobrenome() {
@@ -60,14 +41,6 @@ public class Candidato {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Contato getContato() {
-		return contato;
-	}
-
-	public void setContato(Contato contato) {
-		this.contato = contato;
-	}
-
 	public Curriculo getCurriculo() {
 		return curriculo;
 	}
@@ -76,20 +49,16 @@ public class Candidato {
 		this.curriculo = curriculo;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
 	public Vaga getVaga() {
 		return vaga;
 	}
 
 	public void setVaga(Vaga vaga) {
 		this.vaga = vaga;
+	}
+
+	public long getIdCandidato() {
+		return idCandidato;
 	}
 
 }

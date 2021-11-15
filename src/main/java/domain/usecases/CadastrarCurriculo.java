@@ -8,4 +8,5 @@ public class CadastrarCurriculo {
 	public void cadastrarCurriculo(Candidato candidato, Curriculo curriculo) {
 
 	}
+
 }

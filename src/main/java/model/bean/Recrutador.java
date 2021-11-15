@@ -2,21 +2,15 @@ package model.bean;
 
 public class Recrutador {
 
-	private int idRecrutador;
+	private long idRecrutador;
 	private String nomeEmpresa;
 	private String areaAtuacao;
-	private Endereco endereco;
 	private Vaga vaga;
 
-	public Recrutador(String nomeEmpresa, String areaAtuacao, Endereco endereco, Vaga vaga) {
+	public Recrutador(String nomeEmpresa, String areaAtuacao, Vaga vaga) {
 		setNomeEmpresa(nomeEmpresa);
 		setAreaAtuacao(areaAtuacao);
-		setEndereco(endereco);
 		setVaga(vaga);
-	}
-
-	public int getIdRecrutador() {
-		return idRecrutador;
 	}
 
 	public String getNomeEmpresa() {
@@ -33,15 +27,6 @@ public class Recrutador {
 
 	public void setAreaAtuacao(String areaAtuacao) {
 		this.areaAtuacao = areaAtuacao;
-
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
 	}
 
 	public Vaga getVaga() {
@@ -51,4 +36,9 @@ public class Recrutador {
 	public void setVaga(Vaga vaga) {
 		this.vaga = vaga;
 	}
+
+	public long getIdRecrutador() {
+		return idRecrutador;
+	}
+
 }

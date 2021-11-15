@@ -2,7 +2,7 @@ package model.bean;
 
 public class Formacao {
 
-	private int idFormacao;
+	private long idFormacao;
 	private String nome;
 	private String instituicao;
 	private String dataInicial;
@@ -13,10 +13,6 @@ public class Formacao {
 		setInstituicao(instituicao);
 		setDataInicial(dataInicial);
 		setDataFinal(dataFinal);
-	}
-
-	public int getIdFormacao() {
-		return idFormacao;
 	}
 
 	public String getNome() {
@@ -49,6 +45,10 @@ public class Formacao {
 
 	public void setDataFinal(String dataFinal) {
 		this.dataFinal = dataFinal;
+	}
+
+	public long getIdFormacao() {
+		return idFormacao;
 	}
 
 }

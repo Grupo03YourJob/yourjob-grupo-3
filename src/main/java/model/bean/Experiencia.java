@@ -2,21 +2,18 @@ package model.bean;
 
 public class Experiencia {
 
-	private int idExperiencia;
+	private long idExperiencia;
 	private String ultimaEmpresa;
+	private String cargoExercido;
 	private String dataInicial;
 	private String dataFinal;
-	private String cargoExercido;
 
-	public Experiencia(String ultimaEmpresa, String dataInicial, String dataFinal, String cargoExercido) {
+	public Experiencia(String ultimaEmpresa, String cargoExercido, String dataInicial, String dataFinal) {
 		setUltimaEmpresa(ultimaEmpresa);
+		setCargoExercido(cargoExercido);
 		setDataInicial(dataInicial);
 		setDataFinal(dataFinal);
-		setCargoExercido(cargoExercido);
-	}
 
-	public int getIdExperiencia() {
-		return idExperiencia;
 	}
 
 	public String getUltimaEmpresa() {
@@ -25,6 +22,14 @@ public class Experiencia {
 
 	public void setUltimaEmpresa(String ultimaEmpresa) {
 		this.ultimaEmpresa = ultimaEmpresa;
+	}
+
+	public String getCargoExercido() {
+		return cargoExercido;
+	}
+
+	public void setCargoExercido(String cargoExercido) {
+		this.cargoExercido = cargoExercido;
 	}
 
 	public String getDataInicial() {
@@ -43,12 +48,8 @@ public class Experiencia {
 		this.dataFinal = dataFinal;
 	}
 
-	public String getCargoExercido() {
-		return cargoExercido;
-	}
-
-	public void setCargoExercido(String cargoExercido) {
-		this.cargoExercido = cargoExercido;
+	public long getIdExperiencia() {
+		return idExperiencia;
 	}
 
 }

@@ -2,7 +2,7 @@ package model.bean;
 
 public class Endereco {
 
-	private int idEndereco;
+	private long idEndereco;
 	private String rua;
 	private String bairro;
 	private int numero;
@@ -20,10 +20,6 @@ public class Endereco {
 		setCidade(cidade);
 		setEstado(estado);
 		setReferencia(referencia);
-	}
-
-	public int getIdEndereco() {
-		return idEndereco;
 	}
 
 	public String getRua() {
@@ -80,6 +76,10 @@ public class Endereco {
 
 	public void setReferencia(String referencia) {
 		this.referencia = referencia;
+	}
+
+	public long getIdEndereco() {
+		return idEndereco;
 	}
 
 }

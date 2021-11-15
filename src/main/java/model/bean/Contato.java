@@ -2,33 +2,19 @@ package model.bean;
 
 public class Contato {
 
-	private int idContato;
-	private String email;
+	private long idContato;
 	private String telefone;
 	private String celular;
 	private String facebook = null;
 	private String instagram = null;
 	private String linkedin = null;
 
-	public Contato(String email, String telefone, String celular, String facebook, String instagram, String linkedin) {
-		setEmail(email);
+	public Contato(String telefone, String celular, String facebook, String instagram, String linkedin) {
 		setTelefone(telefone);
 		setCelular(celular);
 		setFacebook(facebook);
 		setInstagram(instagram);
 		setLinkedin(linkedin);
-	}
-
-	public int getIdContato() {
-		return idContato;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getTelefone() {
@@ -52,9 +38,6 @@ public class Contato {
 	}
 
 	public void setFacebook(String facebook) {
-		if (facebook == null) {
-			return;
-		}
 		this.facebook = facebook;
 	}
 
@@ -63,9 +46,6 @@ public class Contato {
 	}
 
 	public void setInstagram(String instagram) {
-		if (instagram == null) {
-			return;
-		}
 		this.instagram = instagram;
 	}
 
@@ -74,10 +54,11 @@ public class Contato {
 	}
 
 	public void setLinkedin(String linkedin) {
-		if (linkedin == null) {
-			return;
-		}
 		this.linkedin = linkedin;
+	}
+
+	public long getIdContato() {
+		return idContato;
 	}
 
 }
