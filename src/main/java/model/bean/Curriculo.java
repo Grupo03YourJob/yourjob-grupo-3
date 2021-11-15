@@ -2,16 +2,21 @@ package model.bean;
 
 public class Curriculo {
 
+	private int idCurriculo;
 	private String idioma;
 	private String objetivo;
-	private Curriculo curriculo;
+	private Formacao formacao;
 	private Experiencia experiencia;
 
-	public Curriculo(String idioma, String objetivo, Curriculo curriculo, Experiencia experiencia) {
+	public Curriculo(String idioma, String objetivo, Formacao formacao, Experiencia experiencia) {
 		setIdioma(idioma);
 		setObjetivo(objetivo);
-		setCurriculo(curriculo);
+		setFormacao(formacao);
 		setExperiencia(experiencia);
+	}
+
+	public int getIdCurriculo() {
+		return idCurriculo;
 	}
 
 	public String getIdioma() {
@@ -30,12 +35,12 @@ public class Curriculo {
 		this.objetivo = objetivo;
 	}
 
-	public Curriculo getCurriculo() {
-		return curriculo;
+	public Formacao getFormacao() {
+		return formacao;
 	}
 
-	public void setCurriculo(Curriculo curriculo) {
-		this.curriculo = curriculo;
+	public void setFormacao(Formacao formacao) {
+		this.formacao = formacao;
 	}
 
 	public Experiencia getExperiencia() {
@@ -45,4 +50,5 @@ public class Curriculo {
 	public void setExperiencia(Experiencia experiencia) {
 		this.experiencia = experiencia;
 	}
+
 }

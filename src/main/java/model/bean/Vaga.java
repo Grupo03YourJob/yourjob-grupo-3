@@ -2,12 +2,17 @@ package model.bean;
 
 public class Vaga {
 
+	private int idVaga;
 	private String nome;
 	private String descricao;
 
 	public Vaga(String nome, String descricao) {
 		setNome(nome);
 		setDescricao(descricao);
+	}
+
+	public int getIdVaga() {
+		return idVaga;
 	}
 
 	public String getNome() {

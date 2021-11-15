@@ -2,6 +2,7 @@ package model.bean;
 
 public class Recrutador {
 
+	private int idRecrutador;
 	private String nomeEmpresa;
 	private String areaAtuacao;
 	private Endereco endereco;
@@ -12,6 +13,10 @@ public class Recrutador {
 		setAreaAtuacao(areaAtuacao);
 		setEndereco(endereco);
 		setVaga(vaga);
+	}
+
+	public int getIdRecrutador() {
+		return idRecrutador;
 	}
 
 	public String getNomeEmpresa() {

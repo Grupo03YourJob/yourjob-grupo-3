@@ -2,6 +2,7 @@ package model.bean;
 
 public class Candidato {
 
+	private int idCandidato;
 	private String nome;
 	private String sobrenome;
 	private boolean genero;
@@ -21,6 +22,10 @@ public class Candidato {
 		setCurriculo(curriculo);
 		setEndereco(endereco);
 		setVaga(vaga);
+	}
+
+	public int getIdCandidato() {
+		return idCandidato;
 	}
 
 	public String getNome() {

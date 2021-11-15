@@ -2,6 +2,7 @@ package model.bean;
 
 public class Contato {
 
+	private int idContato;
 	private String email;
 	private String telefone;
 	private String celular;
@@ -16,6 +17,10 @@ public class Contato {
 		setFacebook(facebook);
 		setInstagram(instagram);
 		setLinkedin(linkedin);
+	}
+
+	public int getIdContato() {
+		return idContato;
 	}
 
 	public String getEmail() {

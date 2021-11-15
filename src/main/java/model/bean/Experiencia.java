@@ -2,6 +2,7 @@ package model.bean;
 
 public class Experiencia {
 
+	private int idExperiencia;
 	private String ultimaEmpresa;
 	private String dataInicial;
 	private String dataFinal;
@@ -12,6 +13,10 @@ public class Experiencia {
 		setDataInicial(dataInicial);
 		setDataFinal(dataFinal);
 		setCargoExercido(cargoExercido);
+	}
+
+	public int getIdExperiencia() {
+		return idExperiencia;
 	}
 
 	public String getUltimaEmpresa() {
