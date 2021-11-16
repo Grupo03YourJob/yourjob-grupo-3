@@ -1,46 +1,32 @@
 package model.bean;
 
+import java.util.Date;
 import java.util.List;
 
-public class Candidato {
+public class Candidato extends Usuario {
 
-	private long idCandidato;
-	private String sobrenomeCandidato;
-	private String generoCandidato;
-	private String dataNascimentoCandidato;
+	
+	private Date dataNascimentoCandidato;
 	private Curriculo curriculo;
 	private List<Vaga> vagas;
 
-	public Candidato(String sobrenomeCandidato, String genero, String dataNascimento, Curriculo curriculo,
+	public Candidato(String nomeUsuario, String sobrenomeUsuario, String emailUsuario, String senhaUsuario, Endereco endereco,
+			Contato contato, String genero, String dataNascimento, Curriculo curriculo,
 			List<Vaga> vagas) {
-		setSobrenomeCandidato(sobrenomeCandidato);
-		setGeneroCandidato(generoCandidato);
+		super(nomeUsuario, sobrenomeUsuario, emailUsuario,senhaUsuario,endereco,contato);
+		
 		setDataNascimentoCandidato(dataNascimentoCandidato);
 		setCurriculo(curriculo);
 		setVagas(vagas);
 	}
 
-	public String getSobrenomeCandidato() {
-		return sobrenomeCandidato;
-	}
+	
 
-	public void setSobrenomeCandidato(String sobrenomeCandidato) {
-		this.sobrenomeCandidato = sobrenomeCandidato;
-	}
-
-	public String getGeneroCandidato() {
-		return generoCandidato;
-	}
-
-	public void setGeneroCandidato(String generoCandidato) {
-		this.generoCandidato = generoCandidato;
-	}
-
-	public String getDataNascimentoCandidato() {
+	public Date getDataNascimentoCandidato() {
 		return dataNascimentoCandidato;
 	}
 
-	public void setDataNascimentoCandidato(String dataNascimentoCandidato) {
+	public void setDataNascimentoCandidato(Date dataNascimentoCandidato) {
 		this.dataNascimentoCandidato = dataNascimentoCandidato;
 	}
 
@@ -60,8 +46,5 @@ public class Candidato {
 		this.vagas = vagas;
 	}
 
-	public long getIdCandidato() {
-		return idCandidato;
-	}
-
+		
 }

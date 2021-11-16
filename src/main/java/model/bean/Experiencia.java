@@ -1,15 +1,17 @@
 package model.bean;
 
+import java.util.Date;
+
 public class Experiencia {
 
 	private long idExperiencia;
 	private String empresaExperiencia;
 	private String cargoExercidoExperiencia;
-	private String dataInicialExperiencia;
-	private String dataFinalExperiencia;
+	private Date dataInicialExperiencia;
+	private Date dataFinalExperiencia;
 
-	public Experiencia(String empresaExperiencia, String cargoExercidoExperiencia, String dataInicialExperiencia,
-			String dataFinalExperiencia) {
+	public Experiencia(String empresaExperiencia, String cargoExercidoExperiencia, Date dataInicialExperiencia,
+			Date dataFinalExperiencia) {
 		setEmpresaExperiencia(empresaExperiencia);
 		setCargoExercidoExperiencia(cargoExercidoExperiencia);
 		setDataInicialExperiencia(dataInicialExperiencia);
@@ -33,19 +35,19 @@ public class Experiencia {
 		this.cargoExercidoExperiencia = cargoExercidoExperiencia;
 	}
 
-	public String getDataInicialExperiencia() {
+	public Date getDataInicialExperiencia() {
 		return dataInicialExperiencia;
 	}
 
-	public void setDataInicialExperiencia(String dataInicialExperiencia) {
+	public void setDataInicialExperiencia(Date dataInicialExperiencia) {
 		this.dataInicialExperiencia = dataInicialExperiencia;
 	}
 
-	public String getDataFinalExperiencia() {
+	public Date getDataFinalExperiencia() {
 		return dataFinalExperiencia;
 	}
 
-	public void setDataFinalExperiencia(String dataFinalExperiencia) {
+	public void setDataFinalExperiencia(Date dataFinalExperiencia) {
 		this.dataFinalExperiencia = dataFinalExperiencia;
 	}
 

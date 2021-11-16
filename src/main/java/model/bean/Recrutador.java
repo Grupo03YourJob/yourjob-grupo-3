@@ -2,15 +2,17 @@ package model.bean;
 
 import java.util.List;
 
-public class Recrutador {
+public class Recrutador extends Usuario {
 
 	private long idRecrutador;
 	private String empresaRecrutador;
 	private String atuacaoEmpresaRecrutador;
 	private List<Vaga> vagas;
 
-	public Recrutador(String empresaRecrutador, String atuacaoEmpresaRecrutador, List<Vaga> vagas) {
-		setEmpresaRecrutador(empresaRecrutador);
+	public Recrutador(String nomeUsuario, String sobrenomeUsuario, String emailUsuario, String senhaUsuario, Endereco endereco,
+			Contato contato, String empresaRecrutador, String atuacaoEmpresaRecrutador, List<Vaga> vagas) {
+		
+		super(nomeUsuario,sobrenomeUsuario,emailUsuario,senhaUsuario,endereco,contato);
 		setAtuacaoEmpresaRecrutador(atuacaoEmpresaRecrutador);
 		setVagas(vagas);
 	}
