@@ -1,45 +1,69 @@
 package data.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.bean.Candidato;
 
-public class CandidatoDAO {
+public interface CandidatoDAO {
 
-	private static List<Candidato> candidatos = new ArrayList<Candidato>();
+	void inserirCandidato(Candidato candidato);
 
-	public void criarCandidato(Candidato candidato) throws Exception {
-		for (Candidato candidatoLista : candidatos) {
-			if (candidato.getIdCandidato() == candidatoLista.getIdCandidato()) {
-				throw new Exception("Candidate not created!");
-			}
-		}
+	void deletarCandidato(Candidato candidato);
 
-		candidatos.add(candidato);
-	}
+	void atualizarNomeCandidato(Candidato candidato, String novoNome);
 
-	public Candidato buscarCandidato(long idCandidato) throws Exception {
-		for (Candidato candidatoLista : candidatos) {
-			if (candidatoLista.getIdCandidato() == idCandidato) {
-				return candidatoLista;
-			}
-		}
-		throw new Exception("Candidate not found!");
-	}
+	void atualizarSobreNome(Candidato candidado, String sobreNome);
 
-	public void editarCandidato(Candidato candidatoNovo) throws Exception {
-		for (int i = 0; i < candidatos.size(); i++) {
-			Candidato candidatoAntigo = candidatos.get(i);
-			if (candidatoAntigo.getIdCandidato() == candidatoNovo.getIdCandidato()) {
-				candidatos.add(i, candidatoAntigo);
-				return;
-			}
-		}
-		throw new Exception("Candidate not updated!");
-	}
+	void atualizarDataNascimento(Candidato candidato, String dataNascimento);
 
-	public void excluirCandidato(Candidato candidato) {
-		candidatos.remove(candidato);
-	}
+	void atualizarEmailCandidato(Candidato candidato, String novoEmail);
+
+	void atualizarEndereçoCandidato(Candidato candidato, String novoEndereço);
+
+	void atualizarContatoCandidato(Candidato candidato, String novoContato);
+
+	void atualizarCurriculoCandidato(Candidato candidato, String novoCurriculo);
+
+	void atualizarVagaCandidato(Candidato candidato, String novaVaga);
+
+	void atualizarSenhaCandidato(Candidato candidato, String novaSenha);
+
+	List<Candidato> recuperarCandidato();
+
+	List<Candidato> recuperarCandidatoOrdenadosNomeAscendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosNomeDescendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosSobreNomeAscendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosSobreNomeDescendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosDataNascimentoAscendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosDataNascimentoDescendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosEmailAscendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosEmailDescendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosEndereçoAscendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosEndereçoDescendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosContatoAscendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosContatoDescendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosCurriculoAscendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosCurriculoDescendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosVagaAscendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosVagaDescendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosSenhaAscendente();
+
+	List<Candidato> recuperarCandidatoOrdenadosSenhaDescendente();
+
 }

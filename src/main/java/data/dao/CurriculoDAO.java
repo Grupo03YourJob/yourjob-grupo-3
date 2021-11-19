@@ -1,46 +1,51 @@
 package data.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.bean.Curriculo;
 
-public class CurriculoDAO {
+public interface CurriculoDAO {
 
-	private static List<Curriculo> curriculos = new ArrayList<Curriculo>();
+	void inserirCurriculo(Curriculo curriculo);
 
-	public void criarCurriculo(Curriculo curriculo) throws Exception {
-		for (Curriculo curriculoLista : curriculos) {
-			if (curriculo.getIdCurriculo() == curriculoLista.getIdCurriculo()) {
-				throw new Exception("Resume not created!");
-			}
-		}
+	void deletarCurriculo(Curriculo curriculo);
 
-		curriculos.add(curriculo);
-	}
+	void atualizarNomeCurriculo(Curriculo curriculo, String novoNome);
 
-	public Curriculo buscarCurriculo(long idCurriculo) throws Exception {
-		for (Curriculo curriculoLista : curriculos) {
-			if (curriculoLista.getIdCurriculo() == idCurriculo) {
-				return curriculoLista;
-			}
-		}
-		throw new Exception("Resume not found!");
-	}
+	void atualizarObjetivoCurriculo(Curriculo curriculo, String objetivo);
 
-	public void editarCurriculo(Curriculo curriculoNovo) throws Exception {
-		for (int i = 0; i < curriculos.size(); i++) {
-			Curriculo curriculoAntigo = curriculos.get(i);
-			if (curriculoAntigo.getIdCurriculo() == curriculoNovo.getIdCurriculo()) {
-				curriculos.add(i, curriculoAntigo);
-				return;
-			}
-		}
-		throw new Exception("Resume not updated!");
-	}
+	void atualizarHabilidadeCurriculo(Curriculo curriculo, String habilidade);
 
-	public void excluirCandidato(Curriculo curriculo) {
-		curriculos.remove(curriculo);
-	}
+	void atualizarFormacao(Curriculo curriculo, String formação);
+
+	void atualizarExperiencia(Curriculo curriculo, String Experiencia);
+
+	void atualizarIdiomaCurriculo(Curriculo Curriculo, String novoIdioma);
+
+	List<Curriculo> recuperarCurriculo();
+
+	List<Curriculo> recuperarCurriculoOrdenadosNomeAscendente();
+
+	List<Curriculo> recuperarCurriculoOrdenadosNomeDescendente();
+
+	List<Curriculo> recuperarCurriculoOrdenadosObjetivoAscendente();
+
+	List<Curriculo> recuperarCurriculoOrdenadosObjetivoDescendente();
+
+	List<Curriculo> recuperarCurriculoOrdenadosHabilidadeAscendente();
+
+	List<Curriculo> recuperarCurriculoOrdenadosHabilidadeDescendente();
+
+	List<Curriculo> recuperarCurriculoOrdenadosFormacaoAscendente();
+
+	List<Curriculo> recuperarCurriculoOrdenadosFormacaoDescendente();
+
+	List<Curriculo> recuperarCurriculoOrdenadosExperienciaAscendente();
+
+	List<Curriculo> recuperarCurriculoOrdenadosExperienciaDescendente();
+
+	List<Curriculo> recuperarCurriculoOrdenadosIdiomaAscendente();
+
+	List<Curriculo> recuperarCurriculoOrdenadosIdiomaDescendente();
 
 }
