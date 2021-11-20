@@ -1,46 +1,20 @@
 package data.dao;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import model.bean.Usuario;
 
-public class UsuarioDAO {
+public interface UsuarioDAO {
 
-	private static List<Usuario> usuarios = new ArrayList<Usuario>();
+	void inserirUsuario(Usuario usuario);
 
-	public void criarUsuario(Usuario usuario) throws Exception {
-		for (Usuario usuarioLista : usuarios) {
-			if (usuario.getIdUsuario() == usuarioLista.getIdUsuario()) {
-				throw new Exception("User not created!");
-			}
-		}
+	void deletarUsuario(Usuario usuario);
 
-		usuarios.add(usuario);
-	}
+	void atualizarNovoUsuario(Usuario usuario, String novoUsuario);
 
-	public Usuario buscarUsuario(long idUsuario) throws Exception {
-		for (Usuario usuarioLista : usuarios) {
-			if (usuarioLista.getIdUsuario() == idUsuario) {
-				return usuarioLista;
-			}
-		}
-		throw new Exception("User not found!");
-	}
+	public List<Usuario> recuperarUsuario();
 
-	public void editarUsuario(Usuario usuarioNovo) throws Exception {
-		for (int i = 0; i < usuarios.size(); i++) {
-			Usuario usuarioAntigo = usuarios.get(i);
-			if (usuarioAntigo.getIdUsuario() == usuarioNovo.getIdUsuario()) {
-				usuarios.add(i, usuarioAntigo);
-				return;
-			}
-		}
-		throw new Exception("User not updated!");
-	}
+	public List<Usuario> recuperarUsuarioOrdenadosNomeAscendente();
 
-	public void excluirCandidato(Usuario usuario) {
-		usuarios.remove(usuario);
-	}
+	public List<Usuario> recuperarUsuarioOrdenadosNomeDescendente();
 
 }
