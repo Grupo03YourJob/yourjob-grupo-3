@@ -2,64 +2,88 @@ package model.bean;
 
 public class Contato {
 
-	private long idContato;
-	private String telefoneContato;
-	private String celularContato;
-	private String facebookContato = null;
-	private String instagramContato = null;
-	private String linkedinContato = null;
+	private long id;
+	private String telefone;
+	private String celular;
+	private String email;
+	private String facebook = null;
+	private String instagram = null;
+	private String linkedin = null;
 
-	public Contato(String telefoneContato, String celularContato, String facebookContato, String instagramContato,
-			String linkedinContato) {
-		setTelefoneContato(telefoneContato);
-		setCelularContato(celularContato);
-		setFacebookContato(facebookContato);
-		setInstagramContato(instagramContato);
-		setLinkedinContato(linkedinContato);
+	public Contato(String telefone, String celular, String email, String facebook, String instagram, String linkedin) {
+		setTelefone(telefone);
+		setCelular(celular);
+		setEmail(email);
+		setFacebook(facebook);
+		setInstagram(instagram);
+		setLinkedin(linkedin);
 	}
 
-	public String getTelefoneContato() {
-		return telefoneContato;
+	public Contato(long id, String telefone, String celular, String email, String facebook, String instagram,
+			String linkedin) {
+		setId(id);
+		setTelefone(telefone);
+		setCelular(celular);
+		setEmail(email);
+		setFacebook(facebook);
+		setInstagram(instagram);
+		setLinkedin(linkedin);
 	}
 
-	public void setTelefoneContato(String telefoneContato) {
-		this.telefoneContato = telefoneContato;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public String getCelularContato() {
-		return celularContato;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
-	public void setCelularContato(String celularContato) {
-		this.celularContato = celularContato;
+	public String getCelular() {
+		return celular;
 	}
 
-	public String getFacebookContato() {
-		return facebookContato;
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
-	public void setFacebookContato(String facebookContato) {
-		this.facebookContato = facebookContato;
+	public String getEmail() {
+		return email;
 	}
 
-	public String getInstagramContato() {
-		return instagramContato;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public void setInstagramContato(String instagramContato) {
-		this.instagramContato = instagramContato;
+	public String getFacebook() {
+		return facebook;
 	}
 
-	public String getLinkedinContato() {
-		return linkedinContato;
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
 	}
 
-	public void setLinkedinContato(String linkedinContato) {
-		this.linkedinContato = linkedinContato;
+	public String getInstagram() {
+		return instagram;
 	}
 
-	public long getIdContato() {
-		return idContato;
+	public void setInstagram(String instagram) {
+		this.instagram = instagram;
+	}
+
+	public String getLinkedin() {
+		return linkedin;
+	}
+
+	public void setLinkedin(String linkedin) {
+		this.linkedin = linkedin;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

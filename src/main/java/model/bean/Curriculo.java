@@ -4,21 +4,36 @@ import java.util.List;
 
 public class Curriculo {
 
-	private long idCurriculo;
-	private String objetivoCurriculo;
-	private String habilidadeCurriculo;
-
+	private long id;
+	private String objetivo;
+	private String habilidade;
 	private List<Formacao> formacoes;
 	private List<Experiencia> experiencias;
 	private List<Idioma> idiomas;
 
-	public Curriculo(String objetivoCurriculo, String habilidadeCurriculo, List<Formacao> formacoes,
-			List<Experiencia> experiencias, List<Idioma> idiomas) {
-		setObjetivoCurriculo(objetivoCurriculo);
-		setHabilidadeCurriculo(habilidadeCurriculo);
+	public Curriculo(String objetivo, String habilidade, List<Formacao> formacoes, List<Experiencia> experiencias,
+			List<Idioma> idiomas) {
+		setObjetivo(objetivo);
+		setHabilidade(habilidade);
 		setFormacoes(formacoes);
 		setExperiencias(experiencias);
 		setIdiomas(idiomas);
+	}
+
+	public Curriculo(long id, String objetivo, String habilidade, List<Formacao> formacoes,
+			List<Experiencia> experiencias, List<Idioma> idiomas) {
+		setId(id);
+		setObjetivo(objetivo);
+		setHabilidade(habilidade);
+		setFormacoes(formacoes);
+		setExperiencias(experiencias);
+		setIdiomas(idiomas);
+	}
+
+	public Curriculo(long id, String objetivo, String habilidade) {
+		setId(id);
+		setObjetivo(objetivo);
+		setHabilidade(habilidade);
 	}
 
 	public List<Formacao> getFormacoes() {
@@ -45,24 +60,28 @@ public class Curriculo {
 		this.idiomas = idiomas;
 	}
 
-	public String getObjetivoCurriculo() {
-		return objetivoCurriculo;
+	public String getObjetivo() {
+		return objetivo;
 	}
 
-	public void setObjetivoCurriculo(String objetivoCurriculo) {
-		this.objetivoCurriculo = objetivoCurriculo;
+	public void setObjetivo(String objetivo) {
+		this.objetivo = objetivo;
 	}
 
-	public String getHabilidadeCurriculo() {
-		return habilidadeCurriculo;
+	public String getHabilidade() {
+		return habilidade;
 	}
 
-	public void setHabilidadeCurriculo(String habilidadeCurriculo) {
-		this.habilidadeCurriculo = habilidadeCurriculo;
+	public void setHabilidade(String habilidade) {
+		this.habilidade = habilidade;
 	}
 
-	public long getIdCurriculo() {
-		return idCurriculo;
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

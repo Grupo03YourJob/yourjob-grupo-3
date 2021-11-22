@@ -11,7 +11,7 @@ import java.util.List;
 
 import model.bean.Contato;
 
-public abstract class ContatoDAOImpl implements ContatoDAO {
+public class ContatoDAOImpl implements ContatoDAO {
 
 	public void inserirContato(Contato contato) {
 
@@ -22,14 +22,14 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			insert = conexao.prepareStatement(
-					"INSERT INTO contato (nome_contato, telefone_contato, celular_contato , facebook_contato, instagran_contato, linkedin_contato) VALUES (?,?,?,?)");
+					"INSERT INTO contato (telefone_Contato, celular_Contato, email_Contato, facebook_Contato, instagram_Contato, linkedin_Contato) VALUES (?,?,?,?,?,?)");
 
-			insert.setLong(1, contato.getIdContato());
-			insert.setString(2, contato.getTelefoneContato());
-			insert.setString(3, contato.getCelularContato());
-			insert.setString(4, contato.getFacebookContato());
-			insert.setString(4, contato.getInstagramContato());
-			insert.setString(4, contato.getLinkedinContato());
+			insert.setString(1, contato.getTelefone());
+			insert.setString(2, contato.getCelular());
+			insert.setString(3, contato.getEmail());
+			insert.setString(4, contato.getFacebook());
+			insert.setString(5, contato.getInstagram());
+			insert.setString(6, contato.getLinkedin());
 
 			insert.execute();
 
@@ -62,9 +62,9 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 		try {
 
 			conexao = conectarBanco();
-			delete = conexao.prepareStatement("DELETE FROM contato WHERE id_contato = ?");
+			delete = conexao.prepareStatement("DELETE FROM contato WHERE id_Contato = ?");
 
-			delete.setLong(1, contato.getIdContato());
+			delete.setLong(1, contato.getId());
 
 			delete.execute();
 
@@ -89,7 +89,7 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 		}
 	}
 
-	public void atualizarTelefoneContato(Contato contato, String telefone) {
+	public void atualizarTelefoneContato(Contato contato, String novoTelefone) {
 
 		Connection conexao = null;
 		PreparedStatement update = null;
@@ -97,11 +97,10 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE contato SET telefone_contato = ? WHERE nome_contato = ?");
+			update = conexao.prepareStatement("UPDATE contato SET telefone_Contato = ? WHERE id_Contato = ?");
 
-			String novoTelefone;
 			update.setString(1, novoTelefone);
-			update.setString(2, Contato.getTelefoneContato());
+			update.setLong(2, contato.getId());
 
 			update.execute();
 
@@ -134,10 +133,10 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE contato SET celular_candidato = ? WHERE nome_contato = ?");
+			update = conexao.prepareStatement("UPDATE contato SET celular_Contato = ? WHERE id_Contato = ?");
 
 			update.setString(1, novoCelular);
-			update.setString(2, contato.getNomeContato());
+			update.setLong(2, contato.getId());
 
 			update.execute();
 
@@ -162,7 +161,7 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 		}
 	}
 
-	public void atualizarFacebookContato(Contato contato, String novaFacebook) {
+	public void atualizarEmailContato(Contato contato, String novoEmail) {
 
 		Connection conexao = null;
 		PreparedStatement update = null;
@@ -170,10 +169,10 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE cliente SET facebook_contato = ? WHERE nome_contato = ?");
+			update = conexao.prepareStatement("UPDATE contato SET email_Contato = ? WHERE id_Contato = ?");
 
-			update.setString(1, novaFacebook);
-			update.setString(2, contato.getNomeContato());
+			update.setString(1, novoEmail);
+			update.setLong(2, contato.getId());
 
 			update.execute();
 
@@ -198,7 +197,7 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 		}
 	}
 
-	public void atualizarInstagranContato(Contato contato, String novoInstagran) {
+	public void atualizarFacebookContato(Contato contato, String novoFacebook) {
 
 		Connection conexao = null;
 		PreparedStatement update = null;
@@ -206,10 +205,10 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE cliente instagran_contato = ? WHERE nome_contato = ?");
+			update = conexao.prepareStatement("UPDATE contato SET fabeook_Contato = ? WHERE id_Contato = ?");
 
-			update.setString(1, novoInstagran);
-			update.setString(2, contato.getNomeContato());
+			update.setString(1, novoFacebook);
+			update.setLong(2, contato.getId());
 
 			update.execute();
 
@@ -234,7 +233,7 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 		}
 	}
 
-	public void atualizarLinkedinContato(Contato contato, String linkedin) {
+	public void atualizarInstagramContato(Contato contato, String novoInstagram) {
 
 		Connection conexao = null;
 		PreparedStatement update = null;
@@ -242,10 +241,46 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE cliente linkedin_contato = ? WHERE nome_contato = ?");
+			update = conexao.prepareStatement("UPDATE contato SET instagram_Contato = ? WHERE id_Contato = ?");
+
+			update.setString(1, novoInstagram);
+			update.setLong(2, contato.getId());
+
+			update.execute();
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (update != null)
+					update.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+	}
+
+	public void atualizarLinkedinContato(Contato contato, String novoLinkedin) {
+
+		Connection conexao = null;
+		PreparedStatement update = null;
+
+		try {
+
+			conexao = conectarBanco();
+			update = conexao.prepareStatement("UPDATE contato SET linkedin_Contato = ? WHERE id_Contato = ?");
 
 			update.setString(1, novoLinkedin);
-			update.setString(2, contato.getNomeContato());
+			update.setLong(2, contato.getId());
 
 			update.execute();
 
@@ -270,13 +305,13 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 		}
 	}
 
-	public List<Contato> recuperarContato() {
+	public List<Contato> recuperarContatos() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Contato> clientes = new ArrayList<Contato>();
+		List<Contato> contatos = new ArrayList<Contato>();
 
 		try {
 
@@ -286,14 +321,15 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 
 			while (resultado.next()) {
 
-				String nome = resultado.getString("nome_contato");
-				String telefone = resultado.getString("telefone_contato");
-				String celular = resultado.getString("celular_contato");
-				String facebook = resultado.getString("facebook_contato");
-				String instagran = resultado.getString("instagran_contato");
-				String linkedin = resultado.getString("linkedin_contato");
+				long id = resultado.getLong("id_Contato");
+				String telefone = resultado.getString("telefone_Contato");
+				String celular = resultado.getString("celular_Contato");
+				String email = resultado.getString("email_Contato");
+				String facebook = resultado.getString("facebook_Contato");
+				String instagram = resultado.getString("instagram_Contato");
+				String linkedin = resultado.getString("linkedin_Contato");
 
-				Contato.add(new Contato(nome, telefone, celular, facebook, instagran, linkedin));
+				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
 
 		} catch (SQLException erro) {
@@ -319,34 +355,34 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 			}
 		}
 
-		List<Contato> contato;
-		return contato;
+		return contatos;
 	}
 
-	public List<Contato> recuperarContatoOrdenadosNomeAscendente() {
+	public List<Contato> recuperarContatosPorUsuario(String idUsuario) {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Contato> clientes = new ArrayList<Contato>();
+		List<Contato> contatos = new ArrayList<Contato>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY nome_contato ASC");
+			resultado = consulta.executeQuery("SELECT * FROM contato WHERE id_Usuario = " + idUsuario);
 
 			while (resultado.next()) {
 
-				String nome = resultado.getString("nome_contato");
-				String telefone = resultado.getString("telefone_contato");
-				String celular = resultado.getString("celular_contato");
-				String facebook = resultado.getString("facebook_contato");
-				String instagran = resultado.getString("instagran_contato");
-				String linkedin = resultado.getString("linkedin_contato");
+				long id = resultado.getLong("id_Contato");
+				String telefone = resultado.getString("telefone_Contato");
+				String celular = resultado.getString("celular_Contato");
+				String email = resultado.getString("email_Contato");
+				String facebook = resultado.getString("facebook_Contato");
+				String instagram = resultado.getString("instagram_Contato");
+				String linkedin = resultado.getString("linkedin_Contato");
 
-				Contato.add(new Contato(nome, telefone, celular, facebook, instagran, linkedin));
+				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
 
 		} catch (SQLException erro) {
@@ -372,34 +408,36 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 			}
 		}
 
-		return recuperarContato();
+		return contatos;
 	}
 
-	public List<Contato> recuperarContatoOrdenadosNomeDescendente() {
+	public List<Contato> recuperarContatosOrdenadosTelefoneAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Contato> contato = new ArrayList<Contato>();
+		List<Contato> contatos = new ArrayList<Contato>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY nome_contato DESC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY telefone_Contato ASC");
 
 			while (resultado.next()) {
 
-				String nome = resultado.getString("nome_contato");
-				String telefone = resultado.getString("telefone_contato");
-				String celular = resultado.getString("celular_contato");
-				String facebook = resultado.getString("facebook_contato");
-				String instagran = resultado.getString("instagran_contato");
-				String linkedin = resultado.getString("linkedin_contato");
+				long id = resultado.getLong("id_Contato");
+				String telefone = resultado.getString("telefone_Contato");
+				String celular = resultado.getString("celular_Contato");
+				String email = resultado.getString("email_Contato");
+				String facebook = resultado.getString("facebook_Contato");
+				String instagram = resultado.getString("instagram_Contato");
+				String linkedin = resultado.getString("linkedin_Contato");
 
-				Contato.add(new Contato(nome, telefone, celular, facebook, instagran, linkedin));
+				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
+
 		} catch (SQLException erro) {
 			erro.printStackTrace();
 		}
@@ -423,33 +461,34 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 			}
 		}
 
-		return contato;
+		return contatos;
 	}
 
-	public List<Contato> recuperarContatoOrdenadosTelefoneAscendente() {
+	public List<Contato> recuperarContatosOrdenadosTelefoneDescendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Contato> clientes = new ArrayList<Contato>();
+		List<Contato> contatos = new ArrayList<Contato>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY telefone_contato ASC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY telefone_Contato DESC");
 
 			while (resultado.next()) {
 
-				String nome = resultado.getString("nome_contato");
-				String telefone = resultado.getString("telefone_contato");
-				String celular = resultado.getString("celular_contato");
-				String facebook = resultado.getString("facebook_contato");
-				String instagran = resultado.getString("instagran_contato");
-				String linkedin = resultado.getString("linkedin_contato");
+				long id = resultado.getLong("id_Contato");
+				String telefone = resultado.getString("telefone_Contato");
+				String celular = resultado.getString("celular_Contato");
+				String email = resultado.getString("email_Contato");
+				String facebook = resultado.getString("facebook_Contato");
+				String instagram = resultado.getString("instagram_Contato");
+				String linkedin = resultado.getString("linkedin_Contato");
 
-				Contato.add(new Contato(nome, telefone, celular, facebook, instagran, linkedin));
+				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
 
 		} catch (SQLException erro) {
@@ -475,34 +514,36 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 			}
 		}
 
-		return recuperarContato();
+		return contatos;
 	}
 
-	public List<Contato> recuperarContatoOrdenadosTelefoneDescendente() {
+	public List<Contato> recuperarContatosOrdenadosCelularAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Contato> contato = new ArrayList<Contato>();
+		List<Contato> contatos = new ArrayList<Contato>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY telefone_contato DESC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY celular_Contato ASC");
 
 			while (resultado.next()) {
 
-				String nome = resultado.getString("nome_contato");
-				String telefone = resultado.getString("telefone_contato");
-				String celular = resultado.getString("celular_contato");
-				String facebook = resultado.getString("facebook_contato");
-				String instagran = resultado.getString("instagran_contato");
-				String linkedin = resultado.getString("linkedin_contato");
+				long id = resultado.getLong("id_Contato");
+				String telefone = resultado.getString("telefone_Contato");
+				String celular = resultado.getString("celular_Contato");
+				String email = resultado.getString("email_Contato");
+				String facebook = resultado.getString("facebook_Contato");
+				String instagram = resultado.getString("instagram_Contato");
+				String linkedin = resultado.getString("linkedin_Contato");
 
-				Contato.add(new Contato(nome, telefone, celular, facebook, instagran, linkedin));
+				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
+
 		} catch (SQLException erro) {
 			erro.printStackTrace();
 		}
@@ -526,33 +567,34 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 			}
 		}
 
-		return contato;
+		return contatos;
 	}
 
-	public List<Contato> recuperarContatoOrdenadosCelularAscendente() {
+	public List<Contato> recuperarContatosOrdenadosCelularDescendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Contato> clientes = new ArrayList<Contato>();
+		List<Contato> contatos = new ArrayList<Contato>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY celular_contato ASC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY celular_Contato DESC");
 
 			while (resultado.next()) {
 
-				String nome = resultado.getString("nome_contato");
-				String telefone = resultado.getString("telefone_contato");
-				String celular = resultado.getString("celular_contato");
-				String facebook = resultado.getString("facebook_contato");
-				String instagran = resultado.getString("instagran_contato");
-				String linkedin = resultado.getString("linkedin_contato");
+				long id = resultado.getLong("id_Contato");
+				String telefone = resultado.getString("telefone_Contato");
+				String celular = resultado.getString("celular_Contato");
+				String email = resultado.getString("email_Contato");
+				String facebook = resultado.getString("facebook_Contato");
+				String instagram = resultado.getString("instagram_Contato");
+				String linkedin = resultado.getString("linkedin_Contato");
 
-				Contato.add(new Contato(nome, telefone, celular, facebook, instagran, linkedin));
+				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
 
 		} catch (SQLException erro) {
@@ -578,34 +620,36 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 			}
 		}
 
-		return recuperarContato();
+		return contatos;
 	}
 
-	public List<Contato> recuperarContatoOrdenadosCelularDescendente() {
+	public List<Contato> recuperarContatosOrdenadosEmailAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Contato> contato = new ArrayList<Contato>();
+		List<Contato> contatos = new ArrayList<Contato>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY celular_contato DESC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY email_Contato ASC");
 
 			while (resultado.next()) {
 
-				String nome = resultado.getString("nome_contato");
-				String telefone = resultado.getString("telefone_contato");
-				String celular = resultado.getString("celular_contato");
-				String facebook = resultado.getString("facebook_contato");
-				String instagran = resultado.getString("instagran_contato");
-				String linkedin = resultado.getString("linkedin_contato");
+				long id = resultado.getLong("id_Contato");
+				String telefone = resultado.getString("telefone_Contato");
+				String celular = resultado.getString("celular_Contato");
+				String email = resultado.getString("email_Contato");
+				String facebook = resultado.getString("facebook_Contato");
+				String instagram = resultado.getString("instagram_Contato");
+				String linkedin = resultado.getString("linkedin_Contato");
 
-				Contato.add(new Contato(nome, telefone, celular, facebook, instagran, linkedin));
+				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
+
 		} catch (SQLException erro) {
 			erro.printStackTrace();
 		}
@@ -629,33 +673,34 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 			}
 		}
 
-		return contato;
+		return contatos;
 	}
 
-	public List<Contato> recuperarContatoOrdenadosFacebookAscendente() {
+	public List<Contato> recuperarContatosOrdenadosEmailDescendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Contato> clientes = new ArrayList<Contato>();
+		List<Contato> contatos = new ArrayList<Contato>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY facebook_contato ASC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY email_Contato DESC");
 
 			while (resultado.next()) {
 
-				String nome = resultado.getString("nome_contato");
-				String telefone = resultado.getString("telefone_contato");
-				String celular = resultado.getString("celular_contato");
-				String facebook = resultado.getString("facebook_contato");
-				String instagran = resultado.getString("instagran_contato");
-				String linkedin = resultado.getString("linkedin_contato");
+				long id = resultado.getLong("id_Contato");
+				String telefone = resultado.getString("telefone_Contato");
+				String celular = resultado.getString("celular_Contato");
+				String email = resultado.getString("email_Contato");
+				String facebook = resultado.getString("facebook_Contato");
+				String instagram = resultado.getString("instagram_Contato");
+				String linkedin = resultado.getString("linkedin_Contato");
 
-				Contato.add(new Contato(nome, telefone, celular, facebook, instagran, linkedin));
+				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
 
 		} catch (SQLException erro) {
@@ -681,34 +726,36 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 			}
 		}
 
-		return recuperarContato();
+		return contatos;
 	}
 
-	public List<Contato> recuperarContatoOrdenadosFacebookDescendente() {
+	public List<Contato> recuperarContatosOrdenadosFacebookAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Contato> contato = new ArrayList<Contato>();
+		List<Contato> contatos = new ArrayList<Contato>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY facebook_contato DESC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY facebook_Contato ASC");
 
 			while (resultado.next()) {
 
-				String nome = resultado.getString("nome_contato");
-				String telefone = resultado.getString("telefone_contato");
-				String celular = resultado.getString("celular_contato");
-				String facebook = resultado.getString("facebook_contato");
-				String instagran = resultado.getString("instagran_contato");
-				String linkedin = resultado.getString("linkedin_contato");
+				long id = resultado.getLong("id_Contato");
+				String telefone = resultado.getString("telefone_Contato");
+				String celular = resultado.getString("celular_Contato");
+				String email = resultado.getString("email_Contato");
+				String facebook = resultado.getString("facebook_Contato");
+				String instagram = resultado.getString("instagram_Contato");
+				String linkedin = resultado.getString("linkedin_Contato");
 
-				Contato.add(new Contato(nome, telefone, celular, facebook, instagran, linkedin));
+				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
+
 		} catch (SQLException erro) {
 			erro.printStackTrace();
 		}
@@ -732,33 +779,34 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 			}
 		}
 
-		return contato;
+		return contatos;
 	}
 
-	public List<Contato> recuperarContatoOrdenadosInstagranAscendente() {
+	public List<Contato> recuperarContatosOrdenadosFacebookDescendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Contato> clientes = new ArrayList<Contato>();
+		List<Contato> contatos = new ArrayList<Contato>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY instagran_contato ASC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY facebook_Contato DESC");
 
 			while (resultado.next()) {
 
-				String nome = resultado.getString("nome_contato");
-				String telefone = resultado.getString("telefone_contato");
-				String celular = resultado.getString("celular_contato");
-				String facebook = resultado.getString("facebook_contato");
-				String instagran = resultado.getString("instagran_contato");
-				String linkedin = resultado.getString("linkedin_contato");
+				long id = resultado.getLong("id_Contato");
+				String telefone = resultado.getString("telefone_Contato");
+				String celular = resultado.getString("celular_Contato");
+				String email = resultado.getString("email_Contato");
+				String facebook = resultado.getString("facebook_Contato");
+				String instagram = resultado.getString("instagram_Contato");
+				String linkedin = resultado.getString("linkedin_Contato");
 
-				Contato.add(new Contato(nome, telefone, celular, facebook, instagran, linkedin));
+				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
 
 		} catch (SQLException erro) {
@@ -784,34 +832,36 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 			}
 		}
 
-		return recuperarContato();
+		return contatos;
 	}
 
-	public List<Contato> recuperarContatoOrdenadosInstagranDescendente() {
+	public List<Contato> recuperarContatosOrdenadosInstagramAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Contato> contato = new ArrayList<Contato>();
+		List<Contato> contatos = new ArrayList<Contato>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY instagran_contato DESC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY instagram_Contato ASC");
 
 			while (resultado.next()) {
 
-				String nome = resultado.getString("nome_contato");
-				String telefone = resultado.getString("telefone_contato");
-				String celular = resultado.getString("celular_contato");
-				String facebook = resultado.getString("facebook_contato");
-				String instagran = resultado.getString("instagran_contato");
-				String linkedin = resultado.getString("linkedin_contato");
+				long id = resultado.getLong("id_Contato");
+				String telefone = resultado.getString("telefone_Contato");
+				String celular = resultado.getString("celular_Contato");
+				String email = resultado.getString("email_Contato");
+				String facebook = resultado.getString("facebook_Contato");
+				String instagram = resultado.getString("instagram_Contato");
+				String linkedin = resultado.getString("linkedin_Contato");
 
-				Contato.add(new Contato(nome, telefone, celular, facebook, instagran, linkedin));
+				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
+
 		} catch (SQLException erro) {
 			erro.printStackTrace();
 		}
@@ -835,33 +885,34 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 			}
 		}
 
-		return contato;
+		return contatos;
 	}
 
-	public List<Contato> recuperarContatoOrdenadosLinkedinAscendente() {
+	public List<Contato> recuperarContatosOrdenadosInstagramDescendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Contato> clientes = new ArrayList<Contato>();
+		List<Contato> contatos = new ArrayList<Contato>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY linkedin_contato ASC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY instagram_Contato DESC");
 
 			while (resultado.next()) {
 
-				String nome = resultado.getString("nome_contato");
-				String telefone = resultado.getString("telefone_contato");
-				String celular = resultado.getString("celular_contato");
-				String facebook = resultado.getString("facebook_contato");
-				String instagran = resultado.getString("instagran_contato");
-				String linkedin = resultado.getString("linkedin_contato");
+				long id = resultado.getLong("id_Contato");
+				String telefone = resultado.getString("telefone_Contato");
+				String celular = resultado.getString("celular_Contato");
+				String email = resultado.getString("email_Contato");
+				String facebook = resultado.getString("facebook_Contato");
+				String instagram = resultado.getString("instagram_Contato");
+				String linkedin = resultado.getString("linkedin_Contato");
 
-				Contato.add(new Contato(nome, telefone, celular, facebook, instagran, linkedin));
+				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
 
 		} catch (SQLException erro) {
@@ -887,34 +938,36 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 			}
 		}
 
-		return recuperarContato();
+		return contatos;
 	}
 
-	public List<Contato> recuperarContatoOrdenadosLinkedinDescendente() {
+	public List<Contato> recuperarContatosOrdenadosLinkedinAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Contato> contato = new ArrayList<Contato>();
+		List<Contato> contatos = new ArrayList<Contato>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY linkedin_contato DESC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY linkedin_Contato ASC");
 
 			while (resultado.next()) {
 
-				String nome = resultado.getString("nome_contato");
-				String telefone = resultado.getString("telefone_contato");
-				String celular = resultado.getString("celular_contato");
-				String facebook = resultado.getString("facebook_contato");
-				String instagran = resultado.getString("instagran_contato");
-				String linkedin = resultado.getString("linkedin_contato");
+				long id = resultado.getLong("id_Contato");
+				String telefone = resultado.getString("telefone_Contato");
+				String celular = resultado.getString("celular_Contato");
+				String email = resultado.getString("email_Contato");
+				String facebook = resultado.getString("facebook_Contato");
+				String instagram = resultado.getString("instagram_Contato");
+				String linkedin = resultado.getString("linkedin_Contato");
 
-				Contato.add(new Contato(nome, telefone, celular, facebook, instagran, linkedin));
+				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
+
 		} catch (SQLException erro) {
 			erro.printStackTrace();
 		}
@@ -938,10 +991,63 @@ public abstract class ContatoDAOImpl implements ContatoDAO {
 			}
 		}
 
-		return contato;
+		return contatos;
+	}
+
+	public List<Contato> recuperarContatosOrdenadosLinkedinDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Contato> contatos = new ArrayList<Contato>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY linkedin_Contato DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_Contato");
+				String telefone = resultado.getString("telefone_Contato");
+				String celular = resultado.getString("celular_Contato");
+				String email = resultado.getString("email_Contato");
+				String facebook = resultado.getString("facebook_Contato");
+				String instagram = resultado.getString("instagram_Contato");
+				String linkedin = resultado.getString("linkedin_Contato");
+
+				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return contatos;
 	}
 
 	private Connection conectarBanco() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost/cadastro?user=admin&password=password");
+		return DriverManager.getConnection("jdbc:mysql://localhost/cadastro?user=rootn&password=root");
 	}
 }

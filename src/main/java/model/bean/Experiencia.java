@@ -1,58 +1,68 @@
 package model.bean;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Experiencia {
 
-	private long idExperiencia;
-	private String empresaExperiencia;
-	private String cargoExercidoExperiencia;
-	private Date dataInicialExperiencia;
-	private Date dataFinalExperiencia;
+	private long id;
+	private String empresa;
+	private String cargoExercido;
+	private Date dataInicial;
+	private Date dataFinal;
 
-	public Experiencia(String empresaExperiencia, String cargoExercidoExperiencia, Date dataInicialExperiencia,
-			Date dataFinalExperiencia) {
-		setEmpresaExperiencia(empresaExperiencia);
-		setCargoExercidoExperiencia(cargoExercidoExperiencia);
-		setDataInicialExperiencia(dataInicialExperiencia);
-		setDataFinalExperiencia(dataFinalExperiencia);
-
+	public Experiencia(String empresa, String cargoExercido, Date dataInicial, Date dataFinal) {
+		setEmpresa(empresa);
+		setCargoExercido(cargoExercido);
+		setDataInicial(dataInicial);
+		setDataFinal(dataFinal);
 	}
 
-	public String getEmpresaExperiencia() {
-		return empresaExperiencia;
+	public Experiencia(long id, String empresa, String cargoExercido, Date dataInicial, Date dataFinal) {
+		setId(id);
+		setEmpresa(empresa);
+		setCargoExercido(cargoExercido);
+		setDataInicial(dataInicial);
+		setDataFinal(dataFinal);
 	}
 
-	public void setEmpresaExperiencia(String empresaExperiencia) {
-		this.empresaExperiencia = empresaExperiencia;
+	public String getEmpresa() {
+		return empresa;
 	}
 
-	public String getCargoExercidoExperiencia() {
-		return cargoExercidoExperiencia;
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
 	}
 
-	public void setCargoExercidoExperiencia(String cargoExercidoExperiencia) {
-		this.cargoExercidoExperiencia = cargoExercidoExperiencia;
+	public String getCargoExercido() {
+		return cargoExercido;
 	}
 
-	public Date getDataInicialExperiencia() {
-		return dataInicialExperiencia;
+	public void setCargoExercido(String cargoExercido) {
+		this.cargoExercido = cargoExercido;
 	}
 
-	public void setDataInicialExperiencia(Date dataInicialExperiencia) {
-		this.dataInicialExperiencia = dataInicialExperiencia;
+	public Date getDataInicial() {
+		return dataInicial;
 	}
 
-	public Date getDataFinalExperiencia() {
-		return dataFinalExperiencia;
+	public void setDataInicial(Date dataInicial) {
+		this.dataInicial = dataInicial;
 	}
 
-	public void setDataFinalExperiencia(Date dataFinalExperiencia) {
-		this.dataFinalExperiencia = dataFinalExperiencia;
+	public Date getDataFinal() {
+		return dataFinal;
 	}
 
-	public long getIdExperiencia() {
-		return idExperiencia;
+	public void setDataFinal(Date dataFinal) {
+		this.dataFinal = dataFinal;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

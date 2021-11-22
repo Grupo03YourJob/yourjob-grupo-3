@@ -8,11 +8,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import model.bean.Usuario;
 
-public class UsuarioDAOimpl implements UsuarioDAO {
+import model.bean.Recrutador;
 
-	public void inserirUsuario(Usuario usuario) {
+public class RecrutadorDAOImpl implements RecrutadorDAO {
+
+	public void inserirRecrutador(Recrutador recrutador) {
 
 		Connection conexao = null;
 		PreparedStatement insert = null;
@@ -20,12 +21,11 @@ public class UsuarioDAOimpl implements UsuarioDAO {
 		try {
 
 			conexao = conectarBanco();
-			insert = conexao.prepareStatement("INSERT INTO usuario (novo_usuario) VALUES (?,?,?,?)");
+			insert = conexao
+					.prepareStatement("INSERT INTO recrutador (empresa_Recrutador, atuacao_Recrutador) VALUES (?,?)");
 
-			insert.setString(1, usuario.getNomeUsuario());
-			insert.setString(2, usuario.getSobrenomeUsuario());
-			insert.setString(3, usuario.getEmailUsuario());
-			insert.setString(4, usuario.getSenhaUsuario());
+			insert.setString(1, recrutador.getEmpresa());
+			insert.setString(2, recrutador.getAtuacao());
 
 			insert.execute();
 
@@ -50,7 +50,7 @@ public class UsuarioDAOimpl implements UsuarioDAO {
 		}
 	}
 
-	public void deletarUsuario(Usuario usuario) {
+	public void deletarRecrutador(Recrutador recrutador) {
 
 		Connection conexao = null;
 		PreparedStatement delete = null;
@@ -58,9 +58,9 @@ public class UsuarioDAOimpl implements UsuarioDAO {
 		try {
 
 			conexao = conectarBanco();
-			delete = conexao.prepareStatement("DELETE FROM usuario WHERE id_usuario = ?");
+			delete = conexao.prepareStatement("DELETE FROM recrutador WHERE id_Recrutador = ?");
 
-			delete.setLong(1, usuario.getIdUsuario());
+			delete.setLong(1, recrutador.getId());
 
 			delete.execute();
 
@@ -85,7 +85,7 @@ public class UsuarioDAOimpl implements UsuarioDAO {
 		}
 	}
 
-	public void atualizarNovoUsuario(Usuario usuario, String novoUsuario) {
+	public void atualizarEmpresaRecrutador(Recrutador recrutador, String novoEmpresa) {
 
 		Connection conexao = null;
 		PreparedStatement update = null;
@@ -93,10 +93,10 @@ public class UsuarioDAOimpl implements UsuarioDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE idioma SET nome_usuario = ? WHERE id_usuario = ?");
+			update = conexao.prepareStatement("UPDATE recrutador SET empresa_Recrutador = ? WHERE id_Recrutador = ?");
 
-			update.setString(1, novoUsuario);
-			update.setLong(2, usuario.getIdUsuario());
+			update.setString(1, novoEmpresa);
+			update.setLong(2, recrutador.getId());
 
 			update.execute();
 
@@ -121,30 +121,20 @@ public class UsuarioDAOimpl implements UsuarioDAO {
 		}
 	}
 
-	public List<Usuario> recuperarUsuario() {
+	public void atualizarAtuacaoRecrutador(Recrutador recrutador, String novoAtuacao) {
 
 		Connection conexao = null;
-		Statement consulta = null;
-		ResultSet resultado = null;
-
-		List<Usuario> usuario = new ArrayList<Usuario>();
+		PreparedStatement update = null;
 
 		try {
 
 			conexao = conectarBanco();
-			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM usuario");
+			update = conexao.prepareStatement("UPDATE recrutador SET atuacao_Recrutador = ? WHERE id_Recrutador = ?");
 
-			while (resultado.next()) {
+			update.setString(1, novoAtuacao);
+			update.setLong(2, recrutador.getId());
 
-				long idUsuario = resultado.getLong("id_usuario");
-				String nomeUsuario = resultado.getString("nome_usuario");
-				String sobrenomeUsuario = resultado.getString("sobrenome_usuario");
-				String emailUsuario = resultado.getString("email_usuario");
-				String senhaUsuario = resultado.getString("senha_usuario");
-
-				usuario.add(new Usuario(idUsuario, nomeUsuario, sobrenomeUsuario, emailUsuario, senhaUsuario));
-			}
+			update.execute();
 
 		} catch (SQLException erro) {
 			erro.printStackTrace();
@@ -154,11 +144,8 @@ public class UsuarioDAOimpl implements UsuarioDAO {
 
 			try {
 
-				if (resultado != null)
-					resultado.close();
-
-				if (consulta != null)
-					consulta.close();
+				if (update != null)
+					update.close();
 
 				if (conexao != null)
 					conexao.close();
@@ -168,33 +155,29 @@ public class UsuarioDAOimpl implements UsuarioDAO {
 				erro.printStackTrace();
 			}
 		}
-
-		return usuario;
 	}
 
-	public List<Usuario> recuperarUsuarioOrdenadosNomeAscendente() {
+	public List<Recrutador> recuperarRecrutador() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Usuario> usuario = new ArrayList<Usuario>();
+		List<Recrutador> recrutadores = new ArrayList<Recrutador>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM usuario ORDER BY nome_usuario ASC");
+			resultado = consulta.executeQuery("SELECT * FROM recrutador");
 
 			while (resultado.next()) {
 
-				long idUsuario = resultado.getLong("id_usuario");
-				String nomeUsuario = resultado.getString("nome_usuario");
-				String sobrenomeUsuario = resultado.getString("sobrenome_usuario");
-				String emailUsuario = resultado.getString("email_usuario");
-				String senhaUsuario = resultado.getString("senha_usuario");
+				long id = resultado.getLong("id_Recrutador");
+				String empresa = resultado.getString("empresa_Recrutador");
+				String atuacao = resultado.getString("atuacao_Recrutador");
 
-				usuario.add(new Usuario(idUsuario, nomeUsuario, sobrenomeUsuario, emailUsuario, senhaUsuario));
+				recrutadores.add(new Recrutador(id, empresa, atuacao));
 			}
 
 		} catch (SQLException erro) {
@@ -220,32 +203,30 @@ public class UsuarioDAOimpl implements UsuarioDAO {
 			}
 		}
 
-		return usuario;
+		return recrutadores;
 	}
 
-	public List<Usuario> recuperarUsuarioOrdenadosNomeDescendente() {
+	public List<Recrutador> recuperarRecrutadorOrdenadosEmpresaAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Usuario> usuario = new ArrayList<Usuario>();
+		List<Recrutador> recrutadores = new ArrayList<Recrutador>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM usuario ORDER BY nome_usuario DESC");
+			resultado = consulta.executeQuery("SELECT * FROM recrutador ORDER BY empresa_Recrutador ASC");
 
 			while (resultado.next()) {
 
-				long idUsuario = resultado.getLong("id_usuario");
-				String nomeUsuario = resultado.getString("nome_usuario");
-				String sobrenomeUsuario = resultado.getString("sobrenome_usuario");
-				String emailUsuario = resultado.getString("email_usuario");
-				String senhaUsuario = resultado.getString("senha_usuario");
+				long id = resultado.getLong("id_Recrutador");
+				String empresa = resultado.getString("empresa_Recrutador");
+				String atuacao = resultado.getString("atuacao_Recrutador");
 
-				usuario.add(new Usuario(idUsuario, nomeUsuario, sobrenomeUsuario, emailUsuario, senhaUsuario));
+				recrutadores.add(new Recrutador(id, empresa, atuacao));
 			}
 
 		} catch (SQLException erro) {
@@ -271,10 +252,59 @@ public class UsuarioDAOimpl implements UsuarioDAO {
 			}
 		}
 
-		return usuario;
+		return recrutadores;
+	}
+
+	public List<Recrutador> recuperarRecrutadorOrdenadosEmpresaDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Recrutador> recrutadores = new ArrayList<Recrutador>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM recrutador ORDER BY empresa_Recrutador DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_Recrutador");
+				String empresa = resultado.getString("empresa_Recrutador");
+				String atuacao = resultado.getString("atuacao_Recrutador");
+
+				recrutadores.add(new Recrutador(id, empresa, atuacao));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return recrutadores;
 	}
 
 	private Connection conectarBanco() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost/cadastro?user=admin&password=password");
+		return DriverManager.getConnection("jdbc:mysql://localhost/cadastro?user=root&password=root");
 	}
 }

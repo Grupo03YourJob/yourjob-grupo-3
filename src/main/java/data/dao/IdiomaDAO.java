@@ -2,6 +2,7 @@ package data.dao;
 
 import java.util.List;
 import model.bean.Idioma;
+import model.bean.TipoNivel;
 
 public interface IdiomaDAO {
 
@@ -9,12 +10,16 @@ public interface IdiomaDAO {
 
 	void deletarIdioma(Idioma idioma);
 
-	void atualizarNovoIdioma(Idioma idioma, String novoIdioma);
+	void atualizarNomeIdioma(Idioma idioma, String novoIdioma);
 
-	public List<Idioma> recuperarIdioma();
+	void atualizarNivelIdioma(Idioma idioma, TipoNivel novoNivel);
 
-	public List<Idioma> recuperarIdiomaOrdenadosNomeAscendente();
+	List<Idioma> recuperarIdioma();
 
-	public List<Idioma> recuperarIdiomaOrdenadosNomeDescendente();
+	List<Idioma> recuperarIdiomaPorCurriculo(String idCurriculo);
+
+	List<Idioma> recuperarIdiomaOrdenadosNomeAscendente();
+
+	List<Idioma> recuperarIdiomaOrdenadosNomeDescendente();
 
 }

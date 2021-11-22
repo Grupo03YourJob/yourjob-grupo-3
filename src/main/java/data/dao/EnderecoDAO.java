@@ -10,48 +10,46 @@ public interface EnderecoDAO {
 
 	void deletarEndereco(Endereco endereco);
 
-	void atualizarRuaEndereco(Endereco endereco, String novaRua);
+	void atualizarRuaEndereco(Endereco endereco, String novoRua);
 
-	void atualizarBairroEndereco(Endereco endereco, String bairro);
+	void atualizarBairroEndereco(Endereco endereco, String novoBairro);
 
-	void atualizarNumeroEndereco(Endereco endereco, String numero);
+	void atualizarNumeroEndereco(Endereco endereco, String novoNumero);
 
-	void atualizarCepEndereco(Endereco endereco, String cep);
+	void atualizarCepEndereco(Endereco endereco, String novoCep);
 
-	void atualizarCidadeEndereco(Endereco endereco, String cidade);
+	void atualizarCidadeEndereco(Endereco endereco, String novoCidade);
 
-	void atualizarEstadoEndereco(Endereco endereco, String estado);
+	void atualizarEstadoEndereco(Endereco endereco, String novoEstado);
 
-	void atualizarReferenciaEndereco(Endereco endereco, String referencia);
+	void atualizarReferenciaEndereco(Endereco endereco, String novoReferencia);
 
 	List<Endereco> recuperarEndereco();
 
-	List<Endereco> recuperarEnderecoRuaAscendente();
+	List<Endereco> recuperarEnderecoPorUsuario();
 
-	List<Endereco> recuperarEnderecoRuaDescendente();
+	List<Endereco> recuperarEnderecosOrdenadosRuaAscendente();
 
-	List<Endereco> recuperarEnderecoBairroAscendente();
+	List<Endereco> recuperarEnderecosOrdenadosRuaDescendente();
 
-	List<Endereco> recuperarEnderecoBairroDescendente();
+	List<Endereco> recuperarEnderecosOrdenadosBairroAscendente();
 
-	List<Endereco> recuperarEnderecoNumeroAscendente();
+	List<Endereco> recuperarEnderecosOrdenadosBairroDescendente();
 
-	List<Endereco> recuperarEnderecoNumeroDescendente();
+	List<Endereco> recuperarEnderecosOrdenadosNumeroAscendente();
 
-	List<Endereco> recuperarEnderecoCepAscendente();
+	List<Endereco> recuperarEnderecosOrdenadosNumeroDescendente();
 
-	List<Endereco> recuperarEnderecoCepDescendente();
+	List<Endereco> recuperarEnderecosOrdenadosCepAscendente();
 
-	List<Endereco> recuperarEnderecoCidadeAscendente();
+	List<Endereco> recuperarEnderecosOrdenadosCepDescendente();
 
-	List<Endereco> recuperarEnderecoCidadeDescendente();
+	List<Endereco> recuperarEnderecosOrdenadosEstadoAscendente();
 
-	List<Endereco> recuperarEnderecoEstadoAscendente();
+	List<Endereco> recuperarEnderecosOrdenadosEstadoDescendente();
 
-	List<Endereco> recuperarEnderecoEstadoDescendente();
+	List<Endereco> recuperarEnderecosOrdenadosReferenciaAscendente();
 
-	List<Endereco> recuperarEnderecoReferenciaAscendente();
-
-	List<Endereco> recuperarEnderecoReferenciaDescendente();
+	List<Endereco> recuperarEnderecosOrdenadosReferenciaDescendente();
 
 }

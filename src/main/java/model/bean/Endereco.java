@@ -2,84 +2,100 @@ package model.bean;
 
 public class Endereco {
 
-	private long idEndereco;
-	private String ruaEndereco;
-	private String bairroEndereco;
-	private int numeroEndereco;
-	private String cepEndereco;
-	private String cidadeEndereco;
-	private String estadoEndereco;
-	private String referenciaEndereco;
+	private long id;
+	private String rua;
+	private String bairro;
+	private String numero;
+	private String cep;
+	private String cidade;
+	private String estado;
+	private String referencia;
 
-	public Endereco(String ruaEndereco, String bairroEndereco, int numeroEndereco, String cepEndereco,
-			String cidadeEndereco, String estadoEndereco, String referenciaEndereco) {
-		setRuaEndereco(ruaEndereco);
-		setBairroEndereco(bairroEndereco);
-		setNumeroEndereco(numeroEndereco);
-		setCepEndereco(cepEndereco);
-		setCidadeEndereco(cidadeEndereco);
-		setEstadoEndereco(estadoEndereco);
-		setReferenciaEndereco(referenciaEndereco);
+	public Endereco(String rua, String bairro, String numero, String cep, String cidade, String estado,
+			String referencia) {
+		setRua(rua);
+		setBairro(bairro);
+		setNumero(numero);
+		setCep(cep);
+		setCidade(cidade);
+		setEstado(estado);
+		setReferencia(referencia);
 	}
 
-	public String getRuaEndereco() {
-		return ruaEndereco;
+	public Endereco(long id, String rua, String bairro, String numero, String cep, String cidade, String estado,
+			String referencia) {
+		setId(id);
+		setRua(rua);
+		setBairro(bairro);
+		setNumero(numero);
+		setCep(cep);
+		setCidade(cidade);
+		setEstado(estado);
+		setReferencia(referencia);
 	}
 
-	public void setRuaEndereco(String ruaEndereco) {
-		this.ruaEndereco = ruaEndereco;
+	public String getRua() {
+		return rua;
 	}
 
-	public String getBairroEndereco() {
-		return bairroEndereco;
+	public void setRua(String rua) {
+		this.rua = rua;
 	}
 
-	public void setBairroEndereco(String bairroEndereco) {
-		this.bairroEndereco = bairroEndereco;
+	public String getBairro() {
+		return bairro;
 	}
 
-	public int getNumeroEndereco() {
-		return numeroEndereco;
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 
-	public void setNumeroEndereco(int numeroEndereco) {
-		this.numeroEndereco = numeroEndereco;
+	public String getNumero() {
+		return numero;
 	}
 
-	public String getCepEndereco() {
-		return cepEndereco;
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
-	public void setCepEndereco(String cepEndereco) {
-		this.cepEndereco = cepEndereco;
+	public String getCep() {
+		return cep;
 	}
 
-	public String getCidadeEndereco() {
-		return cidadeEndereco;
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 
-	public void setCidadeEndereco(String cidadeEndereco) {
-		this.cidadeEndereco = cidadeEndereco;
+	public String getCidade() {
+		return cidade;
 	}
 
-	public String getEstadoEndereco() {
-		return estadoEndereco;
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 
-	public void setEstadoEndereco(String estadoEndereco) {
-		this.estadoEndereco = estadoEndereco;
+	public String getEstado() {
+		return estado;
 	}
 
-	public String getReferenciaEndereco() {
-		return referenciaEndereco;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
-	public void setReferenciaEndereco(String referenciaEndereco) {
-		this.referenciaEndereco = referenciaEndereco;
+	public String getReferencia() {
+		return referencia;
 	}
 
-	public long getIdEndereco() {
-		return idEndereco;
+	public void setReferencia(String referencia) {
+		this.referencia = referencia;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

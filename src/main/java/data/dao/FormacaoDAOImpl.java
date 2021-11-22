@@ -9,12 +9,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.bean.Formacao;
 
-import model.bean.Experiencia;
+public class FormacaoDAOImpl implements FormacaoDAO {
 
-public class ExperienciaDAOImpl implements ExperienciaDAO {
-
-	public void inserirExperiencia(Experiencia experiencia) {
+	public void inserirFormacao(Formacao formacao) {
 
 		Connection conexao = null;
 		PreparedStatement insert = null;
@@ -23,12 +22,12 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 
 			conexao = conectarBanco();
 			insert = conexao.prepareStatement(
-					"INSERT INTO experiencia (empresa_Experiencia, cargo_Exercido_Experiencia, dataInicial_experiencia, dataFinal_experiencia) VALUES (?,?,?,?)");
+					"INSERT INTO formacao (nome_Formacao, instituicao_Formacao, dataInicial, dataFinal) VALUES (?,?,?,?)");
 
-			insert.setString(1, experiencia.getEmpresa());
-			insert.setString(2, experiencia.getCargoExercido());
-			insert.setDate(3, experiencia.getDataInicial());
-			insert.setDate(4, experiencia.getDataFinal());
+			insert.setString(1, formacao.getNome());
+			insert.setString(2, formacao.getInstituicao());
+			insert.setDate(3, formacao.getDataInicial());
+			insert.setDate(4, formacao.getDataFinal());
 
 			insert.execute();
 
@@ -53,7 +52,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		}
 	}
 
-	public void deletarExperiencia(Experiencia experiencia) {
+	public void deletarFormacao(Formacao formacao) {
 
 		Connection conexao = null;
 		PreparedStatement delete = null;
@@ -61,9 +60,9 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		try {
 
 			conexao = conectarBanco();
-			delete = conexao.prepareStatement("DELETE FROM experiencia WHERE id_Experiencia = ?");
+			delete = conexao.prepareStatement("DELETE FROM formacao WHERE id_Formacao = ?");
 
-			delete.setLong(1, experiencia.getId());
+			delete.setLong(1, formacao.getId());
 
 			delete.execute();
 
@@ -88,7 +87,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		}
 	}
 
-	public void atualizarEmpresaExperiencia(Experiencia experiencia, String novoEmpresa) {
+	public void atualizarNomeFormacao(Formacao formacao, String novoNome) {
 
 		Connection conexao = null;
 		PreparedStatement update = null;
@@ -96,11 +95,10 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao
-					.prepareStatement("UPDATE experiencia SET empresa_Experiencia = ? WHERE id_Experiencia = ?");
+			update = conexao.prepareStatement("UPDATE formacao SET nome_Formacao = ? WHERE id_Formacao = ?");
 
-			update.setString(1, novoEmpresa);
-			update.setLong(2, experiencia.getId());
+			update.setString(1, novoNome);
+			update.setLong(2, formacao.getId());
 
 			update.execute();
 
@@ -125,7 +123,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		}
 	}
 
-	public void atualizarCargoExercidoExperiencia(Experiencia experiencia, String novoCargoExercido) {
+	public void atualizarInstituicaoFormacao(Formacao formacao, String novoInstituicao) {
 
 		Connection conexao = null;
 		PreparedStatement update = null;
@@ -133,11 +131,10 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao
-					.prepareStatement("UPDATE experiencia SET cargo_Exercido_Experiencia = ? WHERE id_Experiencia = ?");
+			update = conexao.prepareStatement("UPDATE formacao SET instituicao_Formacao = ? WHERE id_Formacao = ?");
 
-			update.setString(1, novoCargoExercido);
-			update.setLong(2, experiencia.getId());
+			update.setString(1, novoInstituicao);
+			update.setLong(2, formacao.getId());
 
 			update.execute();
 
@@ -162,7 +159,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		}
 	}
 
-	public void atualizarDataInicalExperiencia(Experiencia experiencia, Date novoDataIncial) {
+	public void atualizarDataInicialFormacao(Formacao formacao, Date novoDataInicial) {
 
 		Connection conexao = null;
 		PreparedStatement update = null;
@@ -170,11 +167,10 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao
-					.prepareStatement("UPDATE experiencia SET dataIncial_Experiencia = ? WHERE id_Experiencia = ?");
+			update = conexao.prepareStatement("UPDATE formacao SET dataIncial_Formacao = ? WHERE id_Formacao = ?");
 
-			update.setDate(1, novoDataIncial);
-			update.setLong(2, experiencia.getId());
+			update.setDate(1, novoDataInicial);
+			update.setLong(2, formacao.getId());
 
 			update.execute();
 
@@ -199,7 +195,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		}
 	}
 
-	public void atualizarDataFinalExperiencia(Experiencia experiencia, Date novoDataFinal) {
+	public void atualizarDataFinalFormacao(Formacao formacao, Date novoDataFinal) {
 
 		Connection conexao = null;
 		PreparedStatement update = null;
@@ -207,11 +203,10 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao
-					.prepareStatement("UPDATE experiencia SET dataFinal_Experiencia = ? WHERE id_Experiencia = ?");
+			update = conexao.prepareStatement("UPDATE formacao SET dataIncial_Formacao = ? WHERE id_Formacao = ?");
 
 			update.setDate(1, novoDataFinal);
-			update.setLong(2, experiencia.getId());
+			update.setLong(2, formacao.getId());
 
 			update.execute();
 
@@ -236,29 +231,29 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		}
 	}
 
-	public List<Experiencia> recuperarExperiencia() {
+	public List<Formacao> recuperarFormacao() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Experiencia> experiencias = new ArrayList<Experiencia>();
+		List<Formacao> formacoes = new ArrayList<Formacao>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM experiencia");
+			resultado = consulta.executeQuery("SELECT * FROM formacao");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Exeperiencia");
-				String empresa = resultado.getString("empresa_Experiencia");
-				String cargoExercido = resultado.getString("cargo_Exercido_Experiencia");
-				Date dataInicial = resultado.getDate("dataInicial_Experiencia");
-				Date dataFinal = resultado.getDate("dataFinal_Experiencia");
+				long id = resultado.getLong("id_Formacao");
+				String nome = resultado.getString("nome_Formacao");
+				String instituicao = resultado.getString("instituicao_Formacao");
+				Date dataInicial = resultado.getDate("dataInicial_Formacao");
+				Date dataFinal = resultado.getDate("dataFinal_Formacao");
 
-				experiencias.add(new Experiencia(id, empresa, cargoExercido, dataInicial, dataFinal));
+				formacoes.add(new Formacao(nome, instituicao, dataInicial, dataFinal));
 			}
 
 		} catch (SQLException erro) {
@@ -284,32 +279,32 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 			}
 		}
 
-		return experiencias;
+		return formacoes;
 	}
 
-	public List<Experiencia> recuperarExperienciaPorCurriculo(String idCurriculo) {
+	public List<Formacao> recuperarFormacaoPorCurriculo(String idCurriculo) {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Experiencia> experiencias = new ArrayList<Experiencia>();
+		List<Formacao> formacoes = new ArrayList<Formacao>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM experiencia WHERE id_Curriculo = " + idCurriculo);
+			resultado = consulta.executeQuery("SELECT * FROM formacao WHERE id_Curriculo = " + idCurriculo);
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Exeperiencia");
-				String empresa = resultado.getString("empresa_Experiencia");
-				String cargoExercido = resultado.getString("cargo_Exercido_Experiencia");
-				Date dataInicial = resultado.getDate("dataInicial_Experiencia");
-				Date dataFinal = resultado.getDate("dataFinal_Experiencia");
+				long id = resultado.getLong("id_Formacao");
+				String nome = resultado.getString("nome_Formacao");
+				String instituicao = resultado.getString("instituicao_Formacao");
+				Date dataInicial = resultado.getDate("dataInicial_Formacao");
+				Date dataFinal = resultado.getDate("dataFinal_Formacao");
 
-				experiencias.add(new Experiencia(id, empresa, cargoExercido, dataInicial, dataFinal));
+				formacoes.add(new Formacao(nome, instituicao, dataInicial, dataFinal));
 			}
 
 		} catch (SQLException erro) {
@@ -335,32 +330,32 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 			}
 		}
 
-		return experiencias;
+		return formacoes;
 	}
 
-	public List<Experiencia> recuperarExperienciaEmpresaAscendente() {
+	public List<Formacao> recuperarFormacaoOrdenadosNomeAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Experiencia> experiencias = new ArrayList<Experiencia>();
+		List<Formacao> formacoes = new ArrayList<Formacao>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM experiencia ORDER BY id_Experiencia ASC");
+			resultado = consulta.executeQuery("SELECT * FROM formacao ORDER BY nome_formacao ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Exeperiencia");
-				String empresa = resultado.getString("empresa_Experiencia");
-				String cargoExercido = resultado.getString("cargo_Exercido_Experiencia");
-				Date dataInicial = resultado.getDate("dataInicial_Experiencia");
-				Date dataFinal = resultado.getDate("dataFinal_Experiencia");
+				long id = resultado.getLong("id_Formacao");
+				String nome = resultado.getString("nome_Formacao");
+				String instituicao = resultado.getString("instituicao_Formacao");
+				Date dataInicial = resultado.getDate("dataInicial_Formacao");
+				Date dataFinal = resultado.getDate("dataFinal_Formacao");
 
-				experiencias.add(new Experiencia(id, empresa, cargoExercido, dataInicial, dataFinal));
+				formacoes.add(new Formacao(nome, instituicao, dataInicial, dataFinal));
 			}
 
 		} catch (SQLException erro) {
@@ -386,33 +381,34 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 			}
 		}
 
-		return recuperarExperiencia();
+		return formacoes;
 	}
 
-	public List<Experiencia> recuperarExperienciaEmpresaDescendente() {
+	public List<Formacao> recuperarFormacaoOrdenadosNomeDescendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
 		ResultSet resultado = null;
 
-		List<Experiencia> experiencias = new ArrayList<Experiencia>();
+		List<Formacao> formacoes = new ArrayList<Formacao>();
 
 		try {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM experiencia ORDER BY id_experiencia DESC");
+			resultado = consulta.executeQuery("SELECT * FROM formacao ORDER BY nome_formacao DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Exeperiencia");
-				String empresa = resultado.getString("empresa_Experiencia");
-				String cargoExercido = resultado.getString("cargo_Exercido_Experiencia");
-				Date dataInicial = resultado.getDate("dataInicial_Experiencia");
-				Date dataFinal = resultado.getDate("dataFinal_Experiencia");
+				long id = resultado.getLong("id_Formacao");
+				String nome = resultado.getString("nome_Formacao");
+				String instituicao = resultado.getString("instituicao_Formacao");
+				Date dataInicial = resultado.getDate("dataInicial_Formacao");
+				Date dataFinal = resultado.getDate("dataFinal_Formacao");
 
-				experiencias.add(new Experiencia(id, empresa, cargoExercido, dataInicial, dataFinal));
+				formacoes.add(new Formacao(nome, instituicao, dataInicial, dataFinal));
 			}
+
 		} catch (SQLException erro) {
 			erro.printStackTrace();
 		}
@@ -436,11 +432,10 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 			}
 		}
 
-		return experiencias;
+		return formacoes;
 	}
 
 	private Connection conectarBanco() throws SQLException {
 		return DriverManager.getConnection("jdbc:mysql://localhost/cadastro?user=root&password=root");
 	}
-
 }

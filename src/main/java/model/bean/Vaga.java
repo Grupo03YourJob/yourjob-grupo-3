@@ -2,63 +2,76 @@ package model.bean;
 
 public class Vaga {
 
-	private long idVaga;
-	private String nomeVaga;
-	private String atividadeVaga;
-	private String turnoVaga;
-	private String salarioVaga;
-	private String requisitoVaga;
+	private long id;
+	private String nome;
+	private String atividade;
+	private String salario;
+	private String requisito;
+	private TipoTurno turno;
 
-	public Vaga(String nomeVaga, String atribuicaoVaga, String turnoVaga, String salarioVaga, String requisitoVaga) {
-		setNomeVaga(nomeVaga);
-		setAtividadeVaga(atribuicaoVaga);
-		setTurnoVaga(turnoVaga);
-		setSalarioVaga(salarioVaga);
-		setRequisitoVaga(requisitoVaga);
+	public Vaga(String nome, String atribuicao, String salario, String requisito, TipoTurno turno) {
+		setNome(nome);
+		setAtividade(atribuicao);
+		setSalario(salario);
+		setRequisito(requisito);
+		setTurno(turno);
 	}
 
-	public String getNomeVaga() {
-		return nomeVaga;
+	public Vaga(long id, String nome, String atribuicao, String salario, String requisito, TipoTurno turno) {
+		setId(id);
+		setNome(nome);
+		setAtividade(atribuicao);
+		setSalario(salario);
+		setRequisito(requisito);
+		setTurno(turno);
 	}
 
-	public void setNomeVaga(String nomeVaga) {
-		this.nomeVaga = nomeVaga;
+	public String getNome() {
+		return nome;
 	}
 
-	public String getAtividadeVaga() {
-		return atividadeVaga;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public void setAtividadeVaga(String atividadeVaga) {
-		this.atividadeVaga = atividadeVaga;
+	public String getAtividade() {
+		return atividade;
 	}
 
-	public String getTurnoVaga() {
-		return turnoVaga;
+	public void setAtividade(String atividade) {
+		this.atividade = atividade;
 	}
 
-	public void setTurnoVaga(String turnoVaga) {
-		this.turnoVaga = turnoVaga;
+	public String getSalario() {
+		return salario;
 	}
 
-	public String getSalarioVaga() {
-		return salarioVaga;
+	public void setSalario(String salario) {
+		this.salario = salario;
 	}
 
-	public void setSalarioVaga(String salarioVaga) {
-		this.salarioVaga = salarioVaga;
+	public String getRequisito() {
+		return requisito;
 	}
 
-	public String getRequisitoVaga() {
-		return requisitoVaga;
+	public void setRequisito(String requisito) {
+		this.requisito = requisito;
 	}
 
-	public void setRequisitoVaga(String requisitoVaga) {
-		this.requisitoVaga = requisitoVaga;
+	public TipoTurno getTurno() {
+		return turno;
 	}
 
-	public long getIdVaga() {
-		return idVaga;
+	public void setTurno(TipoTurno turno) {
+		this.turno = turno;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

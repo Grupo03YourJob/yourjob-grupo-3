@@ -1,6 +1,8 @@
 package data.dao;
 
 import java.util.List;
+
+import model.bean.TipoTurno;
 import model.bean.Vaga;
 
 public interface VagaDAO {
@@ -9,12 +11,22 @@ public interface VagaDAO {
 
 	void deletarVaga(Vaga vaga);
 
-	void atualizarNovasVaga(Vaga vaga, String novaVaga);
+	void atualizarNomeVaga(Vaga vaga, String novoNome);
 
-	public List<Vaga> recuperarVaga();
+	void atualizarAtividadeVaga(Vaga vaga, String novoAtividade);
 
-	public List<Vaga> recuperarVagaOrdenadosNomeAscendente();
+	void atualizarSalarioVaga(Vaga vaga, String novoSalario);
 
-	public List<Vaga> recuperarVagaOrdenadosNomeDescendente();
+	void atualizarRequisitoVaga(Vaga vaga, String novoRequisito);
+
+	void atualizarTurnoVaga(Vaga vaga, TipoTurno novoTurno);
+
+	List<Vaga> recuperarVaga();
+
+	List<Vaga> recuperarVagaPorRecrutador(String idRecrutador);
+
+	List<Vaga> recuperarVagaOrdenadosNomeAscendente();
+
+	List<Vaga> recuperarVagaOrdenadosNomeDescendente();
 
 }

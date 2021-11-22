@@ -1,6 +1,8 @@
 package data.dao;
 
 import java.util.List;
+
+import model.bean.TipoGenero;
 import model.bean.Usuario;
 
 public interface UsuarioDAO {
@@ -9,12 +11,18 @@ public interface UsuarioDAO {
 
 	void deletarUsuario(Usuario usuario);
 
-	void atualizarNovoUsuario(Usuario usuario, String novoUsuario);
+	void atualizarNomeUsuario(Usuario usuario, String novoNome);
 
-	public List<Usuario> recuperarUsuario();
+	void atualizarSobrenomeUsuario(Usuario usuario, String novoSobrenome);
 
-	public List<Usuario> recuperarUsuarioOrdenadosNomeAscendente();
+	void atualizarSenhaUsuario(Usuario usuario, String novoSenha);
 
-	public List<Usuario> recuperarUsuarioOrdenadosNomeDescendente();
+	void atualizarGeneroUsuario(Usuario usuario, TipoGenero novoGenero);
+
+	List<Usuario> recuperarUsuario();
+
+	List<Usuario> recuperarUsuarioOrdenadosNomeAscendente();
+
+	List<Usuario> recuperarUsuarioOrdenadosNomeDescendente();
 
 }

@@ -10,42 +10,20 @@ public interface CurriculoDAO {
 
 	void deletarCurriculo(Curriculo curriculo);
 
-	void atualizarNomeCurriculo(Curriculo curriculo, String novoNome);
+	void atualizarObjetivoCurriculo(Curriculo curriculo, String novoObjetivo);
 
-	void atualizarObjetivoCurriculo(Curriculo curriculo, String objetivo);
+	void atualizarHabilidadeCurriculo(Curriculo curriculo, String novoHabilidade);
 
-	void atualizarHabilidadeCurriculo(Curriculo curriculo, String habilidade);
+	List<Curriculo> recuperarCurriculos();
 
-	void atualizarFormacao(Curriculo curriculo, String formação);
+	List<Curriculo> recuperarCurriculosPorCandidato(String idCandidato);
 
-	void atualizarExperiencia(Curriculo curriculo, String Experiencia);
+	List<Curriculo> recuperarCurriculosOrdenadosObjetivoAscendente();
 
-	void atualizarIdiomaCurriculo(Curriculo Curriculo, String novoIdioma);
+	List<Curriculo> recuperarCurriculosOrdenadosObjetivoDescendente();
 
-	List<Curriculo> recuperarCurriculo();
+	List<Curriculo> recuperarCurriculosOrdenadosHabilidadeAscendente();
 
-	List<Curriculo> recuperarCurriculoOrdenadosNomeAscendente();
-
-	List<Curriculo> recuperarCurriculoOrdenadosNomeDescendente();
-
-	List<Curriculo> recuperarCurriculoOrdenadosObjetivoAscendente();
-
-	List<Curriculo> recuperarCurriculoOrdenadosObjetivoDescendente();
-
-	List<Curriculo> recuperarCurriculoOrdenadosHabilidadeAscendente();
-
-	List<Curriculo> recuperarCurriculoOrdenadosHabilidadeDescendente();
-
-	List<Curriculo> recuperarCurriculoOrdenadosFormacaoAscendente();
-
-	List<Curriculo> recuperarCurriculoOrdenadosFormacaoDescendente();
-
-	List<Curriculo> recuperarCurriculoOrdenadosExperienciaAscendente();
-
-	List<Curriculo> recuperarCurriculoOrdenadosExperienciaDescendente();
-
-	List<Curriculo> recuperarCurriculoOrdenadosIdiomaAscendente();
-
-	List<Curriculo> recuperarCurriculoOrdenadosIdiomaDescendente();
+	List<Curriculo> recuperarCurriculosOrdenadosHabilidadeDescendente();
 
 }

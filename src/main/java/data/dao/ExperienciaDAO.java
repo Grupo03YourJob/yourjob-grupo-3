@@ -1,5 +1,6 @@
 package data.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import model.bean.Experiencia;
@@ -10,30 +11,20 @@ public interface ExperienciaDAO {
 
 	void deletarExperiencia(Experiencia experiencia);
 
-	void atualizarEmpresaExperiencia(Experiencia experiencia, String empresa);
+	void atualizarEmpresaExperiencia(Experiencia experiencia, String novoEmpresa);
 
-	void atualizarCargoExperiencia(Experiencia experiencia, String cargo);
+	void atualizarCargoExercidoExperiencia(Experiencia experiencia, String CargoExercido);
 
-	void atualizarDataInicialExperiencia(Experiencia experiencia, String dataInicial);
+	void atualizarDataInicalExperiencia(Experiencia experiencia, Date novoDataInical);
 
-	void atualizarDataFinalExperiencia(Experiencia experiencia, String dataFinal);
+	void atualizarDataFinalExperiencia(Experiencia experiencia, Date novoDataFinal);
 
 	List<Experiencia> recuperarExperiencia();
+
+	List<Experiencia> recuperarExperienciaPorCurriculo(String idCurriculo);
 
 	List<Experiencia> recuperarExperienciaEmpresaAscendente();
 
 	List<Experiencia> recuperarExperienciaEmpresaDescendente();
-
-	List<Experiencia> recuperarExperienciaCargoAscendente();
-
-	List<Experiencia> recuperarExperienciaCargoDescendente();
-
-	List<Experiencia> recuperarExperienciaDataInicialAscendente();
-
-	List<Experiencia> recuperarExperienciaDataInicialDescendente();
-
-	List<Experiencia> recuperarExperienciaDataFinalAscendente();
-
-	List<Experiencia> recuperarExperienciaDataFinalDescendente();
 
 }

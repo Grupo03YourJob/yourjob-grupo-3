@@ -1,33 +1,34 @@
 package model.bean;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class Candidato extends Usuario {
 
-	
-	private Date dataNascimentoCandidato;
+	private long id;
+	private Date dataNascimento;
 	private Curriculo curriculo;
 	private List<Vaga> vagas;
 
-	public Candidato(String nomeUsuario, String sobrenomeUsuario, String emailUsuario, String senhaUsuario, Endereco endereco,
-			Contato contato, String genero, String dataNascimento, Curriculo curriculo,
-			List<Vaga> vagas) {
-		super(nomeUsuario, sobrenomeUsuario, emailUsuario,senhaUsuario,endereco,contato);
-		
-		setDataNascimentoCandidato(dataNascimentoCandidato);
+	public Candidato(String nome, String sobrenome, String senha, TipoGenero genero, Date dataNascimento,
+			Curriculo curriculo, List<Vaga> vagas) {
+		super(nome, sobrenome, senha, genero);
+		setDataNascimento(dataNascimento);
 		setCurriculo(curriculo);
 		setVagas(vagas);
 	}
 
-	
-
-	public Date getDataNascimentoCandidato() {
-		return dataNascimentoCandidato;
+	public Candidato(long Id, Date dataNascimento) {
+		setId(id);
+		setDataNascimento(dataNascimento);
 	}
 
-	public void setDataNascimentoCandidato(Date dataNascimentoCandidato) {
-		this.dataNascimentoCandidato = dataNascimentoCandidato;
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public Curriculo getCurriculo() {
@@ -46,5 +47,12 @@ public class Candidato extends Usuario {
 		this.vagas = vagas;
 	}
 
-		
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 }

@@ -10,42 +10,44 @@ public interface ContatoDAO {
 
 	void deletarContato(Contato contato);
 
-	void atualizarNomeContato(Contato contato, String novoNome);
+	void atualizarTelefoneContato(Contato contato, String novoTelefone);
 
-	void atualizarTelefone(Contato contato, String telefone);
+	void atualizarCelularContato(Contato contato, String novoCelular);
 
-	void atualizarCelular(Contato contato, String Celula);
+	void atualizarEmailContato(Contato contato, String novoEmail);
 
-	void atualizarFacebook(Contato contato, String facebook);
+	void atualizarFacebookContato(Contato contato, String novoFacebook);
 
-	void atualizarInstagran(Contato contato, String instagran);
+	void atualizarInstagramContato(Contato contato, String novoInstagram);
 
-	void atualizarLinkedin(Contato contato, String linkedin);
+	void atualizarLinkedinContato(Contato contato, String novoLinkedin);
 
-	List<Contato> recuperarContato();
+	List<Contato> recuperarContatos();
 
-	List<Contato> recuperarContatoOrdenadosNomeAscendente();
+	List<Contato> recuperarContatosPorUsuario(String idUsuario);
 
-	List<Contato> recuperarContatoOrdenadosNomeDescendente();
+	List<Contato> recuperarContatosOrdenadosTelefoneAscendente();
 
-	List<Contato> recuperarContatoOrdenadosTelefoneAscendente();
+	List<Contato> recuperarContatosOrdenadosTelefoneDescendente();
 
-	List<Contato> recuperarContatoOrdenadosTelefoneDescendente();
+	List<Contato> recuperarContatosOrdenadosCelularAscendente();
 
-	List<Contato> recuperarContatoOrdenadosCelularAscendente();
+	List<Contato> recuperarContatosOrdenadosCelularDescendente();
 
-	List<Contato> recuperarContatoOrdenadosCelularDescendente();
+	List<Contato> recuperarContatosOrdenadosEmailAscendente();
 
-	List<Contato> recuperarContatoOrdenadosFacebookAscendente();
+	List<Contato> recuperarContatosOrdenadosEmailDescendente();
 
-	List<Contato> recuperarContatoOrdenadosFacebookDescendente();
+	List<Contato> recuperarContatosOrdenadosFacebookAscendente();
 
-	List<Contato> recuperarContatoOrdenadosInstagranAscendente();
+	List<Contato> recuperarContatosOrdenadosFacebookDescendente();
 
-	List<Contato> recuperarContatoOrdenadosInstagranDescendente();
+	List<Contato> recuperarContatosOrdenadosInstagramAscendente();
 
-	List<Contato> recuperarContatoOrdenadosLinkedinAscendente();
+	List<Contato> recuperarContatosOrdenadosInstagramDescendente();
 
-	List<Contato> recuperarContatoOrdenadosLinkedinDescendente();
+	List<Contato> recuperarContatosOrdenadosLinkedinAscendente();
+
+	List<Contato> recuperarContatosOrdenadosLinkedinDescendente();
 
 }

@@ -9,12 +9,14 @@ public interface RecrutadorDAO {
 
 	void deletarRecrutador(Recrutador recrutador);
 
-	void atualizarNovoRecrutador(Recrutador recrutador, String novoRecrutador);
+	void atualizarEmpresaRecrutador(Recrutador recrutador, String novoEmpresa);
 
-	public List<Recrutador> recuperarRecrutador();
+	void atualizarAtuacaoRecrutador(Recrutador recrutador, String novoAtuacao);
 
-	public List<Recrutador> recuperarRecrutadorOrdenadosNomeAscendente();
+	List<Recrutador> recuperarRecrutador();
 
-	public List<Recrutador> recuperarRecrutadorOrdenadosNomeDescendente();
+	List<Recrutador> recuperarRecrutadorOrdenadosEmpresaAscendente();
+
+	List<Recrutador> recuperarRecrutadorOrdenadosEmpresaDescendente();
 
 }
