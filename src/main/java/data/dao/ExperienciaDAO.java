@@ -9,22 +9,32 @@ public interface ExperienciaDAO {
 
 	void inserirExperiencia(Experiencia experiencia);
 
-	void deletarExperiencia(Experiencia experiencia);
+	void deletarExperiencia(Experiencia candidato);
 
 	void atualizarEmpresaExperiencia(Experiencia experiencia, String novoEmpresa);
 
-	void atualizarCargoExercidoExperiencia(Experiencia experiencia, String CargoExercido);
+	void atualizarCargoExercidoExperiencia(Experiencia experiencia, String novoCargoExercido);
 
-	void atualizarDataInicalExperiencia(Experiencia experiencia, Date novoDataInical);
+	void atualizarDataInicialExperiencia(Experiencia experiencia, Date novoDataInicial);
 
 	void atualizarDataFinalExperiencia(Experiencia experiencia, Date novoDataFinal);
 
-	List<Experiencia> recuperarExperiencia();
+	List<Experiencia> recuperarExperiencias();
 
-	List<Experiencia> recuperarExperienciaPorCurriculo(String idCurriculo);
+	List<Experiencia> recuperarExperienciasOrdenadosEmpresaAscendente();
 
-	List<Experiencia> recuperarExperienciaEmpresaAscendente();
+	List<Experiencia> recuperarExperienciasOrdenadosEmpresaDescendente();
 
-	List<Experiencia> recuperarExperienciaEmpresaDescendente();
+	List<Experiencia> recuperarExperienciasOrdenadosCargoExercidoAscendente();
+
+	List<Experiencia> recuperarExperienciasOrdenadosCargoExercidoDescendente();
+
+	List<Experiencia> recuperarExperienciasOrdenadosDataInicialAscendente();
+
+	List<Experiencia> recuperarExperienciasOrdenadosDataInicialDescendente();
+
+	List<Experiencia> recuperarExperienciasOrdenadosDataFinalAscendente();
+
+	List<Experiencia> recuperarExperienciasOrdenadosDataFinalDescendente();
 
 }

@@ -26,8 +26,6 @@ public interface EnderecoDAO {
 
 	List<Endereco> recuperarEndereco();
 
-	List<Endereco> recuperarEnderecoPorUsuario();
-
 	List<Endereco> recuperarEnderecosOrdenadosRuaAscendente();
 
 	List<Endereco> recuperarEnderecosOrdenadosRuaDescendente();

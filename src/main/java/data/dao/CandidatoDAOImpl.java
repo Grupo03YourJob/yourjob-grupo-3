@@ -11,8 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.bean.Candidato;
+import model.bean.Usuario;
 
 public class CandidatoDAOImpl implements CandidatoDAO {
+
+	private UsuarioDAO usuarioDAO;
+
+	public CandidatoDAOImpl(UsuarioDAO usuarioDAO) {
+		this.usuarioDAO = usuarioDAO;
+	}
 
 	public void inserirCandidato(Candidato candidato) {
 
@@ -21,10 +28,17 @@ public class CandidatoDAOImpl implements CandidatoDAO {
 
 		try {
 
-			conexao = conectarBanco();
-			insert = conexao.prepareStatement("INSERT INTO candidato (data_Nascimento_Candidato) VALUES (?)");
+			Usuario usuario = usuarioDAO.inserirUsuario(new Usuario(candidato.getNome(), candidato.getSobrenome(),
+					candidato.getSenha(), candidato.getGenero()));
 
-			insert.setDate(1, candidato.getDataNascimento());
+			java.sql.Date dataSql = new java.sql.Date(candidato.getDataNascimento().getTime());
+
+			conexao = conectarBanco();
+			insert = conexao
+					.prepareStatement("INSERT INTO candidato (data_nascimento_candidato, fk_usuario) VALUES (?,?)");
+
+			insert.setDate(1, dataSql);
+			insert.setLong(2, usuario.getId());
 
 			insert.execute();
 
@@ -57,7 +71,7 @@ public class CandidatoDAOImpl implements CandidatoDAO {
 		try {
 
 			conexao = conectarBanco();
-			delete = conexao.prepareStatement("DELETE FROM candidato WHERE id_Candidato = ?");
+			delete = conexao.prepareStatement("DELETE FROM candidato WHERE id_candidato = ?");
 
 			delete.setLong(1, candidato.getId());
 
@@ -93,7 +107,7 @@ public class CandidatoDAOImpl implements CandidatoDAO {
 
 			conexao = conectarBanco();
 			update = conexao
-					.prepareStatement("UPDATE candidato SET data_Nascimento_Candidato = ? WHERE id_Candidato = ?");
+					.prepareStatement("UPDATE candidato SET data_nascimento_candidato = ? WHERE id_candidato = ?");
 
 			update.setDate(1, novoDataNascimento);
 			update.setLong(2, candidato.getId());
@@ -137,8 +151,8 @@ public class CandidatoDAOImpl implements CandidatoDAO {
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Candidato");
-				Date dataNascimento = resultado.getDate("data_Nascimento_Candidato");
+				long id = resultado.getLong("id_candidato");
+				Date dataNascimento = resultado.getDate("data_nascimento_candidato");
 
 				candidatos.add(new Candidato(id, dataNascimento));
 			}
@@ -181,12 +195,12 @@ public class CandidatoDAOImpl implements CandidatoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM candidato ORDER BY data_Nascimento_Candidato ASC");
+			resultado = consulta.executeQuery("SELECT * FROM candidato ORDER BY data_nascimento_candidato ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Candidato");
-				Date dataNascimento = resultado.getDate("data_Nascimento_Candidato");
+				long id = resultado.getLong("id_candidato");
+				Date dataNascimento = resultado.getDate("data_nascimento_candidato");
 
 				candidatos.add(new Candidato(id, dataNascimento));
 			}
@@ -229,12 +243,12 @@ public class CandidatoDAOImpl implements CandidatoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM candidato ORDER BY data_Nascimento_Candidato DESC");
+			resultado = consulta.executeQuery("SELECT * FROM candidato ORDER BY data_nascimento_candidato DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Candidato");
-				Date dataNascimento = resultado.getDate("data_Nascimento_Candidato");
+				long id = resultado.getLong("id_candidato");
+				Date dataNascimento = resultado.getDate("data_nascimento_candidato");
 
 				candidatos.add(new Candidato(id, dataNascimento));
 			}
@@ -266,6 +280,7 @@ public class CandidatoDAOImpl implements CandidatoDAO {
 	}
 
 	private Connection conectarBanco() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost/cadastro?user=rootn&password=root");
+		return DriverManager.getConnection(
+				"jdbc:mysql://localhost/db_yourjob?useTimezone=true&serverTimezone=UTC&user=root&password=root");
 	}
 }

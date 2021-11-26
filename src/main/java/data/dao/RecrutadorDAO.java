@@ -1,6 +1,7 @@
 package data.dao;
 
 import java.util.List;
+
 import model.bean.Recrutador;
 
 public interface RecrutadorDAO {
@@ -13,10 +14,14 @@ public interface RecrutadorDAO {
 
 	void atualizarAtuacaoRecrutador(Recrutador recrutador, String novoAtuacao);
 
-	List<Recrutador> recuperarRecrutador();
+	List<Recrutador> recuperarRecrutadores();
 
-	List<Recrutador> recuperarRecrutadorOrdenadosEmpresaAscendente();
+	List<Recrutador> recuperarRecrutadoresOrdenadosEmpresaAscendente();
 
-	List<Recrutador> recuperarRecrutadorOrdenadosEmpresaDescendente();
+	List<Recrutador> recuperarRecrutadoresOrdenadosEmpresaDescendente();
+
+	List<Recrutador> recuperarRecrutadoresOrdenadosAtuacaoAscendente();
+
+	List<Recrutador> recuperarRecrutadoresOrdenadosAtuacaoDescendente();
 
 }

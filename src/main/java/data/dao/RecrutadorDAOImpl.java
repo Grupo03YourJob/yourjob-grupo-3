@@ -10,8 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.bean.Recrutador;
+import model.bean.Usuario;
 
 public class RecrutadorDAOImpl implements RecrutadorDAO {
+
+	private UsuarioDAO usuarioDAO;
+
+	public RecrutadorDAOImpl(UsuarioDAO usuarioDAO) {
+		this.usuarioDAO = usuarioDAO;
+	}
 
 	public void inserirRecrutador(Recrutador recrutador) {
 
@@ -20,12 +27,16 @@ public class RecrutadorDAOImpl implements RecrutadorDAO {
 
 		try {
 
+			Usuario usuario = usuarioDAO.inserirUsuario(new Usuario(recrutador.getNome(), recrutador.getSobrenome(),
+					recrutador.getSenha(), recrutador.getGenero()));
+
 			conexao = conectarBanco();
-			insert = conexao
-					.prepareStatement("INSERT INTO recrutador (empresa_Recrutador, atuacao_Recrutador) VALUES (?,?)");
+			insert = conexao.prepareStatement(
+					"INSERT INTO recrutador (empresa_recrutador, autacao_recrutador, fk_usuario) VALUES (?,?,?)");
 
 			insert.setString(1, recrutador.getEmpresa());
 			insert.setString(2, recrutador.getAtuacao());
+			insert.setLong(3, usuario.getId());
 
 			insert.execute();
 
@@ -58,7 +69,7 @@ public class RecrutadorDAOImpl implements RecrutadorDAO {
 		try {
 
 			conexao = conectarBanco();
-			delete = conexao.prepareStatement("DELETE FROM recrutador WHERE id_Recrutador = ?");
+			delete = conexao.prepareStatement("DELETE FROM recrutador WHERE id_recrutador = ?");
 
 			delete.setLong(1, recrutador.getId());
 
@@ -93,7 +104,7 @@ public class RecrutadorDAOImpl implements RecrutadorDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE recrutador SET empresa_Recrutador = ? WHERE id_Recrutador = ?");
+			update = conexao.prepareStatement("UPDATE recrutador SET empresa_recrutador = ? WHERE id_recrutador = ?");
 
 			update.setString(1, novoEmpresa);
 			update.setLong(2, recrutador.getId());
@@ -129,7 +140,7 @@ public class RecrutadorDAOImpl implements RecrutadorDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE recrutador SET atuacao_Recrutador = ? WHERE id_Recrutador = ?");
+			update = conexao.prepareStatement("UPDATE recrutador SET atuacao_recrutador = ? WHERE id_recrutador = ?");
 
 			update.setString(1, novoAtuacao);
 			update.setLong(2, recrutador.getId());
@@ -157,7 +168,7 @@ public class RecrutadorDAOImpl implements RecrutadorDAO {
 		}
 	}
 
-	public List<Recrutador> recuperarRecrutador() {
+	public List<Recrutador> recuperarRecrutadores() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -173,11 +184,12 @@ public class RecrutadorDAOImpl implements RecrutadorDAO {
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Recrutador");
-				String empresa = resultado.getString("empresa_Recrutador");
-				String atuacao = resultado.getString("atuacao_Recrutador");
+				long id = resultado.getLong("id_recrutador");
+				String empresa = resultado.getString("empresa_recrutador");
+				String atuacao = resultado.getString("atuacao_recrutador");
+				long fkUsuario = resultado.getLong("fk_recrutador");
 
-				recrutadores.add(new Recrutador(id, empresa, atuacao));
+				recrutadores.add(new Recrutador(id, empresa, atuacao, fkUsuario));
 			}
 
 		} catch (SQLException erro) {
@@ -206,7 +218,7 @@ public class RecrutadorDAOImpl implements RecrutadorDAO {
 		return recrutadores;
 	}
 
-	public List<Recrutador> recuperarRecrutadorOrdenadosEmpresaAscendente() {
+	public List<Recrutador> recuperarRecrutadoresOrdenadosEmpresaAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -218,15 +230,16 @@ public class RecrutadorDAOImpl implements RecrutadorDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM recrutador ORDER BY empresa_Recrutador ASC");
+			resultado = consulta.executeQuery("SELECT * FROM recrutador ORDER BY empresa_recrutador ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Recrutador");
-				String empresa = resultado.getString("empresa_Recrutador");
-				String atuacao = resultado.getString("atuacao_Recrutador");
+				long id = resultado.getLong("id_recrutador");
+				String empresa = resultado.getString("empresa_recrutador");
+				String atuacao = resultado.getString("atuacao_recrutador");
+				long fkUsuario = resultado.getLong("fk_recrutador");
 
-				recrutadores.add(new Recrutador(id, empresa, atuacao));
+				recrutadores.add(new Recrutador(id, empresa, atuacao, fkUsuario));
 			}
 
 		} catch (SQLException erro) {
@@ -255,7 +268,7 @@ public class RecrutadorDAOImpl implements RecrutadorDAO {
 		return recrutadores;
 	}
 
-	public List<Recrutador> recuperarRecrutadorOrdenadosEmpresaDescendente() {
+	public List<Recrutador> recuperarRecrutadoresOrdenadosEmpresaDescendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -267,15 +280,116 @@ public class RecrutadorDAOImpl implements RecrutadorDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM recrutador ORDER BY empresa_Recrutador DESC");
+			resultado = consulta.executeQuery("SELECT * FROM recrutador ORDER BY empresa_recrutador DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Recrutador");
-				String empresa = resultado.getString("empresa_Recrutador");
-				String atuacao = resultado.getString("atuacao_Recrutador");
+				long id = resultado.getLong("id_recrutador");
+				String empresa = resultado.getString("empresa_recrutador");
+				String atuacao = resultado.getString("atuacao_recrutador");
+				long fkUsuario = resultado.getLong("fk_recrutador");
 
-				recrutadores.add(new Recrutador(id, empresa, atuacao));
+				recrutadores.add(new Recrutador(id, empresa, atuacao, fkUsuario));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return recrutadores;
+	}
+
+	public List<Recrutador> recuperarRecrutadoresOrdenadosAtuacaoAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Recrutador> recrutadores = new ArrayList<Recrutador>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM recrutador ORDER BY atuacao_recrutador ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_recrutador");
+				String empresa = resultado.getString("empresa_recrutador");
+				String atuacao = resultado.getString("atuacao_recrutador");
+				long fkUsuario = resultado.getLong("fk_recrutador");
+
+				recrutadores.add(new Recrutador(id, empresa, atuacao, fkUsuario));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return recrutadores;
+	}
+
+	public List<Recrutador> recuperarRecrutadoresOrdenadosAtuacaoDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Recrutador> recrutadores = new ArrayList<Recrutador>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM recrutador ORDER BY atuacao_recrutador DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_recrutador");
+				String empresa = resultado.getString("empresa_recrutador");
+				String atuacao = resultado.getString("atuacao_recrutador");
+				long fkUsuario = resultado.getLong("fk_recrutador");
+
+				recrutadores.add(new Recrutador(id, empresa, atuacao, fkUsuario));
 			}
 
 		} catch (SQLException erro) {
@@ -305,6 +419,8 @@ public class RecrutadorDAOImpl implements RecrutadorDAO {
 	}
 
 	private Connection conectarBanco() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost/cadastro?user=root&password=root");
+		return DriverManager.getConnection(
+				"jdbc:mysql://localhost/db_yourjob?useTimezone=true&serverTimezone=UTC&user=root&password=root");
+
 	}
 }

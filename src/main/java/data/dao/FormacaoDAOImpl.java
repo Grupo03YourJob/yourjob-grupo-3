@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import model.bean.Formacao;
 
 public class FormacaoDAOImpl implements FormacaoDAO {
@@ -22,7 +23,7 @@ public class FormacaoDAOImpl implements FormacaoDAO {
 
 			conexao = conectarBanco();
 			insert = conexao.prepareStatement(
-					"INSERT INTO formacao (nome_Formacao, instituicao_Formacao, dataInicial, dataFinal) VALUES (?,?,?,?)");
+					"INSERT INTO experiencia (nome_formacao, instituicao_formacao, data_inicial_formacao, data_final_formacao) VALUES (?,?,?,?)");
 
 			insert.setString(1, formacao.getNome());
 			insert.setString(2, formacao.getInstituicao());
@@ -60,7 +61,7 @@ public class FormacaoDAOImpl implements FormacaoDAO {
 		try {
 
 			conexao = conectarBanco();
-			delete = conexao.prepareStatement("DELETE FROM formacao WHERE id_Formacao = ?");
+			delete = conexao.prepareStatement("DELETE FROM formacao WHERE id_formacao = ?");
 
 			delete.setLong(1, formacao.getId());
 
@@ -95,7 +96,7 @@ public class FormacaoDAOImpl implements FormacaoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE formacao SET nome_Formacao = ? WHERE id_Formacao = ?");
+			update = conexao.prepareStatement("UPDATE formacao SET nome_formacao = ? WHERE id_formacao = ?");
 
 			update.setString(1, novoNome);
 			update.setLong(2, formacao.getId());
@@ -131,7 +132,7 @@ public class FormacaoDAOImpl implements FormacaoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE formacao SET instituicao_Formacao = ? WHERE id_Formacao = ?");
+			update = conexao.prepareStatement("UPDATE formacao SET instituicao_formacao = ? WHERE id_formacao = ?");
 
 			update.setString(1, novoInstituicao);
 			update.setLong(2, formacao.getId());
@@ -167,7 +168,7 @@ public class FormacaoDAOImpl implements FormacaoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE formacao SET dataIncial_Formacao = ? WHERE id_Formacao = ?");
+			update = conexao.prepareStatement("UPDATE formacao SET data_Inicial_formacao = ? WHERE id_formacao = ?");
 
 			update.setDate(1, novoDataInicial);
 			update.setLong(2, formacao.getId());
@@ -203,7 +204,7 @@ public class FormacaoDAOImpl implements FormacaoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE formacao SET dataIncial_Formacao = ? WHERE id_Formacao = ?");
+			update = conexao.prepareStatement("UPDATE formacao SET data_final_formacao = ? WHERE id_formacao = ?");
 
 			update.setDate(1, novoDataFinal);
 			update.setLong(2, formacao.getId());
@@ -231,7 +232,7 @@ public class FormacaoDAOImpl implements FormacaoDAO {
 		}
 	}
 
-	public List<Formacao> recuperarFormacao() {
+	public List<Formacao> recuperarFormacoes() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -247,13 +248,13 @@ public class FormacaoDAOImpl implements FormacaoDAO {
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Formacao");
-				String nome = resultado.getString("nome_Formacao");
-				String instituicao = resultado.getString("instituicao_Formacao");
-				Date dataInicial = resultado.getDate("dataInicial_Formacao");
-				Date dataFinal = resultado.getDate("dataFinal_Formacao");
+				long id = resultado.getLong("id_formacao");
+				String nome = resultado.getString("nome_formacao");
+				String instituicao = resultado.getString("instituicao_formacao");
+				Date dataInicial = resultado.getDate("data_inicial_formacao");
+				Date dataFinal = resultado.getDate("data_final_formacao");
 
-				formacoes.add(new Formacao(nome, instituicao, dataInicial, dataFinal));
+				formacoes.add(new Formacao(id, nome, instituicao, dataInicial, dataFinal));
 			}
 
 		} catch (SQLException erro) {
@@ -282,58 +283,7 @@ public class FormacaoDAOImpl implements FormacaoDAO {
 		return formacoes;
 	}
 
-	public List<Formacao> recuperarFormacaoPorCurriculo(String idCurriculo) {
-
-		Connection conexao = null;
-		Statement consulta = null;
-		ResultSet resultado = null;
-
-		List<Formacao> formacoes = new ArrayList<Formacao>();
-
-		try {
-
-			conexao = conectarBanco();
-			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM formacao WHERE id_Curriculo = " + idCurriculo);
-
-			while (resultado.next()) {
-
-				long id = resultado.getLong("id_Formacao");
-				String nome = resultado.getString("nome_Formacao");
-				String instituicao = resultado.getString("instituicao_Formacao");
-				Date dataInicial = resultado.getDate("dataInicial_Formacao");
-				Date dataFinal = resultado.getDate("dataFinal_Formacao");
-
-				formacoes.add(new Formacao(nome, instituicao, dataInicial, dataFinal));
-			}
-
-		} catch (SQLException erro) {
-			erro.printStackTrace();
-		}
-
-		finally {
-
-			try {
-
-				if (resultado != null)
-					resultado.close();
-
-				if (consulta != null)
-					consulta.close();
-
-				if (conexao != null)
-					conexao.close();
-
-			} catch (SQLException erro) {
-
-				erro.printStackTrace();
-			}
-		}
-
-		return formacoes;
-	}
-
-	public List<Formacao> recuperarFormacaoOrdenadosNomeAscendente() {
+	public List<Formacao> recuperarFormacoesOrdenadosNomeAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -349,13 +299,13 @@ public class FormacaoDAOImpl implements FormacaoDAO {
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Formacao");
-				String nome = resultado.getString("nome_Formacao");
-				String instituicao = resultado.getString("instituicao_Formacao");
-				Date dataInicial = resultado.getDate("dataInicial_Formacao");
-				Date dataFinal = resultado.getDate("dataFinal_Formacao");
+				long id = resultado.getLong("id_formacao");
+				String nome = resultado.getString("nome_formacao");
+				String instituicao = resultado.getString("instituicao_formacao");
+				Date dataInicial = resultado.getDate("data_inicial_formacao");
+				Date dataFinal = resultado.getDate("data_final_formacao");
 
-				formacoes.add(new Formacao(nome, instituicao, dataInicial, dataFinal));
+				formacoes.add(new Formacao(id, nome, instituicao, dataInicial, dataFinal));
 			}
 
 		} catch (SQLException erro) {
@@ -384,7 +334,7 @@ public class FormacaoDAOImpl implements FormacaoDAO {
 		return formacoes;
 	}
 
-	public List<Formacao> recuperarFormacaoOrdenadosNomeDescendente() {
+	public List<Formacao> recuperarFormacoesOrdenadosNomeDescendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -400,13 +350,319 @@ public class FormacaoDAOImpl implements FormacaoDAO {
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Formacao");
-				String nome = resultado.getString("nome_Formacao");
-				String instituicao = resultado.getString("instituicao_Formacao");
-				Date dataInicial = resultado.getDate("dataInicial_Formacao");
-				Date dataFinal = resultado.getDate("dataFinal_Formacao");
+				long id = resultado.getLong("id_formacao");
+				String nome = resultado.getString("nome_formacao");
+				String instituicao = resultado.getString("instituicao_formacao");
+				Date dataInicial = resultado.getDate("data_inicial_formacao");
+				Date dataFinal = resultado.getDate("data_final_formacao");
 
-				formacoes.add(new Formacao(nome, instituicao, dataInicial, dataFinal));
+				formacoes.add(new Formacao(id, nome, instituicao, dataInicial, dataFinal));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return formacoes;
+	}
+
+	public List<Formacao> recuperarFormacoesOrdenadosInstituicaoAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Formacao> formacoes = new ArrayList<Formacao>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM formacao ORDER BY instituicao_formacao ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_formacao");
+				String nome = resultado.getString("nome_formacao");
+				String instituicao = resultado.getString("instituicao_formacao");
+				Date dataInicial = resultado.getDate("data_inicial_formacao");
+				Date dataFinal = resultado.getDate("data_final_formacao");
+
+				formacoes.add(new Formacao(id, nome, instituicao, dataInicial, dataFinal));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return formacoes;
+	}
+
+	public List<Formacao> recuperarFormacoesOrdenadosInstituicaoDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Formacao> formacoes = new ArrayList<Formacao>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM formacao ORDER BY instituicao_formacao DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_formacao");
+				String nome = resultado.getString("nome_formacao");
+				String instituicao = resultado.getString("instituicao_formacao");
+				Date dataInicial = resultado.getDate("data_inicial_formacao");
+				Date dataFinal = resultado.getDate("data_final_formacao");
+
+				formacoes.add(new Formacao(id, nome, instituicao, dataInicial, dataFinal));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return formacoes;
+	}
+
+	public List<Formacao> recuperarFormacoesOrdenadosDataInicialAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Formacao> formacoes = new ArrayList<Formacao>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM formacao ORDER BY data_inicial_formacao ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_formacao");
+				String nome = resultado.getString("nome_formacao");
+				String instituicao = resultado.getString("instituicao_formacao");
+				Date dataInicial = resultado.getDate("data_inicial_formacao");
+				Date dataFinal = resultado.getDate("data_final_formacao");
+
+				formacoes.add(new Formacao(id, nome, instituicao, dataInicial, dataFinal));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return formacoes;
+	}
+
+	public List<Formacao> recuperarFormacoesOrdenadosDataInicialDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Formacao> formacoes = new ArrayList<Formacao>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM formacao ORDER BY data_inicial_formacao DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_formacao");
+				String nome = resultado.getString("nome_formacao");
+				String instituicao = resultado.getString("instituicao_formacao");
+				Date dataInicial = resultado.getDate("data_inicial_formacao");
+				Date dataFinal = resultado.getDate("data_final_formacao");
+
+				formacoes.add(new Formacao(id, nome, instituicao, dataInicial, dataFinal));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return formacoes;
+	}
+
+	public List<Formacao> recuperarFormacoesOrdenadosDataFinalAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Formacao> formacoes = new ArrayList<Formacao>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM formacao ORDER BY data_final_formacao ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_formacao");
+				String nome = resultado.getString("nome_formacao");
+				String instituicao = resultado.getString("instituicao_formacao");
+				Date dataInicial = resultado.getDate("data_inicial_formacao");
+				Date dataFinal = resultado.getDate("data_final_formacao");
+
+				formacoes.add(new Formacao(id, nome, instituicao, dataInicial, dataFinal));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return formacoes;
+	}
+
+	public List<Formacao> recuperarFormacoesOrdenadosDataFinalDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Formacao> formacoes = new ArrayList<Formacao>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM formacao ORDER BY data_final_formacao DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_formacao");
+				String nome = resultado.getString("nome_formacao");
+				String instituicao = resultado.getString("instituicao_formacao");
+				Date dataInicial = resultado.getDate("data_inicial_formacao");
+				Date dataFinal = resultado.getDate("data_final_formacao");
+
+				formacoes.add(new Formacao(id, nome, instituicao, dataInicial, dataFinal));
 			}
 
 		} catch (SQLException erro) {
@@ -436,6 +692,7 @@ public class FormacaoDAOImpl implements FormacaoDAO {
 	}
 
 	private Connection conectarBanco() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost/cadastro?user=root&password=root");
+		return DriverManager.getConnection(
+				"jdbc:mysql://localhost/db_yourjob?useTimezone=true&serverTimezone=UTC&user=root&password=root");
 	}
 }

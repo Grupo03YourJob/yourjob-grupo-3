@@ -24,8 +24,6 @@ public interface ContatoDAO {
 
 	List<Contato> recuperarContatos();
 
-	List<Contato> recuperarContatosPorUsuario(String idUsuario);
-
 	List<Contato> recuperarContatosOrdenadosTelefoneAscendente();
 
 	List<Contato> recuperarContatosOrdenadosTelefoneDescendente();

@@ -23,7 +23,7 @@ public class VagaDAOImpl implements VagaDAO {
 
 			conexao = conectarBanco();
 			insert = conexao.prepareStatement(
-					"INSERT INTO vaga (nome_Vaga, atividade_Vaga, salario_Vaga, requisito_Vaga, turno_Vaga) VALUES (?,?,?,?,?)");
+					"INSERT INTO vaga (nome_vaga, atividade_vaga, salario_vaga, requisito_vaga, turno_vaga) VALUES (?,?,?,?,?)");
 
 			insert.setString(1, vaga.getNome());
 			insert.setString(2, vaga.getAtividade());
@@ -62,7 +62,7 @@ public class VagaDAOImpl implements VagaDAO {
 		try {
 
 			conexao = conectarBanco();
-			delete = conexao.prepareStatement("DELETE FROM vaga WHERE id_Vaga = ?");
+			delete = conexao.prepareStatement("DELETE FROM vaga WHERE id_vaga = ?");
 
 			delete.setLong(1, vaga.getId());
 
@@ -97,7 +97,7 @@ public class VagaDAOImpl implements VagaDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE vaga SET nome_Vaga = ? WHERE id_Vaga = ?");
+			update = conexao.prepareStatement("UPDATE vaga SET nome_vaga = ? WHERE id_vaga = ?");
 
 			update.setString(1, novoNome);
 			update.setLong(2, vaga.getId());
@@ -133,7 +133,7 @@ public class VagaDAOImpl implements VagaDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE vaga SET atividade_Vaga = ? WHERE id_Vaga = ?");
+			update = conexao.prepareStatement("UPDATE vaga SET ativade_vaga = ? WHERE id_vaga = ?");
 
 			update.setString(1, novoAtividade);
 			update.setLong(2, vaga.getId());
@@ -169,7 +169,7 @@ public class VagaDAOImpl implements VagaDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE vaga SET salario_Vaga = ? WHERE id_Vaga = ?");
+			update = conexao.prepareStatement("UPDATE vaga SET salario_vaga = ? WHERE id_vaga = ?");
 
 			update.setString(1, novoSalario);
 			update.setLong(2, vaga.getId());
@@ -205,7 +205,7 @@ public class VagaDAOImpl implements VagaDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE vaga SET requisito_Vaga = ? WHERE id_Vaga = ?");
+			update = conexao.prepareStatement("UPDATE vaga SET requisito_vaga = ? WHERE id_vaga = ?");
 
 			update.setString(1, novoRequisito);
 			update.setLong(2, vaga.getId());
@@ -241,7 +241,7 @@ public class VagaDAOImpl implements VagaDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE vaga SET turno_Vaga = ? WHERE id_Vaga = ?");
+			update = conexao.prepareStatement("UPDATE vaga SET turno_vaga = ? WHERE id_vaga = ?");
 
 			update.setString(1, novoTurno.name());
 			update.setLong(2, vaga.getId());
@@ -269,7 +269,7 @@ public class VagaDAOImpl implements VagaDAO {
 		}
 	}
 
-	public List<Vaga> recuperarVaga() {
+	public List<Vaga> recuperarVagas() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -285,12 +285,12 @@ public class VagaDAOImpl implements VagaDAO {
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("Id_Vaga");
-				String nome = resultado.getString("nome_Vaga");
-				String atividade = resultado.getString("atividade_Vaga");
-				String salario = resultado.getString("salario_Vaga");
-				String requisito = resultado.getString("requisito_Vaga");
-				String turno = resultado.getString("atividade_Vaga");
+				long id = resultado.getLong("id_vaga");
+				String nome = resultado.getString("nome_vaga");
+				String atividade = resultado.getString("atividade_vaga");
+				String salario = resultado.getString("salario_vaga");
+				String requisito = resultado.getString("requisito_vaga");
+				String turno = resultado.getString("turno_vaga");
 
 				vagas.add(new Vaga(id, nome, atividade, salario, requisito, TipoTurno.valueOf(turno)));
 			}
@@ -321,7 +321,7 @@ public class VagaDAOImpl implements VagaDAO {
 		return vagas;
 	}
 
-	public List<Vaga> recuperarVagaPorRecrutador(String idRecrutador) {
+	public List<Vaga> recuperarVagasOrdenadosNomeAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -333,16 +333,16 @@ public class VagaDAOImpl implements VagaDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM vaga WHERE id_Recrutador = " + idRecrutador);
+			resultado = consulta.executeQuery("SELECT * FROM vaga ORDER BY nome_vaga ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("Id_Vaga");
-				String nome = resultado.getString("nome_Vaga");
-				String atividade = resultado.getString("atividade_Vaga");
-				String salario = resultado.getString("salario_Vaga");
-				String requisito = resultado.getString("requisito_Vaga");
-				String turno = resultado.getString("atividade_Vaga");
+				long id = resultado.getLong("id_vaga");
+				String nome = resultado.getString("nome_vaga");
+				String atividade = resultado.getString("atividade_vaga");
+				String salario = resultado.getString("salario_vaga");
+				String requisito = resultado.getString("requisito_vaga");
+				String turno = resultado.getString("turno_vaga");
 
 				vagas.add(new Vaga(id, nome, atividade, salario, requisito, TipoTurno.valueOf(turno)));
 			}
@@ -373,7 +373,7 @@ public class VagaDAOImpl implements VagaDAO {
 		return vagas;
 	}
 
-	public List<Vaga> recuperarVagaPorCandidato(String idCandidato) {
+	public List<Vaga> recuperarVagasOrdenadosNomeDescendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -385,16 +385,16 @@ public class VagaDAOImpl implements VagaDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM vaga WHERE id_Candidato = " + idCandidato);
+			resultado = consulta.executeQuery("SELECT * FROM vaga ORDER BY nome_vaga DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("Id_Vaga");
-				String nome = resultado.getString("nome_Vaga");
-				String atividade = resultado.getString("atividade_Vaga");
-				String salario = resultado.getString("salario_Vaga");
-				String requisito = resultado.getString("requisito_Vaga");
-				String turno = resultado.getString("atividade_Vaga");
+				long id = resultado.getLong("id_vaga");
+				String nome = resultado.getString("nome_vaga");
+				String atividade = resultado.getString("atividade_vaga");
+				String salario = resultado.getString("salario_vaga");
+				String requisito = resultado.getString("requisito_vaga");
+				String turno = resultado.getString("turno_vaga");
 
 				vagas.add(new Vaga(id, nome, atividade, salario, requisito, TipoTurno.valueOf(turno)));
 			}
@@ -425,7 +425,7 @@ public class VagaDAOImpl implements VagaDAO {
 		return vagas;
 	}
 
-	public List<Vaga> recuperarVagaOrdenadosNomeAscendente() {
+	public List<Vaga> recuperarVagasOrdenadosAtividadeAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -437,19 +437,18 @@ public class VagaDAOImpl implements VagaDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM vaga ORDER BY nome_Vaga ASC");
+			resultado = consulta.executeQuery("SELECT * FROM vaga ORDER BY atividade_vaga ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("Id_Vaga");
-				String nome = resultado.getString("nome_Vaga");
-				String atividade = resultado.getString("atividade_Vaga");
-				String salario = resultado.getString("salario_Vaga");
-				String requisito = resultado.getString("requisito_Vaga");
-				String turno = resultado.getString("atividade_Vaga");
+				long id = resultado.getLong("id_vaga");
+				String nome = resultado.getString("nome_vaga");
+				String atividade = resultado.getString("atividade_vaga");
+				String salario = resultado.getString("salario_vaga");
+				String requisito = resultado.getString("requisito_vaga");
+				String turno = resultado.getString("turno_vaga");
 
 				vagas.add(new Vaga(id, nome, atividade, salario, requisito, TipoTurno.valueOf(turno)));
-
 			}
 
 		} catch (SQLException erro) {
@@ -478,7 +477,7 @@ public class VagaDAOImpl implements VagaDAO {
 		return vagas;
 	}
 
-	public List<Vaga> recuperarVagaOrdenadosNomeDescendente() {
+	public List<Vaga> recuperarVagasOrdenadosAtividadeDescendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -490,16 +489,328 @@ public class VagaDAOImpl implements VagaDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM vaga ORDER BY nome_Vaga DESC");
+			resultado = consulta.executeQuery("SELECT * FROM vaga ORDER BY atividade_vaga DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("Id_Vaga");
-				String nome = resultado.getString("nome_Vaga");
-				String atividade = resultado.getString("atividade_Vaga");
-				String salario = resultado.getString("salario_Vaga");
-				String requisito = resultado.getString("requisito_Vaga");
-				String turno = resultado.getString("atividade_Vaga");
+				long id = resultado.getLong("id_vaga");
+				String nome = resultado.getString("nome_vaga");
+				String atividade = resultado.getString("atividade_vaga");
+				String salario = resultado.getString("salario_vaga");
+				String requisito = resultado.getString("requisito_vaga");
+				String turno = resultado.getString("turno_vaga");
+
+				vagas.add(new Vaga(id, nome, atividade, salario, requisito, TipoTurno.valueOf(turno)));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return vagas;
+	}
+
+	public List<Vaga> recuperarVagasOrdenadosSalarioAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Vaga> vagas = new ArrayList<Vaga>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM vaga ORDER BY salario_vaga ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_vaga");
+				String nome = resultado.getString("nome_vaga");
+				String atividade = resultado.getString("atividade_vaga");
+				String salario = resultado.getString("salario_vaga");
+				String requisito = resultado.getString("requisito_vaga");
+				String turno = resultado.getString("turno_vaga");
+
+				vagas.add(new Vaga(id, nome, atividade, salario, requisito, TipoTurno.valueOf(turno)));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return vagas;
+	}
+
+	public List<Vaga> recuperarVagasOrdenadosSalarioDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Vaga> vagas = new ArrayList<Vaga>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM vaga ORDER BY salario_vaga DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_vaga");
+				String nome = resultado.getString("nome_vaga");
+				String atividade = resultado.getString("atividade_vaga");
+				String salario = resultado.getString("salario_vaga");
+				String requisito = resultado.getString("requisito_vaga");
+				String turno = resultado.getString("turno_vaga");
+
+				vagas.add(new Vaga(id, nome, atividade, salario, requisito, TipoTurno.valueOf(turno)));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return vagas;
+	}
+
+	public List<Vaga> recuperarVagasOrdenadosRequisitoAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Vaga> vagas = new ArrayList<Vaga>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM vaga ORDER BY requisito_vaga ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_vaga");
+				String nome = resultado.getString("nome_vaga");
+				String atividade = resultado.getString("atividade_vaga");
+				String salario = resultado.getString("salario_vaga");
+				String requisito = resultado.getString("requisito_vaga");
+				String turno = resultado.getString("turno_vaga");
+
+				vagas.add(new Vaga(id, nome, atividade, salario, requisito, TipoTurno.valueOf(turno)));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return vagas;
+	}
+
+	public List<Vaga> recuperarVagasOrdenadosRequisitoDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Vaga> vagas = new ArrayList<Vaga>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM vaga ORDER BY requisito_vaga DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_vaga");
+				String nome = resultado.getString("nome_vaga");
+				String atividade = resultado.getString("atividade_vaga");
+				String salario = resultado.getString("salario_vaga");
+				String requisito = resultado.getString("requisito_vaga");
+				String turno = resultado.getString("turno_vaga");
+
+				vagas.add(new Vaga(id, nome, atividade, salario, requisito, TipoTurno.valueOf(turno)));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return vagas;
+	}
+
+	public List<Vaga> recuperarVagasOrdenadosTurnoAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Vaga> vagas = new ArrayList<Vaga>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM vaga ORDER BY turno_vaga ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_vaga");
+				String nome = resultado.getString("nome_vaga");
+				String atividade = resultado.getString("atividade_vaga");
+				String salario = resultado.getString("salario_vaga");
+				String requisito = resultado.getString("requisito_vaga");
+				String turno = resultado.getString("turno_vaga");
+
+				vagas.add(new Vaga(id, nome, atividade, salario, requisito, TipoTurno.valueOf(turno)));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return vagas;
+	}
+
+	public List<Vaga> recuperarVagasOrdenadosTurnoDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Vaga> vagas = new ArrayList<Vaga>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM vaga ORDER BY turno_vaga DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_vaga");
+				String nome = resultado.getString("nome_vaga");
+				String atividade = resultado.getString("atividade_vaga");
+				String salario = resultado.getString("salario_vaga");
+				String requisito = resultado.getString("requisito_vaga");
+				String turno = resultado.getString("turno_vaga");
 
 				vagas.add(new Vaga(id, nome, atividade, salario, requisito, TipoTurno.valueOf(turno)));
 			}
@@ -531,7 +842,7 @@ public class VagaDAOImpl implements VagaDAO {
 	}
 
 	private Connection conectarBanco() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost/cadastro?user=root&password=root");
+		return DriverManager.getConnection(
+				"jdbc:mysql://localhost/db_yourjob?useTimezone=true&serverTimezone=UTC&user=root&password=root");
 	}
-
 }

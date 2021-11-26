@@ -22,7 +22,7 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 
 			conexao = conectarBanco();
 			insert = conexao.prepareStatement(
-					"INSERT INTO endereco (rua_Endereco, bairro_Endereco , numero_Endereco, cep_Endereco, cidade_endereco, estado_Endereco, referencia_Endereco) VALUES (?,?,?,?)");
+					"INSERT INTO endereco (rua_endereco, bairro_endereco, numero_ endereco, cep_endereco, cidade_endereco, estado_endereco, referencia_endereco) VALUES (?,?,?,?,?,?,?)");
 
 			insert.setString(1, endereco.getRua());
 			insert.setString(2, endereco.getBairro());
@@ -63,7 +63,7 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 		try {
 
 			conexao = conectarBanco();
-			delete = conexao.prepareStatement("DELETE FROM endereco WHERE id_Endereco = ?");
+			delete = conexao.prepareStatement("DELETE FROM endereco WHERE id_endereco = ?");
 
 			delete.setLong(1, endereco.getId());
 
@@ -98,7 +98,7 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE endereco SET rua_Endereco = ? WHERE id_Endereco = ?");
+			update = conexao.prepareStatement("UPDATE endereco SET rua_endereco = ? WHERE id_endereco = ?");
 
 			update.setString(1, novoRua);
 			update.setLong(2, endereco.getId());
@@ -134,7 +134,7 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE endereco SET bairro_Endereco = ? WHERE id_Endereco = ?");
+			update = conexao.prepareStatement("UPDATE endereco SET bairro_endereco = ? WHERE id_endereco = ?");
 
 			update.setString(1, novoBairro);
 			update.setLong(2, endereco.getId());
@@ -170,7 +170,7 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE endereco SET numero_Endereco = ? WHERE id_Endereco = ?");
+			update = conexao.prepareStatement("UPDATE endereco SET numero_endereco = ? WHERE id_endereco = ?");
 
 			update.setString(1, novoNumero);
 			update.setLong(2, endereco.getId());
@@ -206,7 +206,7 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE endereco SET cep_Endereco = ? WHERE id_Endereco = ?");
+			update = conexao.prepareStatement("UPDATE endereco SET cep_endereco = ? WHERE id_endereco = ?");
 
 			update.setString(1, novoCep);
 			update.setLong(2, endereco.getId());
@@ -242,7 +242,7 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE endereco SET cidade_Endereco = ? WHERE id_Endereco = ?");
+			update = conexao.prepareStatement("UPDATE endereco SET cidade_endereco = ? WHERE id_endereco = ?");
 
 			update.setString(1, novoCidade);
 			update.setLong(2, endereco.getId());
@@ -278,7 +278,7 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE endereco SET estado_Endereco = ? WHERE id_Endereco = ?");
+			update = conexao.prepareStatement("UPDATE endereco SET estado_endereco = ? WHERE id_endereco = ?");
 
 			update.setString(1, novoEstado);
 			update.setLong(2, endereco.getId());
@@ -314,7 +314,7 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE endereco SET referencia_Endereco = ? WHERE id_Endereco = ?");
+			update = conexao.prepareStatement("UPDATE endereco SET referencia_endereco = ? WHERE id_endereco = ?");
 
 			update.setString(1, novoReferencia);
 			update.setLong(2, endereco.getId());
@@ -358,14 +358,14 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 
 			while (resultado.next()) {
 
-				Long id = resultado.getLong("id_Endereco");
-				String rua = resultado.getString("rua_Endereco");
-				String bairro = resultado.getString("bairro_Endereco");
-				String numero = resultado.getString("numero_Endereco");
-				String cep = resultado.getString("cep_Endereco");
-				String cidade = resultado.getString("cidade_Endereco");
-				String estado = resultado.getString("estado_Endereco");
-				String referencia = resultado.getString("referencia_Endereco");
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
 
 				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
 			}
@@ -408,18 +408,18 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY rua_Endereco ASC");
+			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY rua_endereco ASC");
 
 			while (resultado.next()) {
 
-				Long id = resultado.getLong("id_Endereco");
-				String rua = resultado.getString("rua_Endereco");
-				String bairro = resultado.getString("bairro_Endereco");
-				String numero = resultado.getString("numero_Endereco");
-				String cep = resultado.getString("cep_Endereco");
-				String cidade = resultado.getString("cidade_Endereco");
-				String estado = resultado.getString("estado_Endereco");
-				String referencia = resultado.getString("referencia_Endereco");
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
 
 				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
 			}
@@ -462,21 +462,670 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY rua_Endereco DESC");
+			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY rua_endereco DESC");
 
 			while (resultado.next()) {
 
-				Long id = resultado.getLong("id_Endereco");
-				String rua = resultado.getString("rua_Endereco");
-				String bairro = resultado.getString("bairro_Endereco");
-				String numero = resultado.getString("numero_Endereco");
-				String cep = resultado.getString("cep_Endereco");
-				String cidade = resultado.getString("cidade_Endereco");
-				String estado = resultado.getString("estado_Endereco");
-				String referencia = resultado.getString("referencia_Endereco");
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
 
 				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
 			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return enderecos;
+	}
+
+	public List<Endereco> recuperarEnderecosOrdenadosBairroAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Endereco> enderecos = new ArrayList<Endereco>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY bairro_endereco ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
+
+				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return enderecos;
+	}
+
+	public List<Endereco> recuperarEnderecosOrdenadosBairroDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Endereco> enderecos = new ArrayList<Endereco>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY bairro_endereco DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
+
+				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return enderecos;
+	}
+
+	public List<Endereco> recuperarEnderecosOrdenadosNumeroAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Endereco> enderecos = new ArrayList<Endereco>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY numero_endereco ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
+
+				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return enderecos;
+	}
+
+	public List<Endereco> recuperarEnderecosOrdenadosNumeroDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Endereco> enderecos = new ArrayList<Endereco>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY numero_endereco DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
+
+				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return enderecos;
+	}
+
+	public List<Endereco> recuperarEnderecosOrdenadosCepAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Endereco> enderecos = new ArrayList<Endereco>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY cep_endereco ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
+
+				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return enderecos;
+	}
+
+	public List<Endereco> recuperarEnderecosOrdenadosCepDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Endereco> enderecos = new ArrayList<Endereco>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY cep_endereco DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
+
+				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return enderecos;
+	}
+
+	public List<Endereco> recuperarEnderecosOrdenadosCidadeAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Endereco> enderecos = new ArrayList<Endereco>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY cidade_endereco ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
+
+				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return enderecos;
+	}
+
+	public List<Endereco> recuperarEnderecosOrdenadosCidadeDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Endereco> enderecos = new ArrayList<Endereco>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY cidade_endereco DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
+
+				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return enderecos;
+	}
+
+	public List<Endereco> recuperarEnderecosOrdenadosEstadoAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Endereco> enderecos = new ArrayList<Endereco>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY estado_endereco ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
+
+				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return enderecos;
+	}
+
+	public List<Endereco> recuperarEnderecosOrdenadosEstadoDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Endereco> enderecos = new ArrayList<Endereco>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY estados_endereco DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
+
+				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return enderecos;
+	}
+
+	public List<Endereco> recuperarEnderecosOrdenadosReferenciaAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Endereco> enderecos = new ArrayList<Endereco>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY referencia_endereco ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
+
+				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return enderecos;
+	}
+
+	public List<Endereco> recuperarEnderecosOrdenadosReferenciaDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Endereco> enderecos = new ArrayList<Endereco>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM endereco ORDER BY referencia_endereco DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_endereco");
+				String rua = resultado.getString("rua_endereco");
+				String bairro = resultado.getString("bairro_endereco");
+				String numero = resultado.getString("numero_endereco");
+				String cep = resultado.getString("cep_endereco");
+				String cidade = resultado.getString("cidade_endereco");
+				String estado = resultado.getString("estado_endereco");
+				String referencia = resultado.getString("referencia_endereco");
+
+				enderecos.add(new Endereco(id, rua, bairro, numero, cep, cidade, estado, referencia));
+			}
+
 		} catch (SQLException erro) {
 			erro.printStackTrace();
 		}
@@ -504,6 +1153,7 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 	}
 
 	private Connection conectarBanco() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost/cadastro?user=root&password=root");
+		return DriverManager.getConnection(
+				"jdbc:mysql://localhost/db_yourjob?useTimezone=true&serverTimezone=UTC&user=root&password=root");
 	}
 }

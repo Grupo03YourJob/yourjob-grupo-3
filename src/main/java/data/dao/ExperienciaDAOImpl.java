@@ -23,7 +23,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 
 			conexao = conectarBanco();
 			insert = conexao.prepareStatement(
-					"INSERT INTO experiencia (empresa_Experiencia, cargo_Exercido_Experiencia, dataInicial_experiencia, dataFinal_experiencia) VALUES (?,?,?,?)");
+					"INSERT INTO experiencia (empresa_experiencia, cargo_exercido_experiencia, data_inicial_experiencia, data_final_experiencia) VALUES (?,?,?,?)");
 
 			insert.setString(1, experiencia.getEmpresa());
 			insert.setString(2, experiencia.getCargoExercido());
@@ -61,7 +61,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		try {
 
 			conexao = conectarBanco();
-			delete = conexao.prepareStatement("DELETE FROM experiencia WHERE id_Experiencia = ?");
+			delete = conexao.prepareStatement("DELETE FROM experiencia WHERE id_experiencia = ?");
 
 			delete.setLong(1, experiencia.getId());
 
@@ -97,7 +97,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 
 			conexao = conectarBanco();
 			update = conexao
-					.prepareStatement("UPDATE experiencia SET empresa_Experiencia = ? WHERE id_Experiencia = ?");
+					.prepareStatement("UPDATE experiencia SET empresa_experiencia = ? WHERE id_experiencia = ?");
 
 			update.setString(1, novoEmpresa);
 			update.setLong(2, experiencia.getId());
@@ -134,7 +134,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 
 			conexao = conectarBanco();
 			update = conexao
-					.prepareStatement("UPDATE experiencia SET cargo_Exercido_Experiencia = ? WHERE id_Experiencia = ?");
+					.prepareStatement("UPDATE experiencia SET cargo_exercido_experiencia = ? WHERE id_experiencia = ?");
 
 			update.setString(1, novoCargoExercido);
 			update.setLong(2, experiencia.getId());
@@ -162,7 +162,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		}
 	}
 
-	public void atualizarDataInicalExperiencia(Experiencia experiencia, Date novoDataIncial) {
+	public void atualizarDataInicialExperiencia(Experiencia experiencia, Date novoDataInicial) {
 
 		Connection conexao = null;
 		PreparedStatement update = null;
@@ -171,9 +171,9 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 
 			conexao = conectarBanco();
 			update = conexao
-					.prepareStatement("UPDATE experiencia SET dataIncial_Experiencia = ? WHERE id_Experiencia = ?");
+					.prepareStatement("UPDATE experiencia SET data_inicial_experiencia = ? WHERE id_experiencia = ?");
 
-			update.setDate(1, novoDataIncial);
+			update.setDate(1, novoDataInicial);
 			update.setLong(2, experiencia.getId());
 
 			update.execute();
@@ -208,7 +208,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 
 			conexao = conectarBanco();
 			update = conexao
-					.prepareStatement("UPDATE experiencia SET dataFinal_Experiencia = ? WHERE id_Experiencia = ?");
+					.prepareStatement("UPDATE experiencia SET data_final_experiencia = ? WHERE id_experiencia = ?");
 
 			update.setDate(1, novoDataFinal);
 			update.setLong(2, experiencia.getId());
@@ -236,7 +236,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		}
 	}
 
-	public List<Experiencia> recuperarExperiencia() {
+	public List<Experiencia> recuperarExperiencias() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -252,11 +252,11 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Exeperiencia");
-				String empresa = resultado.getString("empresa_Experiencia");
-				String cargoExercido = resultado.getString("cargo_Exercido_Experiencia");
-				Date dataInicial = resultado.getDate("dataInicial_Experiencia");
-				Date dataFinal = resultado.getDate("dataFinal_Experiencia");
+				long id = resultado.getLong("id_experiencia");
+				String empresa = resultado.getString("empresa_experiencia");
+				String cargoExercido = resultado.getString("cargo_exercido_experiencia");
+				Date dataInicial = resultado.getDate("data_inicial_experiencia");
+				Date dataFinal = resultado.getDate("data_final_experiencia");
 
 				experiencias.add(new Experiencia(id, empresa, cargoExercido, dataInicial, dataFinal));
 			}
@@ -287,7 +287,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		return experiencias;
 	}
 
-	public List<Experiencia> recuperarExperienciaPorCurriculo(String idCurriculo) {
+	public List<Experiencia> recuperarExperienciasOrdenadosEmpresaAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -299,15 +299,15 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM experiencia WHERE id_Curriculo = " + idCurriculo);
+			resultado = consulta.executeQuery("SELECT * FROM experiencia ORDER BY empresa_experiencia ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Exeperiencia");
-				String empresa = resultado.getString("empresa_Experiencia");
-				String cargoExercido = resultado.getString("cargo_Exercido_Experiencia");
-				Date dataInicial = resultado.getDate("dataInicial_Experiencia");
-				Date dataFinal = resultado.getDate("dataFinal_Experiencia");
+				long id = resultado.getLong("id_experiencia");
+				String empresa = resultado.getString("empresa_experiencia");
+				String cargoExercido = resultado.getString("cargo_Exercido_experiencia");
+				Date dataInicial = resultado.getDate("data_inicial_experiencia");
+				Date dataFinal = resultado.getDate("data_final_experiencia");
 
 				experiencias.add(new Experiencia(id, empresa, cargoExercido, dataInicial, dataFinal));
 			}
@@ -338,7 +338,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 		return experiencias;
 	}
 
-	public List<Experiencia> recuperarExperienciaEmpresaAscendente() {
+	public List<Experiencia> recuperarExperienciasOrdenadosEmpresaDescendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -350,15 +350,15 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM experiencia ORDER BY id_Experiencia ASC");
+			resultado = consulta.executeQuery("SELECT * FROM experiencia ORDER BY empresa_experiencia DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Exeperiencia");
-				String empresa = resultado.getString("empresa_Experiencia");
-				String cargoExercido = resultado.getString("cargo_Exercido_Experiencia");
-				Date dataInicial = resultado.getDate("dataInicial_Experiencia");
-				Date dataFinal = resultado.getDate("dataFinal_Experiencia");
+				long id = resultado.getLong("id_experiencia");
+				String empresa = resultado.getString("empresa_experiencia");
+				String cargoExercido = resultado.getString("cargo_Exercido_experiencia");
+				Date dataInicial = resultado.getDate("data_inicial_experiencia");
+				Date dataFinal = resultado.getDate("data_final_experiencia");
 
 				experiencias.add(new Experiencia(id, empresa, cargoExercido, dataInicial, dataFinal));
 			}
@@ -386,10 +386,10 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 			}
 		}
 
-		return recuperarExperiencia();
+		return experiencias;
 	}
 
-	public List<Experiencia> recuperarExperienciaEmpresaDescendente() {
+	public List<Experiencia> recuperarExperienciasOrdenadosCargoExercidoAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -401,18 +401,274 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM experiencia ORDER BY id_experiencia DESC");
+			resultado = consulta.executeQuery("SELECT * FROM experiencia ORDER BY cargo_exercido_experiencia ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Exeperiencia");
-				String empresa = resultado.getString("empresa_Experiencia");
-				String cargoExercido = resultado.getString("cargo_Exercido_Experiencia");
-				Date dataInicial = resultado.getDate("dataInicial_Experiencia");
-				Date dataFinal = resultado.getDate("dataFinal_Experiencia");
+				long id = resultado.getLong("id_experiencia");
+				String empresa = resultado.getString("empresa_experiencia");
+				String cargoExercido = resultado.getString("cargo_Exercido_experiencia");
+				Date dataInicial = resultado.getDate("data_inicial_experiencia");
+				Date dataFinal = resultado.getDate("data_final_experiencia");
 
 				experiencias.add(new Experiencia(id, empresa, cargoExercido, dataInicial, dataFinal));
 			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return experiencias;
+	}
+
+	public List<Experiencia> recuperarExperienciasOrdenadosCargoExercidoDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Experiencia> experiencias = new ArrayList<Experiencia>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM experiencia ORDER BY cargo_exercido_experiencia DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_experiencia");
+				String empresa = resultado.getString("empresa_experiencia");
+				String cargoExercido = resultado.getString("cargo_Exercido_experiencia");
+				Date dataInicial = resultado.getDate("data_inicial_experiencia");
+				Date dataFinal = resultado.getDate("data_final_experiencia");
+
+				experiencias.add(new Experiencia(id, empresa, cargoExercido, dataInicial, dataFinal));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return experiencias;
+	}
+
+	public List<Experiencia> recuperarExperienciasOrdenadosDataInicialAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Experiencia> experiencias = new ArrayList<Experiencia>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM experiencia ORDER BY data_inicial_experiencia ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_experiencia");
+				String empresa = resultado.getString("empresa_experiencia");
+				String cargoExercido = resultado.getString("cargo_Exercido_experiencia");
+				Date dataInicial = resultado.getDate("data_inicial_experiencia");
+				Date dataFinal = resultado.getDate("data_final_experiencia");
+
+				experiencias.add(new Experiencia(id, empresa, cargoExercido, dataInicial, dataFinal));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return experiencias;
+	}
+
+	public List<Experiencia> recuperarExperienciasOrdenadosDataInicialDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Experiencia> experiencias = new ArrayList<Experiencia>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM experiencia ORDER BY data_inicial_experiencia DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_experiencia");
+				String empresa = resultado.getString("empresa_experiencia");
+				String cargoExercido = resultado.getString("cargo_Exercido_experiencia");
+				Date dataInicial = resultado.getDate("data_inicial_experiencia");
+				Date dataFinal = resultado.getDate("data_final_experiencia");
+
+				experiencias.add(new Experiencia(id, empresa, cargoExercido, dataInicial, dataFinal));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return experiencias;
+	}
+
+	public List<Experiencia> recuperarExperienciasOrdenadosDataFinalAscendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Experiencia> experiencias = new ArrayList<Experiencia>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM experiencia ORDER BY data_final_experiencia ASC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_experiencia");
+				String empresa = resultado.getString("empresa_experiencia");
+				String cargoExercido = resultado.getString("cargo_Exercido_experiencia");
+				Date dataInicial = resultado.getDate("data_inicial_experiencia");
+				Date dataFinal = resultado.getDate("data_final_experiencia");
+
+				experiencias.add(new Experiencia(id, empresa, cargoExercido, dataInicial, dataFinal));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return experiencias;
+	}
+
+	public List<Experiencia> recuperarExperienciasOrdenadosDataFinalDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Experiencia> experiencias = new ArrayList<Experiencia>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM experiencia ORDER BY data_final_experiencia DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_experiencia");
+				String empresa = resultado.getString("empresa_experiencia");
+				String cargoExercido = resultado.getString("cargo_Exercido_experiencia");
+				Date dataInicial = resultado.getDate("data_inicial_experiencia");
+				Date dataFinal = resultado.getDate("data_final_experiencia");
+
+				experiencias.add(new Experiencia(id, empresa, cargoExercido, dataInicial, dataFinal));
+			}
+
 		} catch (SQLException erro) {
 			erro.printStackTrace();
 		}
@@ -440,7 +696,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 	}
 
 	private Connection conectarBanco() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost/cadastro?user=root&password=root");
+		return DriverManager.getConnection(
+				"jdbc:mysql://localhost/db_yourjob?useTimezone=true&serverTimezone=UTC&user=root&password=root");
 	}
-
 }

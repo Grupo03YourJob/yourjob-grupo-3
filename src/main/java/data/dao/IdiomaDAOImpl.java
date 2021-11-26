@@ -22,7 +22,7 @@ public class IdiomaDAOImpl implements IdiomaDAO {
 		try {
 
 			conexao = conectarBanco();
-			insert = conexao.prepareStatement("INSERT INTO idioma (nome_Idioma, nivel_Idioma) VALUES (?,?)");
+			insert = conexao.prepareStatement("INSERT INTO idioma (nome_idioma, nivel_idioma) VALUES (?,?)");
 
 			insert.setString(1, idioma.getNome());
 			insert.setString(2, idioma.getNivel().name());
@@ -58,7 +58,7 @@ public class IdiomaDAOImpl implements IdiomaDAO {
 		try {
 
 			conexao = conectarBanco();
-			delete = conexao.prepareStatement("DELETE FROM idioma WHERE id_Idioma = ?");
+			delete = conexao.prepareStatement("DELETE FROM idioma WHERE id_idioma = ?");
 
 			delete.setLong(1, idioma.getId());
 
@@ -93,7 +93,7 @@ public class IdiomaDAOImpl implements IdiomaDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE idioma SET nome_idioma = ? WHERE id_Idioma = ?");
+			update = conexao.prepareStatement("UPDATE idioma SET nome_idioma = ? WHERE id_idioma = ?");
 
 			update.setString(1, novoNome);
 			update.setLong(2, idioma.getId());
@@ -129,7 +129,7 @@ public class IdiomaDAOImpl implements IdiomaDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE idioma SET nivel_idioma = ? WHERE id_Idioma = ?");
+			update = conexao.prepareStatement("UPDATE idioma SET nivel_idioma = ? WHERE id_idioma = ?");
 
 			update.setString(1, novoNivel.name());
 			update.setLong(2, idioma.getId());
@@ -157,7 +157,7 @@ public class IdiomaDAOImpl implements IdiomaDAO {
 		}
 	}
 
-	public List<Idioma> recuperarIdioma() {
+	public List<Idioma> recuperarIdiomas() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -169,13 +169,13 @@ public class IdiomaDAOImpl implements IdiomaDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM Idioma");
+			resultado = consulta.executeQuery("SELECT * FROM idioma");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Idioma");
-				String nome = resultado.getString("nome_Idioma");
-				String nivel = resultado.getString("nivel_Idioma");
+				long id = resultado.getLong("id_idioma");
+				String nome = resultado.getString("nome_idioma");
+				String nivel = resultado.getString("nivel_idioma");
 
 				idiomas.add(new Idioma(id, nome, TipoNivel.valueOf(nivel)));
 			}
@@ -206,7 +206,7 @@ public class IdiomaDAOImpl implements IdiomaDAO {
 		return idiomas;
 	}
 
-	public List<Idioma> recuperarIdiomaPorCurriculo(String idCurriculo) {
+	public List<Idioma> recuperarIdiomasOrdenadosNomeAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -218,13 +218,13 @@ public class IdiomaDAOImpl implements IdiomaDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM idioma WHERE id_Curriculo = " + idCurriculo);
+			resultado = consulta.executeQuery("SELECT * FROM idioma ORDER BY nome_idioma ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Idioma");
-				String nome = resultado.getString("nome_Idioma");
-				String nivel = resultado.getString("nivel_Idioma");
+				long id = resultado.getLong("id_idioma");
+				String nome = resultado.getString("nome_idioma");
+				String nivel = resultado.getString("nivel_idioma");
 
 				idiomas.add(new Idioma(id, nome, TipoNivel.valueOf(nivel)));
 			}
@@ -255,7 +255,7 @@ public class IdiomaDAOImpl implements IdiomaDAO {
 		return idiomas;
 	}
 
-	public List<Idioma> recuperarIdiomaOrdenadosNomeAscendente() {
+	public List<Idioma> recuperarIdiomasOrdenadosNomeDescendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -267,13 +267,13 @@ public class IdiomaDAOImpl implements IdiomaDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM idioma ORDER BY nome_Idioma ASC");
+			resultado = consulta.executeQuery("SELECT * FROM idioma ORDER BY nome_idioma DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Idioma");
-				String nome = resultado.getString("nome_Idioma");
-				String nivel = resultado.getString("nivel_Idioma");
+				long id = resultado.getLong("id_idioma");
+				String nome = resultado.getString("nome_idioma");
+				String nivel = resultado.getString("nivel_idioma");
 
 				idiomas.add(new Idioma(id, nome, TipoNivel.valueOf(nivel)));
 			}
@@ -304,7 +304,7 @@ public class IdiomaDAOImpl implements IdiomaDAO {
 		return idiomas;
 	}
 
-	public List<Idioma> recuperarIdiomaOrdenadosNomeDescendente() {
+	public List<Idioma> recuperarIdiomasOrdenadosNivelAscendente() {
 
 		Connection conexao = null;
 		Statement consulta = null;
@@ -316,13 +316,62 @@ public class IdiomaDAOImpl implements IdiomaDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM idioma ORDER BY nome_Idioma DESC");
+			resultado = consulta.executeQuery("SELECT * FROM idioma ORDER BY nivel_idioma ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Idioma");
-				String nome = resultado.getString("nome_Idioma");
-				String nivel = resultado.getString("nivel_Idioma");
+				long id = resultado.getLong("id_idioma");
+				String nome = resultado.getString("nome_idioma");
+				String nivel = resultado.getString("nivel_idioma");
+
+				idiomas.add(new Idioma(id, nome, TipoNivel.valueOf(nivel)));
+			}
+
+		} catch (SQLException erro) {
+			erro.printStackTrace();
+		}
+
+		finally {
+
+			try {
+
+				if (resultado != null)
+					resultado.close();
+
+				if (consulta != null)
+					consulta.close();
+
+				if (conexao != null)
+					conexao.close();
+
+			} catch (SQLException erro) {
+
+				erro.printStackTrace();
+			}
+		}
+
+		return idiomas;
+	}
+
+	public List<Idioma> recuperarIdiomasOrdenadosNivelDescendente() {
+
+		Connection conexao = null;
+		Statement consulta = null;
+		ResultSet resultado = null;
+
+		List<Idioma> idiomas = new ArrayList<Idioma>();
+
+		try {
+
+			conexao = conectarBanco();
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery("SELECT * FROM idioma ORDER BY nivel_idioma DESC");
+
+			while (resultado.next()) {
+
+				long id = resultado.getLong("id_idioma");
+				String nome = resultado.getString("nome_idioma");
+				String nivel = resultado.getString("nivel_idioma");
 
 				idiomas.add(new Idioma(id, nome, TipoNivel.valueOf(nivel)));
 			}
@@ -354,6 +403,7 @@ public class IdiomaDAOImpl implements IdiomaDAO {
 	}
 
 	private Connection conectarBanco() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost/cadastro?user=rootn&password=root");
+		return DriverManager.getConnection(
+				"jdbc:mysql://localhost/db_yourjob?useTimezone=true&serverTimezone=UTC&user=root&password=root");
 	}
 }

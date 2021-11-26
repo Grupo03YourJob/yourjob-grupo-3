@@ -16,8 +16,6 @@ public interface CurriculoDAO {
 
 	List<Curriculo> recuperarCurriculos();
 
-	List<Curriculo> recuperarCurriculosPorCandidato(String idCandidato);
-
 	List<Curriculo> recuperarCurriculosOrdenadosObjetivoAscendente();
 
 	List<Curriculo> recuperarCurriculosOrdenadosObjetivoDescendente();

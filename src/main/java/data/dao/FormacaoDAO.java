@@ -2,6 +2,7 @@ package data.dao;
 
 import java.sql.Date;
 import java.util.List;
+
 import model.bean.Formacao;
 
 public interface FormacaoDAO {
@@ -14,16 +15,26 @@ public interface FormacaoDAO {
 
 	void atualizarInstituicaoFormacao(Formacao formacao, String novoInstituicao);
 
-	void atualizarDataInicialFormacao(Formacao formacao, Date novoDataIncial);
+	void atualizarDataInicialFormacao(Formacao formacao, Date novoDataInical);
 
 	void atualizarDataFinalFormacao(Formacao formacao, Date novoDataFinal);
 
-	List<Formacao> recuperarFormacao();
+	List<Formacao> recuperarFormacoes();
 
-	List<Formacao> recuperarFormacaoPorCurriculo(String idCurriculo);
+	List<Formacao> recuperarFormacoesOrdenadosNomeAscendente();
 
-	List<Formacao> recuperarFormacaoOrdenadosNomeAscendente();
+	List<Formacao> recuperarFormacoesOrdenadosNomeDescendente();
 
-	List<Formacao> recuperarFormacaoOrdenadosNomeDescendente();
+	List<Formacao> recuperarFormacoesOrdenadosInstituicaoAscendente();
+
+	List<Formacao> recuperarFormacoesOrdenadosInstituicaoDescendente();
+
+	List<Formacao> recuperarFormacoesOrdenadosDataInicialAscendente();
+
+	List<Formacao> recuperarFormacoesOrdenadosDataInicialDescendente();
+
+	List<Formacao> recuperarFormacoesOrdenadosDataFinalAscendente();
+
+	List<Formacao> recuperarFormacoesOrdenadosDataFinalDescendente();
 
 }

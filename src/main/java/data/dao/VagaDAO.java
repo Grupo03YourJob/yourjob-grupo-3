@@ -7,26 +7,40 @@ import model.bean.Vaga;
 
 public interface VagaDAO {
 
-	void inserirVaga(Vaga vaga);
+	void inserirVaga(Vaga Vaga);
 
-	void deletarVaga(Vaga vaga);
+	void deletarVaga(Vaga Vaga);
 
-	void atualizarNomeVaga(Vaga vaga, String novoNome);
+	void atualizarNomeVaga(Vaga Vaga, String novoNome);
 
-	void atualizarAtividadeVaga(Vaga vaga, String novoAtividade);
+	void atualizarAtividadeVaga(Vaga Vaga, String novoAtividade);
 
-	void atualizarSalarioVaga(Vaga vaga, String novoSalario);
+	void atualizarSalarioVaga(Vaga Vaga, String novSalario);
 
-	void atualizarRequisitoVaga(Vaga vaga, String novoRequisito);
+	void atualizarRequisitoVaga(Vaga Vaga, String novoRequisito);
 
-	void atualizarTurnoVaga(Vaga vaga, TipoTurno novoTurno);
+	void atualizarTurnoVaga(Vaga Vaga, TipoTurno novoTurno);
 
-	List<Vaga> recuperarVaga();
+	List<Vaga> recuperarVagas();
 
-	List<Vaga> recuperarVagaPorRecrutador(String idRecrutador);
+	List<Vaga> recuperarVagasOrdenadosNomeAscendente();
 
-	List<Vaga> recuperarVagaOrdenadosNomeAscendente();
+	List<Vaga> recuperarVagasOrdenadosNomeDescendente();
 
-	List<Vaga> recuperarVagaOrdenadosNomeDescendente();
+	List<Vaga> recuperarVagasOrdenadosAtividadeAscendente();
+
+	List<Vaga> recuperarVagasOrdenadosAtividadeDescendente();
+
+	List<Vaga> recuperarVagasOrdenadosSalarioAscendente();
+
+	List<Vaga> recuperarVagasOrdenadosSalarioDescendente();
+
+	List<Vaga> recuperarVagasOrdenadosRequisitoAscendente();
+
+	List<Vaga> recuperarVagasOrdenadosRequisitoDescendente();
+
+	List<Vaga> recuperarVagasOrdenadosTurnoAscendente();
+
+	List<Vaga> recuperarVagasOrdenadosTurnoDescendente();
 
 }

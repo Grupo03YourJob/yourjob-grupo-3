@@ -7,7 +7,7 @@ import model.bean.Usuario;
 
 public interface UsuarioDAO {
 
-	void inserirUsuario(Usuario usuario);
+	Usuario inserirUsuario(Usuario usuario);
 
 	void deletarUsuario(Usuario usuario);
 
@@ -19,10 +19,24 @@ public interface UsuarioDAO {
 
 	void atualizarGeneroUsuario(Usuario usuario, TipoGenero novoGenero);
 
-	List<Usuario> recuperarUsuario();
+	long recuperarLoginUsuario(String email, String senha);
+	
+	List<Usuario> recuperarUsuarios();
 
-	List<Usuario> recuperarUsuarioOrdenadosNomeAscendente();
+	List<Usuario> recuperarUsuariosOrdenadosNomeAscendente();
 
-	List<Usuario> recuperarUsuarioOrdenadosNomeDescendente();
+	List<Usuario> recuperarUsuariosOrdenadosNomeDescendente();
+
+	List<Usuario> recuperarUsuariosOrdenadosSobrenomeAscendente();
+
+	List<Usuario> recuperarUsuariosOrdenadosSobrenomeDescendente();
+
+	List<Usuario> recuperarUsuariosOrdenadosSenhaAscendente();
+
+	List<Usuario> recuperarUsuariosOrdenadosSenhaDescendente();
+
+	List<Usuario> recuperarUsuariosOrdenadosGeneroAscendente();
+
+	List<Usuario> recuperarUsuariosOrdenadosGeneroDescendente();
 
 }

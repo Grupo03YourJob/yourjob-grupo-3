@@ -22,7 +22,7 @@ public class CurriculoDAOImpl implements CurriculoDAO {
 
 			conexao = conectarBanco();
 			insert = conexao
-					.prepareStatement("INSERT INTO curriculo (objetivo_Curriculo, habilidade_Curriculo) VALUES (?,?)");
+					.prepareStatement("INSERT INTO curriculo (objetivo_curriculo, habilidade_curriculo) VALUES (?,?)");
 
 			insert.setString(1, curriculo.getObjetivo());
 			insert.setString(1, curriculo.getHabilidade());
@@ -58,7 +58,7 @@ public class CurriculoDAOImpl implements CurriculoDAO {
 		try {
 
 			conexao = conectarBanco();
-			delete = conexao.prepareStatement("DELETE FROM curriculo WHERE id_Curriculo = ?");
+			delete = conexao.prepareStatement("DELETE FROM curriculo WHERE id_curriculo = ?");
 
 			delete.setLong(1, curriculo.getId());
 
@@ -93,7 +93,7 @@ public class CurriculoDAOImpl implements CurriculoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE curriculo SET objetivo_Curriculo = ? WHERE id_Curriculo = ?");
+			update = conexao.prepareStatement("UPDATE curriculo SET objetivo_curriculo = ? WHERE id_curriculo = ?");
 
 			update.setString(1, novoObjetivo);
 			update.setLong(2, curriculo.getId());
@@ -129,7 +129,7 @@ public class CurriculoDAOImpl implements CurriculoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE curriculo SET habilidade_Curriculo = ? WHERE id_Curriculo = ?");
+			update = conexao.prepareStatement("UPDATE curriculo SET habilidade_curriculo = ? WHERE id_curriculo = ?");
 
 			update.setString(1, novoHabilidade);
 			update.setLong(2, curriculo.getId());
@@ -173,58 +173,9 @@ public class CurriculoDAOImpl implements CurriculoDAO {
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Curriculo");
-				String objetivo = resultado.getString("objetivo_Curriculo");
-				String habilidade = resultado.getString("habilidade_Curriculo");
-
-				curriculos.add(new Curriculo(id, objetivo, habilidade));
-			}
-
-		} catch (SQLException erro) {
-			erro.printStackTrace();
-		}
-
-		finally {
-
-			try {
-
-				if (resultado != null)
-					resultado.close();
-
-				if (consulta != null)
-					consulta.close();
-
-				if (conexao != null)
-					conexao.close();
-
-			} catch (SQLException erro) {
-
-				erro.printStackTrace();
-			}
-		}
-
-		return curriculos;
-	}
-
-	public List<Curriculo> recuperarCurriculosPorCandidato(String idCandidato) {
-
-		Connection conexao = null;
-		Statement consulta = null;
-		ResultSet resultado = null;
-
-		List<Curriculo> curriculos = new ArrayList<Curriculo>();
-
-		try {
-
-			conexao = conectarBanco();
-			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM curriculo WHERE id_Candidato = " + idCandidato);
-
-			while (resultado.next()) {
-
-				long id = resultado.getLong("id_Curriculo");
-				String objetivo = resultado.getString("objetivo_Curriculo");
-				String habilidade = resultado.getString("habilidade_Curriculo");
+				long id = resultado.getLong("id_curriculo");
+				String objetivo = resultado.getString("objetivo_curriculo");
+				String habilidade = resultado.getString("habilidade_curriculo");
 
 				curriculos.add(new Curriculo(id, objetivo, habilidade));
 			}
@@ -267,13 +218,13 @@ public class CurriculoDAOImpl implements CurriculoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM curriculo ORDER BY objetivo_Curriculo ASC");
+			resultado = consulta.executeQuery("SELECT * FROM curriculo ORDER BY objetivo_curriculo ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Curriculo");
-				String objetivo = resultado.getString("objetivo_Curriculo");
-				String habilidade = resultado.getString("habilidade_Curriculo");
+				long id = resultado.getLong("id_curriculo");
+				String objetivo = resultado.getString("objetivo_curriculo");
+				String habilidade = resultado.getString("habilidade_curriculo");
 
 				curriculos.add(new Curriculo(id, objetivo, habilidade));
 			}
@@ -316,13 +267,13 @@ public class CurriculoDAOImpl implements CurriculoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM curriculo ORDER BY objetivo_Curriculo DESC");
+			resultado = consulta.executeQuery("SELECT * FROM curriculo ORDER BY objetivo_curriculo DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Curriculo");
-				String objetivo = resultado.getString("objetivo_Curriculo");
-				String habilidade = resultado.getString("habilidade_Curriculo");
+				long id = resultado.getLong("id_curriculo");
+				String objetivo = resultado.getString("objetivo_curriculo");
+				String habilidade = resultado.getString("habilidade_curriculo");
 
 				curriculos.add(new Curriculo(id, objetivo, habilidade));
 			}
@@ -365,13 +316,13 @@ public class CurriculoDAOImpl implements CurriculoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM curriculo ORDER BY habilidade_Curriculo ASC");
+			resultado = consulta.executeQuery("SELECT * FROM curriculo ORDER BY habilidade_curriculo ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Curriculo");
-				String objetivo = resultado.getString("objetivo_Curriculo");
-				String habilidade = resultado.getString("habilidade_Curriculo");
+				long id = resultado.getLong("id_curriculo");
+				String objetivo = resultado.getString("objetivo_curriculo");
+				String habilidade = resultado.getString("habilidade_curriculo");
 
 				curriculos.add(new Curriculo(id, objetivo, habilidade));
 			}
@@ -414,13 +365,13 @@ public class CurriculoDAOImpl implements CurriculoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM curriculo ORDER BY habilidade_Curriculo DESC");
+			resultado = consulta.executeQuery("SELECT * FROM curriculo ORDER BY habilidade_curriculo DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Curriculo");
-				String objetivo = resultado.getString("objetivo_Curriculo");
-				String habilidade = resultado.getString("habilidade_Curriculo");
+				long id = resultado.getLong("id_curriculo");
+				String objetivo = resultado.getString("objetivo_curriculo");
+				String habilidade = resultado.getString("habilidade_curriculo");
 
 				curriculos.add(new Curriculo(id, objetivo, habilidade));
 			}
@@ -452,7 +403,8 @@ public class CurriculoDAOImpl implements CurriculoDAO {
 	}
 
 	private Connection conectarBanco() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost/cadastro?user=rootn&password=root");
+		return DriverManager.getConnection(
+				"jdbc:mysql://localhost/db_yourjob?useTimezone=true&serverTimezone=UTC&user=root&password=root");
 	}
 
 }

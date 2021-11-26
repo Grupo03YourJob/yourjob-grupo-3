@@ -1,26 +1,23 @@
 package model.bean;
 
-import java.util.List;
-
 public class Recrutador extends Usuario {
 
 	private long id;
 	private String empresa;
 	private String atuacao;
-	private List<Vaga> vagas;
+	private long fkUsuario;
 
-	public Recrutador(String nome, String sobrenome, String senha, TipoGenero genero, String empresa, String atuacao,
-			List<Vaga> vagas) {
+	public Recrutador(String nome, String sobrenome, String senha, TipoGenero genero, String empresa, String atuacao) {
 		super(nome, sobrenome, senha, genero);
 		setEmpresa(empresa);
 		setAtuacao(atuacao);
-		setVagas(vagas);
 	}
 
-	public Recrutador(long id, String empresa, String atuacao) {
+	public Recrutador(long id, String empresa, String atuacao, long fkUsuario) {
 		setId(id);
 		setEmpresa(empresa);
 		setAtuacao(atuacao);
+		setFkUsuario(fkUsuario);
 	}
 
 	public String getEmpresa() {
@@ -39,20 +36,20 @@ public class Recrutador extends Usuario {
 		this.atuacao = atuacao;
 	}
 
-	public List<Vaga> getVagas() {
-		return vagas;
-	}
-
-	public void setVagas(List<Vaga> vagas) {
-		this.vagas = vagas;
-	}
-
 	public long getId() {
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public long getFkUsuario() {
+		return fkUsuario;
+	}
+
+	public void setFkUsuario(long fkUsuario) {
+		this.fkUsuario = fkUsuario;
 	}
 
 }

@@ -19,6 +19,15 @@ public class Contato {
 		setLinkedin(linkedin);
 	}
 
+	public Contato(String celular, String email) {
+		setCelular(celular);
+		setEmail(email);
+	}
+
+	public Contato(String email) {
+		setEmail(email);
+	}
+
 	public Contato(long id, String telefone, String celular, String email, String facebook, String instagram,
 			String linkedin) {
 		setId(id);

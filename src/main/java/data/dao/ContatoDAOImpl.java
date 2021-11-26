@@ -22,7 +22,7 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			insert = conexao.prepareStatement(
-					"INSERT INTO contato (telefone_Contato, celular_Contato, email_Contato, facebook_Contato, instagram_Contato, linkedin_Contato) VALUES (?,?,?,?,?,?)");
+					"INSERT INTO contato (telefone_contato, celular_contato, email_contato, facebook_contato, instagram_contato, linkedin_contato) VALUES (?,?,?,?,?,?)");
 
 			insert.setString(1, contato.getTelefone());
 			insert.setString(2, contato.getCelular());
@@ -62,7 +62,7 @@ public class ContatoDAOImpl implements ContatoDAO {
 		try {
 
 			conexao = conectarBanco();
-			delete = conexao.prepareStatement("DELETE FROM contato WHERE id_Contato = ?");
+			delete = conexao.prepareStatement("DELETE FROM contato WHERE id_contato = ?");
 
 			delete.setLong(1, contato.getId());
 
@@ -97,7 +97,7 @@ public class ContatoDAOImpl implements ContatoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE contato SET telefone_Contato = ? WHERE id_Contato = ?");
+			update = conexao.prepareStatement("UPDATE contato SET telefone_contato = ? WHERE id_contato = ?");
 
 			update.setString(1, novoTelefone);
 			update.setLong(2, contato.getId());
@@ -133,7 +133,7 @@ public class ContatoDAOImpl implements ContatoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE contato SET celular_Contato = ? WHERE id_Contato = ?");
+			update = conexao.prepareStatement("UPDATE contato SET celular_contato = ? WHERE id_contato = ?");
 
 			update.setString(1, novoCelular);
 			update.setLong(2, contato.getId());
@@ -169,7 +169,7 @@ public class ContatoDAOImpl implements ContatoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE contato SET email_Contato = ? WHERE id_Contato = ?");
+			update = conexao.prepareStatement("UPDATE contato SET email_contato = ? WHERE id_contato = ?");
 
 			update.setString(1, novoEmail);
 			update.setLong(2, contato.getId());
@@ -205,7 +205,7 @@ public class ContatoDAOImpl implements ContatoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE contato SET fabeook_Contato = ? WHERE id_Contato = ?");
+			update = conexao.prepareStatement("UPDATE contato SET fabeook_contato = ? WHERE id_contato = ?");
 
 			update.setString(1, novoFacebook);
 			update.setLong(2, contato.getId());
@@ -241,7 +241,7 @@ public class ContatoDAOImpl implements ContatoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE contato SET instagram_Contato = ? WHERE id_Contato = ?");
+			update = conexao.prepareStatement("UPDATE contato SET instagram_contato = ? WHERE id_contato = ?");
 
 			update.setString(1, novoInstagram);
 			update.setLong(2, contato.getId());
@@ -277,7 +277,7 @@ public class ContatoDAOImpl implements ContatoDAO {
 		try {
 
 			conexao = conectarBanco();
-			update = conexao.prepareStatement("UPDATE contato SET linkedin_Contato = ? WHERE id_Contato = ?");
+			update = conexao.prepareStatement("UPDATE contato SET linkedin_contato = ? WHERE id_contato = ?");
 
 			update.setString(1, novoLinkedin);
 			update.setLong(2, contato.getId());
@@ -321,66 +321,13 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Contato");
-				String telefone = resultado.getString("telefone_Contato");
-				String celular = resultado.getString("celular_Contato");
-				String email = resultado.getString("email_Contato");
-				String facebook = resultado.getString("facebook_Contato");
-				String instagram = resultado.getString("instagram_Contato");
-				String linkedin = resultado.getString("linkedin_Contato");
-
-				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
-			}
-
-		} catch (SQLException erro) {
-			erro.printStackTrace();
-		}
-
-		finally {
-
-			try {
-
-				if (resultado != null)
-					resultado.close();
-
-				if (consulta != null)
-					consulta.close();
-
-				if (conexao != null)
-					conexao.close();
-
-			} catch (SQLException erro) {
-
-				erro.printStackTrace();
-			}
-		}
-
-		return contatos;
-	}
-
-	public List<Contato> recuperarContatosPorUsuario(String idUsuario) {
-
-		Connection conexao = null;
-		Statement consulta = null;
-		ResultSet resultado = null;
-
-		List<Contato> contatos = new ArrayList<Contato>();
-
-		try {
-
-			conexao = conectarBanco();
-			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato WHERE id_Usuario = " + idUsuario);
-
-			while (resultado.next()) {
-
-				long id = resultado.getLong("id_Contato");
-				String telefone = resultado.getString("telefone_Contato");
-				String celular = resultado.getString("celular_Contato");
-				String email = resultado.getString("email_Contato");
-				String facebook = resultado.getString("facebook_Contato");
-				String instagram = resultado.getString("instagram_Contato");
-				String linkedin = resultado.getString("linkedin_Contato");
+				long id = resultado.getLong("id_contato");
+				String telefone = resultado.getString("telefone_contato");
+				String celular = resultado.getString("celular_contato");
+				String email = resultado.getString("email_contato");
+				String facebook = resultado.getString("facebook_contato");
+				String instagram = resultado.getString("instagram_contato");
+				String linkedin = resultado.getString("linkedin_contato");
 
 				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
@@ -423,17 +370,17 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY telefone_Contato ASC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY telefone_contato ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Contato");
-				String telefone = resultado.getString("telefone_Contato");
-				String celular = resultado.getString("celular_Contato");
-				String email = resultado.getString("email_Contato");
-				String facebook = resultado.getString("facebook_Contato");
-				String instagram = resultado.getString("instagram_Contato");
-				String linkedin = resultado.getString("linkedin_Contato");
+				long id = resultado.getLong("id_contato");
+				String telefone = resultado.getString("telefone_contato");
+				String celular = resultado.getString("celular_contato");
+				String email = resultado.getString("email_contato");
+				String facebook = resultado.getString("facebook_contato");
+				String instagram = resultado.getString("instagram_contato");
+				String linkedin = resultado.getString("linkedin_contato");
 
 				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
@@ -476,17 +423,17 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY telefone_Contato DESC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY telefone_contato DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Contato");
-				String telefone = resultado.getString("telefone_Contato");
-				String celular = resultado.getString("celular_Contato");
-				String email = resultado.getString("email_Contato");
-				String facebook = resultado.getString("facebook_Contato");
-				String instagram = resultado.getString("instagram_Contato");
-				String linkedin = resultado.getString("linkedin_Contato");
+				long id = resultado.getLong("id_contato");
+				String telefone = resultado.getString("telefone_contato");
+				String celular = resultado.getString("celular_contato");
+				String email = resultado.getString("email_contato");
+				String facebook = resultado.getString("facebook_contato");
+				String instagram = resultado.getString("instagram_contato");
+				String linkedin = resultado.getString("linkedin_contato");
 
 				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
@@ -529,17 +476,17 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY celular_Contato ASC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY celular_contato ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Contato");
-				String telefone = resultado.getString("telefone_Contato");
-				String celular = resultado.getString("celular_Contato");
-				String email = resultado.getString("email_Contato");
-				String facebook = resultado.getString("facebook_Contato");
-				String instagram = resultado.getString("instagram_Contato");
-				String linkedin = resultado.getString("linkedin_Contato");
+				long id = resultado.getLong("id_contato");
+				String telefone = resultado.getString("telefone_contato");
+				String celular = resultado.getString("celular_contato");
+				String email = resultado.getString("email_contato");
+				String facebook = resultado.getString("facebook_contato");
+				String instagram = resultado.getString("instagram_contato");
+				String linkedin = resultado.getString("linkedin_contato");
 
 				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
@@ -582,17 +529,17 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY celular_Contato DESC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY celular_contato DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Contato");
-				String telefone = resultado.getString("telefone_Contato");
-				String celular = resultado.getString("celular_Contato");
-				String email = resultado.getString("email_Contato");
-				String facebook = resultado.getString("facebook_Contato");
-				String instagram = resultado.getString("instagram_Contato");
-				String linkedin = resultado.getString("linkedin_Contato");
+				long id = resultado.getLong("id_contato");
+				String telefone = resultado.getString("telefone_contato");
+				String celular = resultado.getString("celular_contato");
+				String email = resultado.getString("email_contato");
+				String facebook = resultado.getString("facebook_contato");
+				String instagram = resultado.getString("instagram_contato");
+				String linkedin = resultado.getString("linkedin_contato");
 
 				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
@@ -635,17 +582,17 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY email_Contato ASC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY email_contato ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Contato");
-				String telefone = resultado.getString("telefone_Contato");
-				String celular = resultado.getString("celular_Contato");
-				String email = resultado.getString("email_Contato");
-				String facebook = resultado.getString("facebook_Contato");
-				String instagram = resultado.getString("instagram_Contato");
-				String linkedin = resultado.getString("linkedin_Contato");
+				long id = resultado.getLong("id_contato");
+				String telefone = resultado.getString("telefone_contato");
+				String celular = resultado.getString("celular_contato");
+				String email = resultado.getString("email_contato");
+				String facebook = resultado.getString("facebook_contato");
+				String instagram = resultado.getString("instagram_contato");
+				String linkedin = resultado.getString("linkedin_contato");
 
 				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
@@ -688,17 +635,17 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY email_Contato DESC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY email_contato DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Contato");
-				String telefone = resultado.getString("telefone_Contato");
-				String celular = resultado.getString("celular_Contato");
-				String email = resultado.getString("email_Contato");
-				String facebook = resultado.getString("facebook_Contato");
-				String instagram = resultado.getString("instagram_Contato");
-				String linkedin = resultado.getString("linkedin_Contato");
+				long id = resultado.getLong("id_contato");
+				String telefone = resultado.getString("telefone_contato");
+				String celular = resultado.getString("celular_contato");
+				String email = resultado.getString("email_contato");
+				String facebook = resultado.getString("facebook_contato");
+				String instagram = resultado.getString("instagram_contato");
+				String linkedin = resultado.getString("linkedin_contato");
 
 				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
@@ -741,17 +688,17 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY facebook_Contato ASC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY facebook_contato ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Contato");
-				String telefone = resultado.getString("telefone_Contato");
-				String celular = resultado.getString("celular_Contato");
-				String email = resultado.getString("email_Contato");
-				String facebook = resultado.getString("facebook_Contato");
-				String instagram = resultado.getString("instagram_Contato");
-				String linkedin = resultado.getString("linkedin_Contato");
+				long id = resultado.getLong("id_contato");
+				String telefone = resultado.getString("telefone_contato");
+				String celular = resultado.getString("celular_contato");
+				String email = resultado.getString("email_contato");
+				String facebook = resultado.getString("facebook_contato");
+				String instagram = resultado.getString("instagram_contato");
+				String linkedin = resultado.getString("linkedin_contato");
 
 				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
@@ -794,17 +741,17 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY facebook_Contato DESC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY facebook_contato DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Contato");
-				String telefone = resultado.getString("telefone_Contato");
-				String celular = resultado.getString("celular_Contato");
-				String email = resultado.getString("email_Contato");
-				String facebook = resultado.getString("facebook_Contato");
-				String instagram = resultado.getString("instagram_Contato");
-				String linkedin = resultado.getString("linkedin_Contato");
+				long id = resultado.getLong("id_contato");
+				String telefone = resultado.getString("telefone_contato");
+				String celular = resultado.getString("celular_contato");
+				String email = resultado.getString("email_contato");
+				String facebook = resultado.getString("facebook_contato");
+				String instagram = resultado.getString("instagram_contato");
+				String linkedin = resultado.getString("linkedin_contato");
 
 				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
@@ -847,17 +794,17 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY instagram_Contato ASC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY instagram_contato ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Contato");
-				String telefone = resultado.getString("telefone_Contato");
-				String celular = resultado.getString("celular_Contato");
-				String email = resultado.getString("email_Contato");
-				String facebook = resultado.getString("facebook_Contato");
-				String instagram = resultado.getString("instagram_Contato");
-				String linkedin = resultado.getString("linkedin_Contato");
+				long id = resultado.getLong("id_contato");
+				String telefone = resultado.getString("telefone_contato");
+				String celular = resultado.getString("celular_contato");
+				String email = resultado.getString("email_contato");
+				String facebook = resultado.getString("facebook_contato");
+				String instagram = resultado.getString("instagram_contato");
+				String linkedin = resultado.getString("linkedin_contato");
 
 				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
@@ -900,17 +847,17 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY instagram_Contato DESC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY instagram_contato DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Contato");
-				String telefone = resultado.getString("telefone_Contato");
-				String celular = resultado.getString("celular_Contato");
-				String email = resultado.getString("email_Contato");
-				String facebook = resultado.getString("facebook_Contato");
-				String instagram = resultado.getString("instagram_Contato");
-				String linkedin = resultado.getString("linkedin_Contato");
+				long id = resultado.getLong("id_contato");
+				String telefone = resultado.getString("telefone_contato");
+				String celular = resultado.getString("celular_contato");
+				String email = resultado.getString("email_contato");
+				String facebook = resultado.getString("facebook_contato");
+				String instagram = resultado.getString("instagram_contato");
+				String linkedin = resultado.getString("linkedin_contato");
 
 				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
@@ -953,17 +900,17 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY linkedin_Contato ASC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY linkedin_contato ASC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Contato");
-				String telefone = resultado.getString("telefone_Contato");
-				String celular = resultado.getString("celular_Contato");
-				String email = resultado.getString("email_Contato");
-				String facebook = resultado.getString("facebook_Contato");
-				String instagram = resultado.getString("instagram_Contato");
-				String linkedin = resultado.getString("linkedin_Contato");
+				long id = resultado.getLong("id_contato");
+				String telefone = resultado.getString("telefone_contato");
+				String celular = resultado.getString("celular_contato");
+				String email = resultado.getString("email_contato");
+				String facebook = resultado.getString("facebook_contato");
+				String instagram = resultado.getString("instagram_contato");
+				String linkedin = resultado.getString("linkedin_contato");
 
 				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
@@ -1006,17 +953,17 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY linkedin_Contato DESC");
+			resultado = consulta.executeQuery("SELECT * FROM contato ORDER BY linkedin_contato DESC");
 
 			while (resultado.next()) {
 
-				long id = resultado.getLong("id_Contato");
-				String telefone = resultado.getString("telefone_Contato");
-				String celular = resultado.getString("celular_Contato");
-				String email = resultado.getString("email_Contato");
-				String facebook = resultado.getString("facebook_Contato");
-				String instagram = resultado.getString("instagram_Contato");
-				String linkedin = resultado.getString("linkedin_Contato");
+				long id = resultado.getLong("id_contato");
+				String telefone = resultado.getString("telefone_contato");
+				String celular = resultado.getString("celular_contato");
+				String email = resultado.getString("email_contato");
+				String facebook = resultado.getString("facebook_contato");
+				String instagram = resultado.getString("instagram_contato");
+				String linkedin = resultado.getString("linkedin_contato");
 
 				contatos.add(new Contato(id, telefone, celular, email, facebook, instagram, linkedin));
 			}
@@ -1048,6 +995,7 @@ public class ContatoDAOImpl implements ContatoDAO {
 	}
 
 	private Connection conectarBanco() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost/cadastro?user=rootn&password=root");
+		return DriverManager.getConnection(
+				"jdbc:mysql://localhost/db_yourjob?useTimezone=true&serverTimezone=UTC&user=root&password=root");
 	}
 }
