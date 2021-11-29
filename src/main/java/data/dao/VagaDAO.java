@@ -2,8 +2,8 @@ package data.dao;
 
 import java.util.List;
 
-import model.bean.TipoTurno;
 import model.bean.Vaga;
+import model.util.TipoTurno;
 
 public interface VagaDAO {
 

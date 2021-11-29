@@ -22,7 +22,7 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 
 			conexao = conectarBanco();
 			insert = conexao.prepareStatement(
-					"INSERT INTO endereco (rua_endereco, bairro_endereco, numero_ endereco, cep_endereco, cidade_endereco, estado_endereco, referencia_endereco) VALUES (?,?,?,?,?,?,?)");
+					"INSERT INTO endereco (id_endereco, rua_endereco, bairro_endereco, numero_ endereco, cep_endereco, cidade_endereco, estado_endereco, referencia_endereco) VALUES (0,?,?,?,?,?,?,?)");
 
 			insert.setString(1, endereco.getRua());
 			insert.setString(2, endereco.getBairro());

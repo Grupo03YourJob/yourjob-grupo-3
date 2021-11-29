@@ -20,6 +20,11 @@ public class Recrutador extends Usuario {
 		setFkUsuario(fkUsuario);
 	}
 
+	public Recrutador(String empresa, String atuacao) {
+		setEmpresa(empresa);
+		setAtuacao(atuacao);
+	}
+
 	public String getEmpresa() {
 		return empresa;
 	}

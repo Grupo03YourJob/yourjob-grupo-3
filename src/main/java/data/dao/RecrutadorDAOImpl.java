@@ -27,12 +27,11 @@ public class RecrutadorDAOImpl implements RecrutadorDAO {
 
 		try {
 
-			Usuario usuario = usuarioDAO.inserirUsuario(new Usuario(recrutador.getNome(), recrutador.getSobrenome(),
-					recrutador.getSenha(), recrutador.getGenero()));
+			Usuario usuario = usuarioDAO.inserirUsuario(recrutador);
 
 			conexao = conectarBanco();
 			insert = conexao.prepareStatement(
-					"INSERT INTO recrutador (empresa_recrutador, autacao_recrutador, fk_usuario) VALUES (?,?,?)");
+					"INSERT INTO recrutador (empresa_recrutador, atuacao_recrutador, fk_usuario) VALUES (?,?,?)");
 
 			insert.setString(1, recrutador.getEmpresa());
 			insert.setString(2, recrutador.getAtuacao());

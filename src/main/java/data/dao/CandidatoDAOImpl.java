@@ -28,14 +28,13 @@ public class CandidatoDAOImpl implements CandidatoDAO {
 
 		try {
 
-			Usuario usuario = usuarioDAO.inserirUsuario(new Usuario(candidato.getNome(), candidato.getSobrenome(),
-					candidato.getSenha(), candidato.getGenero()));
+			Usuario usuario = usuarioDAO.inserirUsuario(candidato);
 
 			java.sql.Date dataSql = new java.sql.Date(candidato.getDataNascimento().getTime());
 
 			conexao = conectarBanco();
-			insert = conexao
-					.prepareStatement("INSERT INTO candidato (data_nascimento_candidato, fk_usuario) VALUES (?,?)");
+			insert = conexao.prepareStatement(
+					"INSERT INTO candidato (id_canditado, data_nascimento_candidato, fk_usuario) VALUES (0,?,?)");
 
 			insert.setDate(1, dataSql);
 			insert.setLong(2, usuario.getId());

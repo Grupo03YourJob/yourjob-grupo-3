@@ -18,9 +18,9 @@ import model.bean.Contato;
 import model.bean.Endereco;
 import model.bean.Recrutador;
 import model.bean.TipoGenero;
-import model.bean.TipoMenuInicio;
-import model.bean.TipoMenuUsuario;
 import model.bean.Usuario;
+import model.util.TipoMenuInicio;
+import model.util.TipoMenuUsuario;
 
 public class Principal {
 
@@ -94,6 +94,7 @@ public class Principal {
 			} catch (Exception e) {
 
 				System.out.println("Opção inválida!");
+				e.printStackTrace();
 
 			}
 
@@ -140,7 +141,7 @@ public class Principal {
 		long idUsuario = usuarioDAO.recuperarLoginUsuario(email, senha);
 	}
 
-	public Usuario lerDadosUsuario() {
+	public void lerDadosUsuario(Usuario usuario) {
 
 		System.out.println();
 
@@ -175,7 +176,10 @@ public class Principal {
 		System.out.println("Informe a senha do usuário: ");
 		String senha = leitor.next();
 
-		return new Usuario(nome, sobrenome, senha, genero);
+		usuario.setNome(nome);
+		usuario.setSobrenome(sobrenome);
+		usuario.setSenha(senha);
+		usuario.setGenero(genero);
 
 	}
 
@@ -227,8 +231,6 @@ public class Principal {
 
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 
-		Usuario usuario = lerDadosUsuario();
-
 		System.out.println("Informe a da de nascimento: ");
 		System.out.println("YYYY-MM-DD");
 
@@ -238,8 +240,11 @@ public class Principal {
 
 			Date dataNascimento = formato.parse(dataNascimentoString);
 
-			candidatoDAO.inserirCandidato(new Candidato(usuario.getNome(), usuario.getSobrenome(), usuario.getSenha(),
-					usuario.getGenero(), dataNascimento));
+			Candidato candidato = new Candidato(dataNascimento);
+
+			lerDadosUsuario(candidato);
+
+			candidatoDAO.inserirCandidato(candidato);
 		} catch (Exception e) {
 
 		}
@@ -248,16 +253,17 @@ public class Principal {
 
 	public void cadastrarRecrutador() {
 
-		Usuario usuario = lerDadosUsuario();
-
 		System.out.println("Informe o nome da empresa: ");
 		String empresa = leitor.next();
 
 		System.out.println("Informa a área de atuação: ");
 		String atuacao = leitor.next();
 
-		recrutadorDAO.inserirRecrutador(new Recrutador(usuario.getNome(), usuario.getSobrenome(), usuario.getSenha(),
-				usuario.getGenero(), empresa, atuacao));
+		Recrutador recrutador = new Recrutador(empresa, atuacao);
+
+		lerDadosUsuario(recrutador);
+
+		recrutadorDAO.inserirRecrutador(recrutador);
 
 	}
 

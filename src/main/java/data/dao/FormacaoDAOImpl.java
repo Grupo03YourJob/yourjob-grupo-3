@@ -23,7 +23,7 @@ public class FormacaoDAOImpl implements FormacaoDAO {
 
 			conexao = conectarBanco();
 			insert = conexao.prepareStatement(
-					"INSERT INTO experiencia (nome_formacao, instituicao_formacao, data_inicial_formacao, data_final_formacao) VALUES (?,?,?,?)");
+					"INSERT INTO experiencia (id_formacao, nome_formacao, instituicao_formacao, data_inicial_formacao, data_final_formacao) VALUES (0,?,?,?,?)");
 
 			insert.setString(1, formacao.getNome());
 			insert.setString(2, formacao.getInstituicao());

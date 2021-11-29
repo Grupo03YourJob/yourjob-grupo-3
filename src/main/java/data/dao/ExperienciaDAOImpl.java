@@ -23,7 +23,7 @@ public class ExperienciaDAOImpl implements ExperienciaDAO {
 
 			conexao = conectarBanco();
 			insert = conexao.prepareStatement(
-					"INSERT INTO experiencia (empresa_experiencia, cargo_exercido_experiencia, data_inicial_experiencia, data_final_experiencia) VALUES (?,?,?,?)");
+					"INSERT INTO experiencia (id_experiencia, empresa_experiencia, cargo_exercido_experiencia, data_inicial_experiencia, data_final_experiencia) VALUES (0,?,?,?,?)");
 
 			insert.setString(1, experiencia.getEmpresa());
 			insert.setString(2, experiencia.getCargoExercido());

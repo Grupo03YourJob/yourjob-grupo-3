@@ -1,5 +1,7 @@
 package model.bean;
 
+import model.util.TipoNivel;
+
 public class Idioma {
 
 	private long id;

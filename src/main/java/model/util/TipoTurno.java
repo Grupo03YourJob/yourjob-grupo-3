@@ -1,4 +1,4 @@
-package model.bean;
+package model.util;
 
 public enum TipoTurno {
 

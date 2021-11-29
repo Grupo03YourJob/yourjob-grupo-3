@@ -21,8 +21,8 @@ public class CurriculoDAOImpl implements CurriculoDAO {
 		try {
 
 			conexao = conectarBanco();
-			insert = conexao
-					.prepareStatement("INSERT INTO curriculo (objetivo_curriculo, habilidade_curriculo) VALUES (?,?)");
+			insert = conexao.prepareStatement(
+					"INSERT INTO curriculo (id_curriculo, objetivo_curriculo, habilidade_curriculo) VALUES (0,?,?)");
 
 			insert.setString(1, curriculo.getObjetivo());
 			insert.setString(1, curriculo.getHabilidade());

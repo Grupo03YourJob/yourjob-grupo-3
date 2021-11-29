@@ -1,5 +1,7 @@
 package model.bean;
 
+import model.util.TipoTurno;
+
 public class Vaga {
 
 	private long id;

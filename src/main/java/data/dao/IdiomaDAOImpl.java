@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.bean.Idioma;
-import model.bean.TipoNivel;
+import model.util.TipoNivel;
 
 public class IdiomaDAOImpl implements IdiomaDAO {
 
@@ -22,7 +22,8 @@ public class IdiomaDAOImpl implements IdiomaDAO {
 		try {
 
 			conexao = conectarBanco();
-			insert = conexao.prepareStatement("INSERT INTO idioma (nome_idioma, nivel_idioma) VALUES (?,?)");
+			insert = conexao
+					.prepareStatement("INSERT INTO idioma (id_idioma, nome_idioma, nivel_idioma) VALUES (0,?,?)");
 
 			insert.setString(1, idioma.getNome());
 			insert.setString(2, idioma.getNivel().name());

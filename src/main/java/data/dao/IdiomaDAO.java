@@ -3,7 +3,7 @@ package data.dao;
 import java.util.List;
 
 import model.bean.Idioma;
-import model.bean.TipoNivel;
+import model.util.TipoNivel;
 
 public interface IdiomaDAO {
 

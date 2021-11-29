@@ -17,6 +17,10 @@ public class Candidato extends Usuario {
 		setDataNascimento(dataNascimento);
 	}
 
+	public Candidato(Date dataNascimento) {
+		setDataNascimento(dataNascimento);
+	}
+
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}

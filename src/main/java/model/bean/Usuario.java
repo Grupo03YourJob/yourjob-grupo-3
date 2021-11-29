@@ -1,6 +1,6 @@
 package model.bean;
 
-public class Usuario {
+public abstract class Usuario {
 
 	private long id;
 	private String nome;
@@ -10,14 +10,14 @@ public class Usuario {
 	private Contato contato;
 	private TipoGenero genero;
 
-	public Usuario(String nome, String sobrenome, String senha, TipoGenero genero) {
+	protected Usuario(String nome, String sobrenome, String senha, TipoGenero genero) {
 		setNome(nome);
 		setSobrenome(sobrenome);
 		setSenha(senha);
 		setGenero(genero);
 	}
 
-	public Usuario(long id, String nome, String sobrenome, String senha, TipoGenero genero) {
+	protected Usuario(long id, String nome, String sobrenome, String senha, TipoGenero genero) {
 		setId(id);
 		setNome(nome);
 		setSobrenome(sobrenome);
@@ -25,7 +25,7 @@ public class Usuario {
 		setGenero(genero);
 	}
 
-	public Usuario() {
+	protected Usuario() {
 	}
 
 	public String getNome() {

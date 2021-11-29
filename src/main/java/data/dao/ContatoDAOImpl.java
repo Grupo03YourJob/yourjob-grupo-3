@@ -22,7 +22,7 @@ public class ContatoDAOImpl implements ContatoDAO {
 
 			conexao = conectarBanco();
 			insert = conexao.prepareStatement(
-					"INSERT INTO contato (telefone_contato, celular_contato, email_contato, facebook_contato, instagram_contato, linkedin_contato) VALUES (?,?,?,?,?,?)");
+					"INSERT INTO contato (id_contato, telefone_contato, celular_contato, email_contato, facebook_contato, instagram_contato, linkedin_contato) VALUES (0, ?,?,?,?,?,?)");
 
 			insert.setString(1, contato.getTelefone());
 			insert.setString(2, contato.getCelular());

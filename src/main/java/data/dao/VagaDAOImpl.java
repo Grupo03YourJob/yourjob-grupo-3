@@ -9,8 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.bean.TipoTurno;
 import model.bean.Vaga;
+import model.util.TipoTurno;
 
 public class VagaDAOImpl implements VagaDAO {
 
@@ -22,8 +22,8 @@ public class VagaDAOImpl implements VagaDAO {
 		try {
 
 			conexao = conectarBanco();
-			insert = conexao.prepareStatement(
-					"INSERT INTO vaga (nome_vaga, atividade_vaga, salario_vaga, requisito_vaga, turno_vaga) VALUES (?,?,?,?,?)");
+			insert = conexao.prepareStatement("INSERT INTO vaga (id_vaga, "
+					+ "nome_vaga, atividade_vaga, salario_vaga, requisito_vaga, turno_vaga) VALUES (0,?,?,?,?,?)");
 
 			insert.setString(1, vaga.getNome());
 			insert.setString(2, vaga.getAtividade());
