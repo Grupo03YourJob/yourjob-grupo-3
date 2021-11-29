@@ -8,11 +8,11 @@
 
 Integrantes:
 
-  - Andre Senes Dreger;
-  - Fabio Santoro Nandes;
+  - André Senes Dreger;
+  - Fabio Santoro Nandes Oliveira da Silva;
   - João Victor Felício;
-  - Mateus Nunc Nfoonro Nascimento; 
-  - Vitor Quaglioto de Souza (Líder).
+  - Mateus Nunc-Nfoonro Nascimento; 
+  - Vítor Quagliotto de Souza.
  
     
 ### Configuração para desenvolvimento

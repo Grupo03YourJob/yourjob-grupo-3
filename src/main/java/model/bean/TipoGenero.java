@@ -1,7 +1,7 @@
 package model.bean;
 
-public enum GeneroCandidato {
-	
+public enum TipoGenero {
+
 	MASCULINO, FEMININO, OUTRO
 
 }

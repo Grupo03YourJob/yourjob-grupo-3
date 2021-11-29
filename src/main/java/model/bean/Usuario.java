@@ -1,92 +1,87 @@
 package model.bean;
 
-
 public abstract class Usuario {
 
-	private long idUsuario;
-	private String nomeUsuario;
-	private String sobrenomeUsuario;
-	private String emailUsuario;
-	private String senhaUsuario;
+	private long id;
+	private String nome;
+	private String sobrenome;
+	private String senha;
 	private Endereco endereco;
 	private Contato contato;
-	
+	private TipoGenero genero;
 
-	public Usuario(String nomeUsuario, String sobrenomeUsuario, String emailUsuario, String senhaUsuario, Endereco endereco,
-			Contato contato) {
-
-		setNomeUsuario(nomeUsuario);
-		setSobrenomeUsuario(sobrenomeUsuario);
-		setEmailUsuario(emailUsuario);
-		setSenhaUsuario(senhaUsuario);
-		setEndereco(endereco);
-		setContato(contato);
-		
+	protected Usuario(String nome, String sobrenome, String senha, TipoGenero genero) {
+		setNome(nome);
+		setSobrenome(sobrenome);
+		setSenha(senha);
+		setGenero(genero);
 	}
 
-
-	public String getNomeUsuario() {
-		return nomeUsuario;
+	protected Usuario(long id, String nome, String sobrenome, String senha, TipoGenero genero) {
+		setId(id);
+		setNome(nome);
+		setSobrenome(sobrenome);
+		setSenha(senha);
+		setGenero(genero);
 	}
 
-
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
+	protected Usuario() {
 	}
 
-
-	public String getSobrenomeUsuario() {
-		return sobrenomeUsuario;
+	public String getNome() {
+		return nome;
 	}
 
-
-	public void setSobrenomeUsuario(String sobrenomeUsuario) {
-		this.sobrenomeUsuario = sobrenomeUsuario;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-
-	public String getEmailUsuario() {
-		return emailUsuario;
+	public String getSobrenome() {
+		return sobrenome;
 	}
 
-
-	public void setEmailUsuario(String emailUsuario) {
-		this.emailUsuario = emailUsuario;
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
 	}
 
-
-	public String getSenhaUsuario() {
-		return senhaUsuario;
+	public String getSenha() {
+		return senha;
 	}
 
-
-	public void setSenhaUsuario(String senhaUsuario) {
-		this.senhaUsuario = senhaUsuario;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
+	public TipoGenero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(TipoGenero genero) {
+		this.genero = genero;
+	}
 
 	public Endereco getEndereco() {
 		return endereco;
 	}
 
-
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-
 
 	public Contato getContato() {
 		return contato;
 	}
 
-
 	public void setContato(Contato contato) {
 		this.contato = contato;
 	}
 
+	public long getId() {
+		return id;
+	}
 
-	public long getIdUsuario() {
-		return idUsuario;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

@@ -1,46 +1,40 @@
 package data.dao;
 
-import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 import model.bean.Experiencia;
 
-public class ExperienciaDAO {
+public interface ExperienciaDAO {
 
-	private static List<Experiencia> experiencias = new ArrayList<Experiencia>();
+	void inserirExperiencia(Experiencia experiencia);
 
-	public void criarExperiencia(Experiencia experiencia) throws Exception {
-		for (Experiencia experienciaLista : experiencias) {
-			if (experiencia.getIdExperiencia() == experienciaLista.getIdExperiencia()) {
-				throw new Exception("Experience not created!");
-			}
-		}
+	void deletarExperiencia(Experiencia candidato);
 
-		experiencias.add(experiencia);
-	}
+	void atualizarEmpresaExperiencia(Experiencia experiencia, String novoEmpresa);
 
-	public Experiencia buscarExperiencia(long idExperiencia) throws Exception {
-		for (Experiencia experienciaLista : experiencias) {
-			if (experienciaLista.getIdExperiencia() == idExperiencia) {
-				return experienciaLista;
-			}
-		}
-		throw new Exception("Experience not found!");
-	}
+	void atualizarCargoExercidoExperiencia(Experiencia experiencia, String novoCargoExercido);
 
-	public void editarExperiencia(Experiencia experienciaNovo) throws Exception {
-		for (int i = 0; i < experiencias.size(); i++) {
-			Experiencia experienciaAntigo = experiencias.get(i);
-			if (experienciaAntigo.getIdExperiencia() == experienciaNovo.getIdExperiencia()) {
-				experiencias.add(i, experienciaAntigo);
-				return;
-			}
-		}
-		throw new Exception("Experience not updated!");
-	}
+	void atualizarDataInicialExperiencia(Experiencia experiencia, Date novoDataInicial);
 
-	public void excluirCandidato(Experiencia experiencia) {
-		experiencias.remove(experiencia);
-	}
+	void atualizarDataFinalExperiencia(Experiencia experiencia, Date novoDataFinal);
+
+	List<Experiencia> recuperarExperiencias();
+
+	List<Experiencia> recuperarExperienciasOrdenadosEmpresaAscendente();
+
+	List<Experiencia> recuperarExperienciasOrdenadosEmpresaDescendente();
+
+	List<Experiencia> recuperarExperienciasOrdenadosCargoExercidoAscendente();
+
+	List<Experiencia> recuperarExperienciasOrdenadosCargoExercidoDescendente();
+
+	List<Experiencia> recuperarExperienciasOrdenadosDataInicialAscendente();
+
+	List<Experiencia> recuperarExperienciasOrdenadosDataInicialDescendente();
+
+	List<Experiencia> recuperarExperienciasOrdenadosDataFinalAscendente();
+
+	List<Experiencia> recuperarExperienciasOrdenadosDataFinalDescendente();
 
 }

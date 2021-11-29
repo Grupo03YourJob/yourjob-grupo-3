@@ -1,45 +1,51 @@
 package data.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.bean.Contato;
 
-public class ContatoDAO {
+public interface ContatoDAO {
 
-	private static List<Contato> contatos = new ArrayList<Contato>();
+	void inserirContato(Contato contato);
 
-	public void criarContato(Contato contato) throws Exception {
-		for (Contato contatoLista : contatos) {
-			if (contato.getIdContato() == contatoLista.getIdContato()) {
-				throw new Exception("Contact not created!");
-			}
-		}
+	void deletarContato(Contato contato);
 
-		contatos.add(contato);
-	}
+	void atualizarTelefoneContato(Contato contato, String novoTelefone);
 
-	public Contato buscarContato(long idContato) throws Exception {
-		for (Contato contatoLista : contatos) {
-			if (contatoLista.getIdContato() == idContato) {
-				return contatoLista;
-			}
-		}
-		throw new Exception("Contact not found!");
-	}
+	void atualizarCelularContato(Contato contato, String novoCelular);
 
-	public void editarContato(Contato contatoNovo) throws Exception {
-		for (int i = 0; i < contatos.size(); i++) {
-			Contato contatoAntigo = contatos.get(i);
-			if (contatoAntigo.getIdContato() == contatoNovo.getIdContato()) {
-				contatos.add(i, contatoAntigo);
-				return;
-			}
-		}
-		throw new Exception("Contact not updated!");
-	}
+	void atualizarEmailContato(Contato contato, String novoEmail);
 
-	public void excluirCandidato(Contato contato) {
-		contatos.remove(contato);
-	}
+	void atualizarFacebookContato(Contato contato, String novoFacebook);
+
+	void atualizarInstagramContato(Contato contato, String novoInstagram);
+
+	void atualizarLinkedinContato(Contato contato, String novoLinkedin);
+
+	List<Contato> recuperarContatos();
+
+	List<Contato> recuperarContatosOrdenadosTelefoneAscendente();
+
+	List<Contato> recuperarContatosOrdenadosTelefoneDescendente();
+
+	List<Contato> recuperarContatosOrdenadosCelularAscendente();
+
+	List<Contato> recuperarContatosOrdenadosCelularDescendente();
+
+	List<Contato> recuperarContatosOrdenadosEmailAscendente();
+
+	List<Contato> recuperarContatosOrdenadosEmailDescendente();
+
+	List<Contato> recuperarContatosOrdenadosFacebookAscendente();
+
+	List<Contato> recuperarContatosOrdenadosFacebookDescendente();
+
+	List<Contato> recuperarContatosOrdenadosInstagramAscendente();
+
+	List<Contato> recuperarContatosOrdenadosInstagramDescendente();
+
+	List<Contato> recuperarContatosOrdenadosLinkedinAscendente();
+
+	List<Contato> recuperarContatosOrdenadosLinkedinDescendente();
+
 }

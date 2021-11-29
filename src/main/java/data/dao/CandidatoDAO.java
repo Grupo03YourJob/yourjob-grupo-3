@@ -1,45 +1,22 @@
 package data.dao;
 
-import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 import model.bean.Candidato;
 
-public class CandidatoDAO {
+public interface CandidatoDAO {
 
-	private static List<Candidato> candidatos = new ArrayList<Candidato>();
+	void inserirCandidato(Candidato candidato);
 
-	public void criarCandidato(Candidato candidato) throws Exception {
-		for (Candidato candidatoLista : candidatos) {
-			if (candidato.getIdCandidato() == candidatoLista.getIdCandidato()) {
-				throw new Exception("Candidate not created!");
-			}
-		}
+	void deletarCandidato(Candidato candidato);
 
-		candidatos.add(candidato);
-	}
+	void atualizarDataNascimentoCandidato(Candidato candidato, Date novoDataNascimento);
 
-	public Candidato buscarCandidato(long idCandidato) throws Exception {
-		for (Candidato candidatoLista : candidatos) {
-			if (candidatoLista.getIdCandidato() == idCandidato) {
-				return candidatoLista;
-			}
-		}
-		throw new Exception("Candidate not found!");
-	}
+	List<Candidato> recuperarCandidatos();
 
-	public void editarCandidato(Candidato candidatoNovo) throws Exception {
-		for (int i = 0; i < candidatos.size(); i++) {
-			Candidato candidatoAntigo = candidatos.get(i);
-			if (candidatoAntigo.getIdCandidato() == candidatoNovo.getIdCandidato()) {
-				candidatos.add(i, candidatoAntigo);
-				return;
-			}
-		}
-		throw new Exception("Candidate not updated!");
-	}
+	List<Candidato> recuperarCandidatosOrdenadosDataNascimentoAscendente();
 
-	public void excluirCandidato(Candidato candidato) {
-		candidatos.remove(candidato);
-	}
+	List<Candidato> recuperarCandidatosOrdenadosDataNascimentoDescendente();
+
 }

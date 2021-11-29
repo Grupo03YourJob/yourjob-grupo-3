@@ -1,34 +1,46 @@
 package model.bean;
 
+import model.util.TipoNivel;
+
 public class Idioma {
 
-	private long idIdioma;
-	private String nomeIdioma;
-	private String nivelIdioma;
+	private long id;
+	private String nome;
+	private TipoNivel nivel;
 
-	public Idioma(long idIdioma, String nomeIdioma, String nivelIdioma) {
-		setNomeIdioma(nomeIdioma);
-		setNivelIdioma(nivelIdioma);
+	public Idioma(String nome, TipoNivel nivel) {
+		setNome(nome);
+		setNivel(nivel);
 	}
 
-	public String getNomeIdioma() {
-		return nomeIdioma;
+	public Idioma(long id, String nome, TipoNivel nivel) {
+		setId(id);
+		setNome(nome);
+		setNivel(nivel);
 	}
 
-	public void setNomeIdioma(String nomeIdioma) {
-		this.nomeIdioma = nomeIdioma;
+	public String getNome() {
+		return nome;
 	}
 
-	public String getNivelIdioma() {
-		return nivelIdioma;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public void setNivelIdioma(String nivelIdioma) {
-		this.nivelIdioma = nivelIdioma;
+	public TipoNivel getNivel() {
+		return nivel;
 	}
 
-	public long getIdIdioma() {
-		return idIdioma;
+	public void setNivel(TipoNivel nivel) {
+		this.nivel = nivel;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

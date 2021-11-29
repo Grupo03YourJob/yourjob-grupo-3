@@ -1,46 +1,27 @@
 package data.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.bean.Recrutador;
 
-public class RecrutadorDAO {
+public interface RecrutadorDAO {
 
-	private static List<Recrutador> recrutadors = new ArrayList<Recrutador>();
+	void inserirRecrutador(Recrutador recrutador);
 
-	public void criarRecrutador(Recrutador recrutador) throws Exception {
-		for (Recrutador recrutadorLista : recrutadors) {
-			if (recrutador.getIdRecrutador() == recrutadorLista.getIdRecrutador()) {
-				throw new Exception("Recruiter not created!");
-			}
-		}
+	void deletarRecrutador(Recrutador recrutador);
 
-		recrutadors.add(recrutador);
-	}
+	void atualizarEmpresaRecrutador(Recrutador recrutador, String novoEmpresa);
 
-	public Recrutador buscarRecrutador(long idRecrutador) throws Exception {
-		for (Recrutador recrutadorLista : recrutadors) {
-			if (recrutadorLista.getIdRecrutador() == idRecrutador) {
-				return recrutadorLista;
-			}
-		}
-		throw new Exception("Recruiter not found!");
-	}
+	void atualizarAtuacaoRecrutador(Recrutador recrutador, String novoAtuacao);
 
-	public void editarRecrutador(Recrutador recrutadorNovo) throws Exception {
-		for (int i = 0; i < recrutadors.size(); i++) {
-			Recrutador recrutadorAntigo = recrutadors.get(i);
-			if (recrutadorAntigo.getIdRecrutador() == recrutadorNovo.getIdRecrutador()) {
-				recrutadors.add(i, recrutadorAntigo);
-				return;
-			}
-		}
-		throw new Exception("Recruiter not updated!");
-	}
+	List<Recrutador> recuperarRecrutadores();
 
-	public void excluirCandidato(Recrutador recrutador) {
-		recrutadors.remove(recrutador);
-	}
+	List<Recrutador> recuperarRecrutadoresOrdenadosEmpresaAscendente();
+
+	List<Recrutador> recuperarRecrutadoresOrdenadosEmpresaDescendente();
+
+	List<Recrutador> recuperarRecrutadoresOrdenadosAtuacaoAscendente();
+
+	List<Recrutador> recuperarRecrutadoresOrdenadosAtuacaoDescendente();
 
 }

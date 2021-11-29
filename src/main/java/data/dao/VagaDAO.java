@@ -1,46 +1,46 @@
 package data.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.bean.Vaga;
+import model.util.TipoTurno;
 
-public class VagaDAO {
+public interface VagaDAO {
 
-	private static List<Vaga> vagas = new ArrayList<Vaga>();
+	void inserirVaga(Vaga Vaga);
 
-	public void criarVaga(Vaga vaga) throws Exception {
-		for (Vaga vagaLista : vagas) {
-			if (vaga.getIdVaga() == vagaLista.getIdVaga()) {
-				throw new Exception("Vacancy not created");
-			}
-		}
+	void deletarVaga(Vaga Vaga);
 
-		vagas.add(vaga);
-	}
+	void atualizarNomeVaga(Vaga Vaga, String novoNome);
 
-	public Vaga buscarVaga(long idVaga) throws Exception {
-		for (Vaga vagaLista : vagas) {
-			if (vagaLista.getIdVaga() == idVaga) {
-				return vagaLista;
-			}
-		}
-		throw new Exception("Vacancy not found!");
-	}
+	void atualizarAtividadeVaga(Vaga Vaga, String novoAtividade);
 
-	public void editarVaga(Vaga vagaNovo) throws Exception {
-		for (int i = 0; i < vagas.size(); i++) {
-			Vaga vagaAntigo = vagas.get(i);
-			if (vagaAntigo.getIdVaga() == vagaNovo.getIdVaga()) {
-				vagas.add(i, vagaAntigo);
-				return;
-			}
-		}
-		throw new Exception("Vacancy not updated!");
-	}
+	void atualizarSalarioVaga(Vaga Vaga, String novSalario);
 
-	public void excluirCandidato(Vaga vaga) {
-		vagas.remove(vaga);
-	}
+	void atualizarRequisitoVaga(Vaga Vaga, String novoRequisito);
+
+	void atualizarTurnoVaga(Vaga Vaga, TipoTurno novoTurno);
+
+	List<Vaga> recuperarVagas();
+
+	List<Vaga> recuperarVagasOrdenadosNomeAscendente();
+
+	List<Vaga> recuperarVagasOrdenadosNomeDescendente();
+
+	List<Vaga> recuperarVagasOrdenadosAtividadeAscendente();
+
+	List<Vaga> recuperarVagasOrdenadosAtividadeDescendente();
+
+	List<Vaga> recuperarVagasOrdenadosSalarioAscendente();
+
+	List<Vaga> recuperarVagasOrdenadosSalarioDescendente();
+
+	List<Vaga> recuperarVagasOrdenadosRequisitoAscendente();
+
+	List<Vaga> recuperarVagasOrdenadosRequisitoDescendente();
+
+	List<Vaga> recuperarVagasOrdenadosTurnoAscendente();
+
+	List<Vaga> recuperarVagasOrdenadosTurnoDescendente();
 
 }

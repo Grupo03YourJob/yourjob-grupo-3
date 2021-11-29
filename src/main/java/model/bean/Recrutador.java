@@ -1,48 +1,60 @@
 package model.bean;
 
-import java.util.List;
-
 public class Recrutador extends Usuario {
 
-	private long idRecrutador;
-	private String empresaRecrutador;
-	private String atuacaoEmpresaRecrutador;
-	private List<Vaga> vagas;
+	private long id;
+	private String empresa;
+	private String atuacao;
+	private long fkUsuario;
 
-	public Recrutador(String nomeUsuario, String sobrenomeUsuario, String emailUsuario, String senhaUsuario, Endereco endereco,
-			Contato contato, String empresaRecrutador, String atuacaoEmpresaRecrutador, List<Vaga> vagas) {
-		
-		super(nomeUsuario,sobrenomeUsuario,emailUsuario,senhaUsuario,endereco,contato);
-		setAtuacaoEmpresaRecrutador(atuacaoEmpresaRecrutador);
-		setVagas(vagas);
+	public Recrutador(String nome, String sobrenome, String senha, TipoGenero genero, String empresa, String atuacao) {
+		super(nome, sobrenome, senha, genero);
+		setEmpresa(empresa);
+		setAtuacao(atuacao);
 	}
 
-	public String getEmpresaRecrutador() {
-		return empresaRecrutador;
+	public Recrutador(long id, String empresa, String atuacao, long fkUsuario) {
+		setId(id);
+		setEmpresa(empresa);
+		setAtuacao(atuacao);
+		setFkUsuario(fkUsuario);
 	}
 
-	public void setEmpresaRecrutador(String empresaRecrutador) {
-		this.empresaRecrutador = empresaRecrutador;
+	public Recrutador(String empresa, String atuacao) {
+		setEmpresa(empresa);
+		setAtuacao(atuacao);
 	}
 
-	public String getAtuacaoEmpresaRecrutador() {
-		return atuacaoEmpresaRecrutador;
+	public String getEmpresa() {
+		return empresa;
 	}
 
-	public void setAtuacaoEmpresaRecrutador(String atuacaoEmpresaRecrutador) {
-		this.atuacaoEmpresaRecrutador = atuacaoEmpresaRecrutador;
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
 	}
 
-	public List<Vaga> getVagas() {
-		return vagas;
+	public String getAtuacao() {
+		return atuacao;
 	}
 
-	public void setVagas(List<Vaga> vagas) {
-		this.vagas = vagas;
+	public void setAtuacao(String atuacao) {
+		this.atuacao = atuacao;
 	}
 
-	public long getIdRecrutador() {
-		return idRecrutador;
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public long getFkUsuario() {
+		return fkUsuario;
+	}
+
+	public void setFkUsuario(long fkUsuario) {
+		this.fkUsuario = fkUsuario;
 	}
 
 }

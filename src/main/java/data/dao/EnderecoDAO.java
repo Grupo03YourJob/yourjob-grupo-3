@@ -1,45 +1,53 @@
 package data.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.bean.Endereco;
 
-public class EnderecoDAO {
+public interface EnderecoDAO {
 
-	private static List<Endereco> enderecos = new ArrayList<Endereco>();
+	void inserirEndereco(Endereco endereco);
 
-	public void criarEndereco(Endereco endereco) throws Exception {
-		for (Endereco enderecoLista : enderecos) {
-			if (endereco.getIdEndereco() == enderecoLista.getIdEndereco()) {
-				throw new Exception("Address not created!");
-			}
-		}
+	void deletarEndereco(Endereco endereco);
 
-		enderecos.add(endereco);
-	}
+	void atualizarRuaEndereco(Endereco endereco, String novoRua);
 
-	public Endereco buscarEndereco(long idEndereco) throws Exception {
-		for (Endereco enderecoLista : enderecos) {
-			if (enderecoLista.getIdEndereco() == idEndereco) {
-				return enderecoLista;
-			}
-		}
-		throw new Exception("Address not found!");
-	}
+	void atualizarBairroEndereco(Endereco endereco, String novoBairro);
 
-	public void editarEndereco(Endereco enderecoNovo) throws Exception {
-		for (int i = 0; i < enderecos.size(); i++) {
-			Endereco enderecoAntigo = enderecos.get(i);
-			if (enderecoAntigo.getIdEndereco() == enderecoNovo.getIdEndereco()) {
-				enderecos.add(i, enderecoAntigo);
-				return;
-			}
-		}
-		throw new Exception("Address not updated!");
-	}
+	void atualizarNumeroEndereco(Endereco endereco, String novoNumero);
 
-	public void excluirEndereco(Endereco endereco) {
-		enderecos.remove(endereco);
-	}
+	void atualizarCepEndereco(Endereco endereco, String novoCep);
+
+	void atualizarCidadeEndereco(Endereco endereco, String novoCidade);
+
+	void atualizarEstadoEndereco(Endereco endereco, String novoEstado);
+
+	void atualizarReferenciaEndereco(Endereco endereco, String novoReferencia);
+
+	List<Endereco> recuperarEndereco();
+
+	List<Endereco> recuperarEnderecosOrdenadosRuaAscendente();
+
+	List<Endereco> recuperarEnderecosOrdenadosRuaDescendente();
+
+	List<Endereco> recuperarEnderecosOrdenadosBairroAscendente();
+
+	List<Endereco> recuperarEnderecosOrdenadosBairroDescendente();
+
+	List<Endereco> recuperarEnderecosOrdenadosNumeroAscendente();
+
+	List<Endereco> recuperarEnderecosOrdenadosNumeroDescendente();
+
+	List<Endereco> recuperarEnderecosOrdenadosCepAscendente();
+
+	List<Endereco> recuperarEnderecosOrdenadosCepDescendente();
+
+	List<Endereco> recuperarEnderecosOrdenadosEstadoAscendente();
+
+	List<Endereco> recuperarEnderecosOrdenadosEstadoDescendente();
+
+	List<Endereco> recuperarEnderecosOrdenadosReferenciaAscendente();
+
+	List<Endereco> recuperarEnderecosOrdenadosReferenciaDescendente();
+
 }

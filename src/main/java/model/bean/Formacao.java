@@ -1,55 +1,68 @@
 package model.bean;
 
+import java.sql.Date;
+
 public class Formacao {
 
-	private long idFormacao;
-	private String nomeFormacao;
-	private String instituicaoFormacao;
-	private String dataInicialFormacao;
-	private String dataFinalFormacao;
+	private long id;
+	private String nome;
+	private String instituicao;
+	private Date dataInicial;
+	private Date dataFinal;
 
-	public Formacao(String nomeFormacao, String instituicaoFormacao, String dataInicialFormacao,
-			String dataFinalFormacao) {
-		setNomeFormacao(nomeFormacao);
-		setInstituicaoFormacao(instituicaoFormacao);
-		setDataInicialFormacao(dataInicialFormacao);
-		setDataFinalFormacao(dataFinalFormacao);
+	public Formacao(String nome, String instituicao, Date dataInicial, Date dataFinal) {
+		setNome(nome);
+		setInstituicao(instituicao);
+		setDataInicial(dataInicial);
+		setDataFinal(dataFinal);
 	}
 
-	public String getNomeFormacao() {
-		return nomeFormacao;
+	public Formacao(long id, String nome, String instituicao, Date dataInicial, Date dataFinal) {
+		setId(id);
+		setNome(nome);
+		setInstituicao(instituicao);
+		setDataInicial(dataInicial);
+		setDataFinal(dataFinal);
 	}
 
-	public void setNomeFormacao(String nomeFormacao) {
-		this.nomeFormacao = nomeFormacao;
+	public String getNome() {
+		return nome;
 	}
 
-	public String getInstituicaoFormacao() {
-		return instituicaoFormacao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public void setInstituicaoFormacao(String instituicaoFormacao) {
-		this.instituicaoFormacao = instituicaoFormacao;
+	public String getInstituicao() {
+		return instituicao;
 	}
 
-	public String getDataInicialFormacao() {
-		return dataInicialFormacao;
+	public void setInstituicao(String instituicao) {
+		this.instituicao = instituicao;
 	}
 
-	public void setDataInicialFormacao(String dataInicialFormacao) {
-		this.dataInicialFormacao = dataInicialFormacao;
+	public Date getDataInicial() {
+		return dataInicial;
 	}
 
-	public String getDataFinalFormacao() {
-		return dataFinalFormacao;
+	public void setDataInicial(Date dataInicial) {
+		this.dataInicial = dataInicial;
 	}
 
-	public void setDataFinalFormacao(String dataFinalFormacao) {
-		this.dataFinalFormacao = dataFinalFormacao;
+	public Date getDataFinal() {
+		return dataFinal;
 	}
 
-	public long getIdFormacao() {
-		return idFormacao;
+	public void setDataFinal(Date dataFinal) {
+		this.dataFinal = dataFinal;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

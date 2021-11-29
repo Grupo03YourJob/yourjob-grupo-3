@@ -1,50 +1,40 @@
 package model.bean;
 
 import java.util.Date;
-import java.util.List;
 
 public class Candidato extends Usuario {
 
-	
-	private Date dataNascimentoCandidato;
-	private Curriculo curriculo;
-	private List<Vaga> vagas;
+	private long id;
+	private Date dataNascimento;
 
-	public Candidato(String nomeUsuario, String sobrenomeUsuario, String emailUsuario, String senhaUsuario, Endereco endereco,
-			Contato contato, String genero, String dataNascimento, Curriculo curriculo,
-			List<Vaga> vagas) {
-		super(nomeUsuario, sobrenomeUsuario, emailUsuario,senhaUsuario,endereco,contato);
-		
-		setDataNascimentoCandidato(dataNascimentoCandidato);
-		setCurriculo(curriculo);
-		setVagas(vagas);
+	public Candidato(String nome, String sobrenome, String senha, TipoGenero genero, Date dataNascimento) {
+		super(nome, sobrenome, senha, genero);
+		setDataNascimento(dataNascimento);
 	}
 
-	
-
-	public Date getDataNascimentoCandidato() {
-		return dataNascimentoCandidato;
+	public Candidato(long Id, Date dataNascimento) {
+		setId(id);
+		setDataNascimento(dataNascimento);
 	}
 
-	public void setDataNascimentoCandidato(Date dataNascimentoCandidato) {
-		this.dataNascimentoCandidato = dataNascimentoCandidato;
+	public Candidato(Date dataNascimento) {
+		setDataNascimento(dataNascimento);
 	}
 
-	public Curriculo getCurriculo() {
-		return curriculo;
+	public Date getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setCurriculo(Curriculo curriculo) {
-		this.curriculo = curriculo;
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
-	public List<Vaga> getVagas() {
-		return vagas;
+	public long getId() {
+		return id;
 	}
 
-	public void setVagas(List<Vaga> vagas) {
-		this.vagas = vagas;
+	public void setId(long id) {
+		this.id = id;
 	}
 
-		
 }
