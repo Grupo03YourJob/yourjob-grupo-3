@@ -11,7 +11,7 @@ Integrantes:
   - André Senes Dreger;
   - Fabio Santoro Nandes Oliveira da Silva;
   - João Victor Felício;
-  - Mateus Nunc-Nfoonro Nascimento; 
+  - Mateus Nunc-Nfôonro Nascimento; 
   - Vítor Quagliotto de Souza.
  
     
